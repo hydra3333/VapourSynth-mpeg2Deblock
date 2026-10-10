@@ -1,39 +1,103 @@
-# Stage B+ proving workflow; manually dispatched on main only.
-# Builds the committed projects and verifies their project-owned settings.
-# No push, release or scheduled trigger; no compiler/linker flag injection.
-# The exact approved Stage B+ CL/LINK/RC flags are maintained ONLY in
-# .github/workflows/expected_stage_bplus_switches.csv (256 tokens; 10 keys).
-# The previous expected_a3_v0_10_switches.csv (113 tokens) is retained
-# unchanged as historical evidence. Do not add a competing flag map here.
-# G7: no direct compilation flags may be injected by this workflow.
-# G5: a missing, extra or changed switch must fail loudly.
-# B6: /D _WINDLL and /TLBID:1 are accepted toolchain-inherited settings,
-# recorded explicitly in the new expected CSV and reviewed 2026-10-11.
-name: Prove project-owned MSBuild settings (manual)
+# Final Stage B+ project-owned x64 CI: manual any-branch builds and main-lineage published Releases.
+# Builds both projects through the committed .slnx; no CL/LINK/RC flag injection.
+# A single CSV owns the strict expected switches (10 tool/config/project keys).
+# The earlier A3 CSV remains unchanged as historical evidence.
+# G5: unexpected, missing or changed switch => fail loudly.
+# O7: all six MPEG-2 index regressions run LOCALLY, never in this CI job.
+# S4: retain Release EXE, DLL and both PDBs in the proof artifact.
+# S6: checkout/upload-artifact actions use current Node 24-based major versions.
+# B6: accepted inherited switches carry reviewed disposition values in CSV.
+# G7: REFERENCE ONLY - NOT EXECUTED. DO NOT UNCOMMENT.
+# Human-readable normalized CL/LINK/RC command-line SWITCH references, taken
+# directly from the ten reviewed LOCAL Stage B+ v0.2 tlogs on 2026-10-11.
+# They are NOT runnable invocations: <PATH>, LIBS= and [inputs] are placeholders.
+# The .vcxproj files alone own real flags; the expected CSV is the sole executable
+# reference for switch verification. These comments aid diagnosis only.
+# Local: VS2026 Community 18.10.12224.181; VS toolset v145;
+# MSVC tools 14.51.36231; CL 19.51.36260.0, LINK 14.51.36260.0;
+# 64-bit MSBuild, compiler/linker HostX64\x64, SDK used 10.0.28000.0.
+# CI proving run 38092449456: VS2026 Enterprise 18.10.12217.157,
+# MSVC tools 14.51.36231, SDK used 10.0.26100.0, 256/256 switches PASS.
+# When accepting a legitimate switch change: review actual differences and update
+# BOTH expected_stage_bplus_switches.csv AND this comment reference in ONE commit.
+# G7 INSPECTOR Debug CL: cl.exe /c /Zi /JMC /nologo /W3 /WX- /diagnostics:column /sdl- /Od /Ob2 /Oi /Ot /D _CRT_SECURE_NO_WARNINGS /GF- /Gm- /EHsc /RTC1 /MDd /GS /guard:cf /Gy- /arch:AVX2 /fp:precise /guard:ehcont /Zc:wchar_t /Zc:forScope /Zc:inline /Fo<PATH> /Fd<PATH> /external:W3 /Gd /TC /FC /favor:blend [inputs]
+# G7 INSPECTOR Debug LINK: link.exe /OUT:<PATH> /INCREMENTAL:NO /NOLOGO LIBS=kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib /MANIFEST /MANIFESTUAC:level='asInvoker' uiAccess='false' /manifest:embed /manifestinput:<PATH> /DEBUG:FULL /PDB:<PATH> /SUBSYSTEM:CONSOLE /LARGEADDRESSAWARE /TSAWARE /OPT:NOREF /OPT:NOICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:<PATH> /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA [inputs]
+# G7 INSPECTOR Release CL: cl.exe /c /Zi /nologo /W3 /WX- /diagnostics:column /sdl- /O2 /Ob2 /Oi /Ot /GL /D _CRT_SECURE_NO_WARNINGS /GF /Gm- /EHsc /MT /GS /guard:cf /Gy /arch:AVX2 /fp:precise /guard:ehcont /Zc:wchar_t /Zc:forScope /Zc:inline /Fo<PATH> /Fd<PATH> /external:W3 /Gd /TC /FC /favor:blend [inputs]
+# G7 INSPECTOR Release LINK: link.exe /OUT:<PATH> /INCREMENTAL:NO /NOLOGO LIBS=kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib /MANIFEST /MANIFESTUAC:level='asInvoker' uiAccess='false' /manifest:embed /manifestinput:<PATH> /DEBUG:FULL /PDB:<PATH> /SUBSYSTEM:CONSOLE /LARGEADDRESSAWARE /TSAWARE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:<PATH> /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA /PDBALTPATH:%_PDB% [inputs]
+# G7 DLL Debug CL: cl.exe /c /I<PATH> /Zi /JMC /nologo /W3 /WX- /diagnostics:column /sdl /Od /Ob2 /Oi /Ot /D NOMINMAX /D _DEBUG /D _WINDOWS /D _USRDLL /D _WINDLL /GF- /Gm- /EHsc /RTC1 /MDd /GS /guard:cf /Gy- /arch:AVX2 /fp:precise /guard:ehcont /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++20 /permissive- /Fo<PATH> /Fd<PATH> /external:W3 /Gd /TP /FC /favor:blend [inputs]
+# G7 DLL Debug LINK: link.exe /OUT:<PATH> /INCREMENTAL:NO /NOLOGO LIBS=kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib /MANIFEST /MANIFESTUAC:NO /manifest:embed /DEBUG:FULL /PDB:<PATH> /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /OPT:NOREF /OPT:NOICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:<PATH> /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA /DLL [inputs]
+# G7 DLL Debug RC: rc.exe /D _DEBUG /l0x0409 /nologo /fo<PATH> [inputs]
+# G7 DLL Release CL: cl.exe /c /I<PATH> /Zi /nologo /W3 /WX- /diagnostics:column /sdl /O2 /Ob2 /Oi /Ot /GL /D NOMINMAX /D NDEBUG /D _WINDOWS /D _USRDLL /D _WINDLL /GF /Gm- /EHsc /MT /GS /guard:cf /Gy /arch:AVX2 /fp:precise /guard:ehcont /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++20 /permissive- /Fo<PATH> /Fd<PATH> /external:W3 /Gd /TP /FC /favor:blend [inputs]
+# G7 DLL Release LINK: link.exe /OUT:<PATH> /INCREMENTAL:NO /NOLOGO LIBS=kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib /MANIFEST /MANIFESTUAC:NO /manifest:embed /DEBUG:FULL /PDB:<PATH> /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:<PATH> /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA /PDBALTPATH:%_PDB% /DLL [inputs]
+# G7 DLL Release RC: rc.exe /D NDEBUG /l0x0409 /nologo /fo<PATH> [inputs]
+# G7 END REFERENCE ONLY; never use these lines to invoke build tools.
+name: Build and prove project-owned x64 binaries (manual/release)
 on:
   workflow_dispatch:
+  release:
+    types: [published]
 permissions:
-  contents: read
+  # Release asset upload needs this; checkout does NOT persist credentials.
+  contents: write
 jobs:
   proof:
     runs-on: windows-latest
     timeout-minutes: 45
     steps:
-      - name: Check out the manually dispatched main commit
-        uses: actions/checkout@v4
+      - name: Check out the event commit (manual branch or published Release)
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
 
       - name: Discover one released Visual Studio installation; check isolation
         shell: pwsh
+        env:
+          RELEASE_ACTION: ${{ github.event.action }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
         run: |
           $ErrorActionPreference = 'Stop'
-          if ($env:GITHUB_REF -ne 'refs/heads/main') { throw 'Proof workflow runs on main only' }
+          # Any selected BRANCH is eligible for a manual run. A published Release
+          # supplies refs/tags/<tag>; its commit must additionally belong to main.
+          if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch') {
+            if ($env:GITHUB_REF -notmatch '^refs/heads/.+$') {
+              throw "Manual proof requires a branch ref; got $env:GITHUB_REF"
+            }
+          } elseif ($env:GITHUB_EVENT_NAME -eq 'release') {
+            if ($env:RELEASE_ACTION -ne 'published') { throw 'Only published Releases are supported' }
+            if ([string]::IsNullOrWhiteSpace($env:RELEASE_TAG) -or
+                $env:GITHUB_REF -ne "refs/tags/$env:RELEASE_TAG") {
+              throw "Release ref/tag mismatch: ref=$env:GITHUB_REF tag=$env:RELEASE_TAG"
+            }
+          } else { throw "Unsupported event $env:GITHUB_EVENT_NAME" }
           if (-not [Environment]::Is64BitProcess) { throw 'PowerShell process is not x64' }
           $root = (Resolve-Path $env:GITHUB_WORKSPACE).Path
           $evidence = Join-Path $env:RUNNER_TEMP 'migration-proof-evidence'
           New-Item -ItemType Directory -Force $evidence | Out-Null
+          $checkoutSha = (& git -C $root rev-parse HEAD).Trim()
+          if ($LASTEXITCODE -ne 0 -or $checkoutSha -ne $env:GITHUB_SHA) {
+            throw "Checkout differs from GitHub event SHA: $checkoutSha vs $env:GITHUB_SHA"
+          }
+          if ($env:GITHUB_EVENT_NAME -eq 'release') {
+            # A tag-ref identity check alone does not prove the commit is on main.
+            # The checkout is shallow by default. Unshallow when needed so the
+            # ancestry check works for an older approved main commit as well.
+            $shallow = (& git -C $root rev-parse --is-shallow-repository).Trim()
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot determine Git shallow state' }
+            if ($shallow -eq 'true') {
+              & git -C $root fetch --no-tags --unshallow origin main
+            } else {
+              & git -C $root fetch --no-tags origin main
+            }
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot fetch main history to validate Release ancestry' }
+            & git -C $root merge-base --is-ancestor $checkoutSha FETCH_HEAD
+            if ($LASTEXITCODE -ne 0) {
+              throw "Published Release tag commit $checkoutSha is not in main history"
+            }
+            "PASS: published Release commit $checkoutSha belongs to main history"
+          }
+          "Event: $env:GITHUB_EVENT_NAME ; ref=$env:GITHUB_REF ; checkout=$checkoutSha" |
+            Out-File -LiteralPath (Join-Path $evidence 'event_identity.txt') -Encoding utf8
           'CL','_CL_','LINK','_LINK_','Platform','PreferredToolArchitecture','VCToolsVersion' | ForEach-Object {
             $v = [Environment]::GetEnvironmentVariable($_)
             if ($null -ne $v) { throw "External build override $_ is set" }
@@ -122,27 +186,29 @@ jobs:
           shell32.CommandLineToArgvW.restype = ctypes.POINTER(wintypes.LPWSTR)
           kernel32.LocalFree.argtypes = (ctypes.c_void_p,)
           kernel32.LocalFree.restype = ctypes.c_void_p
-          
+
           def win_split(line):
               n = ctypes.c_int()
               p = shell32.CommandLineToArgvW(line, ctypes.byref(n))
               if not p: raise OSError(ctypes.get_last_error(), 'CommandLineToArgvW')
               try: return [p[i] for i in range(n.value)]
               finally: kernel32.LocalFree(ctypes.cast(p, ctypes.c_void_p))
-          
+
           root = pathlib.Path(os.environ['GITHUB_WORKSPACE'])
           ev = pathlib.Path(os.environ['EVIDENCE_DIR'])
           expected = root / '.github/workflows/expected_stage_bplus_switches.csv'
           if not expected.is_file(): raise SystemExit('FAIL: Stage B+ expected-switch CSV missing')
-          
-          expected_counts = {
-              ('INSPECTOR','Debug','CL'):34, ('INSPECTOR','Debug','LINK'):24,
-              ('INSPECTOR','Release','CL'):33, ('INSPECTOR','Release','LINK'):26,
-              ('DLL','Debug','CL'):42, ('DLL','Debug','LINK'):23,
-              ('DLL','Debug','RC'):4, ('DLL','Release','CL'):41,
-              ('DLL','Release','LINK'):25, ('DLL','Release','RC'):4,
+
+          # Fixed supported inventory; per-key counts and inherited switch tokens
+          # are taken ONLY from the independently reviewed CSV (G5, G7).
+          expected_keys = {
+              ('INSPECTOR','Debug','CL'), ('INSPECTOR','Debug','LINK'),
+              ('INSPECTOR','Release','CL'), ('INSPECTOR','Release','LINK'),
+              ('DLL','Debug','CL'), ('DLL','Debug','LINK'), ('DLL','Debug','RC'),
+              ('DLL','Release','CL'), ('DLL','Release','LINK'), ('DLL','Release','RC'),
           }
-          
+          allowed_dispositions = {'', 'toolchain-inherited, accepted 2026-10-11'}
+
           def load_expected(path):
               out = collections.defaultdict(list)
               with path.open(encoding='utf-8-sig',newline='') as f:
@@ -153,21 +219,21 @@ jobs:
                       key = (row['project'],row['configuration'],row['tool'])
                       if not row['token'] or not row['ordinal'].isdigit():
                           raise SystemExit(f'FAIL: incomplete expected-switch row: {row!r}')
-                      inherited = key[0]=='DLL' and row['token'] in ('/D _WINDLL','/TLBID:1')
-                      expected_disposition = 'toolchain-inherited, accepted 2026-10-11' if inherited else ''
-                      if row['disposition'] != expected_disposition:
-                          raise SystemExit(f'FAIL: unexpected inherited/default switch annotation: {row!r}')
+                      if key not in expected_keys:
+                          raise SystemExit(f'FAIL: unknown expected-switch group: {key!r}')
+                      if row['disposition'] not in allowed_dispositions:
+                          raise SystemExit(f'FAIL: unapproved disposition in CSV: {row!r}')
                       if int(row['ordinal']) != len(out[key])+1:
                           raise SystemExit(f'FAIL: duplicate/misordered CSV ordinal: {row!r}')
                       out[key].append(row['token'])
-              if {k:len(v) for k,v in out.items()} != expected_counts:
-                  raise SystemExit('FAIL: wrong expected-switch key/count inventory (must be exactly 256 rows)')
+              if set(out) != expected_keys or any(not out[k] for k in expected_keys):
+                  raise SystemExit(f'FAIL: incorrect expected-switch key inventory: {list(out)!r}')
               return out
-          
+
           baseline = load_expected(expected)
           base = root / 'vs/VapourSynth-mpeg2Deblock'
           tool_files = {'CL':'CL.command.1.tlog','LINK':'link.command.1.tlog','RC':'rc.command.1.tlog'}
-          
+
           def project_for_trace(path):
               rel = path.relative_to(base).parts
               if len(rel) < 5: raise SystemExit(f'FAIL: malformed tlog path: {path}')
@@ -175,7 +241,7 @@ jobs:
               if top == 'mpeg2deblock': return 'DLL'
               if top.startswith('mpeg2blo.'): return 'INSPECTOR'
               raise SystemExit(f'FAIL: unknown project tlog directory: {path}')
-          
+
           paths = collections.defaultdict(list)
           for tool, filename in tool_files.items():
               for p in base.rglob(filename):
@@ -185,11 +251,11 @@ jobs:
                   if len(cfgs) != 1 or 'x64' not in [part.lower() for part in rel]:
                       raise SystemExit(f'FAIL: incorrect x64/configuration path: {p}')
                   key = (project,cfgs[0],tool)
-                  if key not in expected_counts: raise SystemExit(f'FAIL: extra/unexpected trace: {p}')
+                  if key not in expected_keys: raise SystemExit(f'FAIL: extra/unexpected trace: {p}')
                   paths[key].append(p)
-          if {k:len(v) for k,v in paths.items()} != {k:1 for k in expected_counts}:
+          if {k:len(v) for k,v in paths.items()} != {k:1 for k in expected_keys}:
               raise SystemExit(f'FAIL: expected exactly ten CL/LINK/RC traces; found {dict(paths)!r}')
-          
+
           # Native MSBuild tlog command lines, with the original Windows quoting rules.
           def normalize_arg(arg,tool):
               up=arg.upper()
@@ -198,7 +264,7 @@ jobs:
                   if up.startswith(prefix): return arg[:len(prefix)]+'<PATH>'
               if tool=='CL' and up.startswith('/I'): return arg[:2]+'<PATH>'
               return arg
-          
+
           def parse_command(line, tool, key):
               argv=win_split(line)
               got=[]; libs=[]; sources=[]
@@ -228,9 +294,9 @@ jobs:
                   if pos is None: raise SystemExit(f'FAIL: {key} missing /NOLOGO')
                   got.insert(pos+1,'LIBS='+';'.join(libs).lower())
               return got
-          
+
           actual={}
-          for key in expected_counts:
+          for key in expected_keys:
               p=paths[key][0]
               (ev / ('_'.join(key)+'_'+p.name)).write_bytes(p.read_bytes())
               lines=p.read_text(encoding='utf-16').splitlines()
@@ -244,13 +310,13 @@ jobs:
               if tool=='RC' and len(commands)!=1:
                   raise SystemExit(f'FAIL: expected exactly one RC command for {key}')
               actual[key]=first
-          
+
           with (ev/'actual_stage_bplus_switches.csv').open('w',encoding='utf-8',newline='') as f:
               w=csv.writer(f); w.writerow(('project','configuration','tool','ordinal','token'))
               for key in sorted(actual):
                   for ordinal,token in enumerate(actual[key],1): w.writerow((*key,ordinal,token))
           failures=[]
-          for key in sorted(expected_counts):
+          for key in sorted(expected_keys):
               tool=key[2]
               canon=(lambda t:t.lower()) if tool=='LINK' else (lambda t:t)
               want=collections.Counter(map(canon,baseline[key]))
@@ -260,7 +326,7 @@ jobs:
                       failures.append(f'{key} {kind} {token} (x{count})')
               if not (want-got) and not (got-want):
                   print(f'PASS: {key} {sum(got.values())} reviewed switches')
-          
+
           # K2: Positive host-architecture proof for BOTH CL and LINK on BOTH projects,
           # in BOTH configurations. Diagnostic INVOCATIONS, not property declarations.
           invocation_pattern=re.compile(
@@ -292,10 +358,11 @@ jobs:
                       key=(project,tool)
                       if not inv[key]: failures.append(f'{cfg}/{project}/{tool}: actual host tool invocation missing')
                       print(f'{cfg}/{project}/{tool}: {len(inv[key])} real diagnostic invocation(s)')
-          
+
           for item in failures: print('FAIL:',item)
           if failures: raise SystemExit(1)
-          print('PASS: all 256 CL/LINK/RC switches and all eight HostX64 project/tool/config groups')
+          total=sum(len(values) for values in baseline.values())
+          print(f'PASS: all {total} CL/LINK/RC switches and all eight HostX64 project/tool/config groups')
           '@ | Set-Content -LiteralPath $script -Encoding utf8
           & python $script
           if ($LASTEXITCODE -ne 0) { throw "Strict tlog/HostX64 check failed: $LASTEXITCODE" }
@@ -355,10 +422,10 @@ jobs:
           $versionParts = @()
           foreach ($part in @('MAJOR','MINOR','PATCH','BUILD')) {
             $rx = '(?m)^[ \t]*#define[ \t]+MPEG2D_VERSION_' + $part + '[ \t]+([0-9]+)[ \t]*(?://[^\r\n]*)?\r?$'
-            $matches = [regex]::Matches($versionText, $rx)
-            if ($matches.Count -ne 1) { throw "Expected exactly one numeric MPEG2D_VERSION_$part in $versionHeader" }
+            $versionDefines = [regex]::Matches($versionText, $rx)
+            if ($versionDefines.Count -ne 1) { throw "Expected exactly one numeric MPEG2D_VERSION_$part in $versionHeader" }
             [uint32]$number = 0
-            if (-not [uint32]::TryParse($matches[0].Groups[1].Value, [ref]$number)) {
+            if (-not [uint32]::TryParse($versionDefines[0].Groups[1].Value, [ref]$number)) {
               throw "Invalid numeric MPEG2D_VERSION_$part in $versionHeader"
             }
             $versionParts += $number
@@ -456,10 +523,66 @@ jobs:
               Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'pe_validation_result.txt') -Append
           }
           # NOTE: No CI functional six-index regression (O7). Executed locally.
-      - name: Upload diagnostic evidence even on failure
+      - name: Preserve all four Release binaries and PDBs in the proof artifact (S4)
         if: always()
-        uses: actions/upload-artifact@v4
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $src = Join-Path $env:GITHUB_WORKSPACE 'vs\VapourSynth-mpeg2Deblock\x64\Release'
+          $dst = Join-Path $env:RUNNER_TEMP 'migration-proof-evidence/Release_Binaries'
+          New-Item -ItemType Directory -Force $dst | Out-Null
+          foreach ($name in @('Mpeg2BlockInspector.exe','Mpeg2BlockInspector.pdb',
+                              'mpeg2Deblock.dll','mpeg2Deblock.pdb')) {
+            $path = Join-Path $src $name
+            if (Test-Path -LiteralPath $path -PathType Leaf) {
+              Copy-Item -LiteralPath $path -Destination (Join-Path $dst $name) -Force
+              $file = Get-Item -LiteralPath (Join-Path $dst $name)
+              if ($file.Length -eq 0) { throw "Empty binary/PDB: $name" }
+              $sha = (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash
+              "$name | bytes=$($file.Length) | sha256=$sha" |
+                Tee-Object -FilePath (Join-Path $env:RUNNER_TEMP 'migration-proof-evidence/release_binary_hashes.txt') -Append
+            } else {
+              Write-Warning "Release binary/PDB not created by preceding steps: $path"
+            }
+          }
+
+      - name: Upload proof evidence even on failure (including available binaries/PDBs)
+        if: always()
+        uses: actions/upload-artifact@v7
         with:
           name: stage-bplus-project-owned-msbuild-proof
           path: ${{ runner.temp }}/migration-proof-evidence/
           if-no-files-found: warn
+
+      - name: Attach verified binaries and symbols to the published GitHub Release
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_ID: ${{ github.event.release.id }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ([string]::IsNullOrWhiteSpace($env:RELEASE_TAG) -or
+              [string]::IsNullOrWhiteSpace($env:RELEASE_ID) -or
+              $env:GITHUB_REF -ne "refs/tags/$env:RELEASE_TAG") {
+            throw 'Release identity mismatch before asset upload'
+          }
+          $tag = (& gh api "repos/$env:GITHUB_REPOSITORY/releases/$env:RELEASE_ID" --jq .tag_name).Trim()
+          if ($LASTEXITCODE -ne 0 -or $tag -cne $env:RELEASE_TAG) {
+            throw "Release ID/tag lookup mismatch: $tag"
+          }
+          $source = Join-Path $env:EVIDENCE_DIR 'Release_Binaries'
+          $assets = @('Mpeg2BlockInspector.exe','Mpeg2BlockInspector.pdb',
+                      'mpeg2Deblock.dll','mpeg2Deblock.pdb') | ForEach-Object {
+            $file = Join-Path $source $_
+            if (-not (Test-Path -LiteralPath $file -PathType Leaf) -or
+                (Get-Item -LiteralPath $file).Length -eq 0) {
+              throw "Cannot attach missing/empty verified asset: $file"
+            }
+            $file
+          }
+          # Intentionally omit --clobber: a rerun must not silently replace published assets.
+          & gh release upload $env:RELEASE_TAG @assets --repo $env:GITHUB_REPOSITORY
+          if ($LASTEXITCODE -ne 0) { throw "GitHub Release upload failed: $LASTEXITCODE" }
+          "PASS: attached four verified binaries/symbols to $env:RELEASE_TAG"
