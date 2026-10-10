@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files"><UniqueIdentifier>{752DD1E1-4A41-54A2-AB8F-ECE6D4417B3B}</UniqueIdentifier><Extensions>cpp;c;cc;cxx</Extensions></Filter>
+    <Filter Include="Header Files"><UniqueIdentifier>{5B22E128-6EB8-5B80-BEA8-163DB7A7A22D}</UniqueIdentifier><Extensions>h;hpp;inl</Extensions></Filter>
+    <Filter Include="Resource Files"><UniqueIdentifier>{2780A7A0-FEC5-5BB3-88AB-021882F27C95}</UniqueIdentifier><Extensions>rc;ico;bmp</Extensions></Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\mpeg2Deblock\plugin.cpp"><Filter>Source Files</Filter></ClCompile>
+    <ClInclude Include="..\..\src\mpeg2Deblock\plugin_version.h"><Filter>Header Files</Filter></ClInclude>
+    <ResourceCompile Include="..\..\src\mpeg2Deblock\mpeg2Deblock.rc"><Filter>Resource Files</Filter></ResourceCompile>
+  </ItemGroup>
+</Project>

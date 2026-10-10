@@ -3,4 +3,5 @@
     <Platform Name="x64" />
   </Configurations>
   <Project Path="Mpeg2BlockInspector.vcxproj" Id="f4b1a357-b93c-7aab-3946-9c7a95523c9b" />
+  <Project Path="mpeg2Deblock.vcxproj" Id="c6419c1e-2b89-5d90-8a32-199f44a18521" />
 </Solution>

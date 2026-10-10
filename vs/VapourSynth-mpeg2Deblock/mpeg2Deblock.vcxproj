@@ -12,12 +12,13 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
-    <ProjectGuid>{F4B1A357-B93C-7AAB-3946-9C7A95523C9B}</ProjectGuid>
+    <ProjectGuid>{C6419C1E-2B89-5D90-8A32-199F44A18521}</ProjectGuid>
+    <RootNamespace>mpeg2Deblock</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -26,7 +27,7 @@
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -59,18 +60,16 @@
     <LinkGuardEHContMetadata>true</LinkGuardEHContMetadata>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Manifest>
-      <EnableSegmentHeap>true</EnableSegmentHeap>
-    </Manifest>
     <ClCompile>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NOMINMAX;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\third_party\vapoursynth\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>false</TreatWarningAsError>
       <DiagnosticsFormat>Column</DiagnosticsFormat>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
       <UseFullPaths>true</UseFullPaths>
-      <SDLCheck>false</SDLCheck>
+      <SDLCheck>true</SDLCheck>
       <ControlFlowGuard>Guard</ControlFlowGuard>
       <GuardEHContMetadata>true</GuardEHContMetadata>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -87,8 +86,10 @@
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <SupportJustMyCode>true</SupportJustMyCode>
-      <CompileAs>CompileAsC</CompileAs>
-      <LanguageStandard_C>Default</LanguageStandard_C>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ConformanceMode>true</ConformanceMode>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
       <CallingConvention>Cdecl</CallingConvention>
@@ -101,45 +102,44 @@
       <ErrorReporting>Queue</ErrorReporting>
       <AdditionalOptions>/favor:blend %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ResourceCompile>
     <Link>
       <LinkErrorReporting>QueueForNextLogin</LinkErrorReporting>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ManifestEmbed>true</ManifestEmbed>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
       <LinkTimeCodeGenerationObjectFile />
       <OptimizeReferences>false</OptimizeReferences>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
-      <EnableUAC>true</EnableUAC>
-      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
-      <UACUIAccess>false</UACUIAccess>
+      <EnableUAC>false</EnableUAC>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <LargeAddressAware>true</LargeAddressAware>
-      <TerminalServerAware>true</TerminalServerAware>
       <TargetMachine>MachineX64</TargetMachine>
-      <TypeLibraryResourceID>1</TypeLibraryResourceID>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <CETCompat>true</CETCompat>
       <AdditionalOptions>/HIGHENTROPYVA %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Manifest>
-      <EnableSegmentHeap>true</EnableSegmentHeap>
-    </Manifest>
     <ClCompile>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NOMINMAX;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\third_party\vapoursynth\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>false</TreatWarningAsError>
       <DiagnosticsFormat>Column</DiagnosticsFormat>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
       <UseFullPaths>true</UseFullPaths>
-      <SDLCheck>false</SDLCheck>
+      <SDLCheck>true</SDLCheck>
       <ControlFlowGuard>Guard</ControlFlowGuard>
       <GuardEHContMetadata>true</GuardEHContMetadata>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -156,8 +156,10 @@
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <SupportJustMyCode>false</SupportJustMyCode>
-      <CompileAs>CompileAsC</CompileAs>
-      <LanguageStandard_C>Default</LanguageStandard_C>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ConformanceMode>true</ConformanceMode>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
       <CallingConvention>Cdecl</CallingConvention>
@@ -170,55 +172,41 @@
       <ErrorReporting>Queue</ErrorReporting>
       <AdditionalOptions>/favor:blend %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ResourceCompile>
     <Link>
       <LinkErrorReporting>QueueForNextLogin</LinkErrorReporting>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ManifestEmbed>true</ManifestEmbed>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <LinkTimeCodeGenerationObjectFile />
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <EnableUAC>true</EnableUAC>
-      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
-      <UACUIAccess>false</UACUIAccess>
+      <EnableUAC>false</EnableUAC>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <LargeAddressAware>true</LargeAddressAware>
-      <TerminalServerAware>true</TerminalServerAware>
       <TargetMachine>MachineX64</TargetMachine>
-      <TypeLibraryResourceID>1</TypeLibraryResourceID>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <CETCompat>true</CETCompat>
       <AdditionalOptions>/HIGHENTROPYVA /PDBALTPATH:%_PDB% %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\display.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\getbits.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\getblk.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\gethdr.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\getpic.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\getvlc.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\idct.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\idctref.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\motion.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\mpeg2dec.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\recon.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\spatscal.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\store.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\subspic.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\systems.c" />
-    <ClCompile Include="..\..\src\Mpeg2BlockInspector\verify.c" />
+    <ClCompile Include="..\..\src\mpeg2Deblock\plugin.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Mpeg2BlockInspector\config.h" />
-    <ClInclude Include="..\..\src\Mpeg2BlockInspector\getvlc.h" />
-    <ClInclude Include="..\..\src\Mpeg2BlockInspector\global.h" />
-    <ClInclude Include="..\..\src\Mpeg2BlockInspector\mpeg2dec.h" />
+    <ClInclude Include="..\..\src\mpeg2Deblock\plugin_version.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\src\mpeg2Deblock\mpeg2Deblock.rc" />
   </ItemGroup>
   <!-- Candidate B+: numeric minimum guard, evaluated during every project build. -->
   <Target Name="BPlus_MinimumPlatformToolset" BeforeTargets="PrepareForBuild">

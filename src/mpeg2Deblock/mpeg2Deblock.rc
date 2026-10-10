@@ -1,0 +1,29 @@
+#include <winver.h>
+#include "plugin_version.h" // Canonical version shared with plugin.cpp; NEVER duplicate numeric versions here.
+
+1 VERSIONINFO
+ FILEVERSION MPEG2D_VERSION_QUAD
+ PRODUCTVERSION MPEG2D_VERSION_QUAD
+ FILEFLAGSMASK 0x3fL
+ FILEFLAGS 0x0L
+ FILEOS VOS__WINDOWS32
+ FILETYPE VFT_DLL
+ FILESUBTYPE VFT2_UNKNOWN
+BEGIN
+ BLOCK "StringFileInfo"
+ BEGIN
+  BLOCK "040904B0"
+  BEGIN
+   VALUE "FileDescription", "MPEG-2 Deblocking VapourSynth Plugin (scaffold)\0"
+   VALUE "FileVersion", MPEG2D_VERSION_TEXT "\0"
+   VALUE "InternalName", "mpeg2Deblock\0"
+   VALUE "OriginalFilename", "mpeg2Deblock.dll\0"
+   VALUE "ProductName", "VapourSynth-mpeg2Deblock\0"
+   VALUE "ProductVersion", MPEG2D_VERSION_TEXT "\0"
+  END
+ END
+ BLOCK "VarFileInfo"
+ BEGIN
+  VALUE "Translation", 0x409, 1200
+ END
+END
