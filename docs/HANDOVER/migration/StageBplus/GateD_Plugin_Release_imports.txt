@@ -1,0 +1,95 @@
+Microsoft (R) COFF/PE Dumper Version 14.51.36260.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file vs\VapourSynth-mpeg2Deblock\x64\Release\mpeg2Deblock.dll
+
+File Type: DLL
+
+  Section contains the following imports:
+
+    KERNEL32.dll
+             18000F000 Import Address Table
+             180018588 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         484 QueryPerformanceCounter
+                         245 GetCurrentProcessId
+                         249 GetCurrentThreadId
+                         31D GetSystemTimeAsFileTime
+                         39D InitializeSListHead
+                         5BB SetUnhandledExceptionFilter
+                         304 GetStartupInfoW
+                         2A8 GetModuleHandleW
+                         51A RtlUnwindEx
+                         3A1 InterlockedFlushSList
+                         290 GetLastError
+                         57B SetLastError
+                         1C5 FlsAlloc
+                         1C7 FlsGetValue
+                         1C9 FlsSetValue
+                         1C6 FlsFree
+                         15A EnterCriticalSection
+                         3F3 LeaveCriticalSection
+                         39A InitializeCriticalSectionEx
+                         132 DeleteCriticalSection
+                         514 RtlLookupFunctionEntry
+                         156 EncodePointer
+                         49B RaiseException
+                         516 RtlPcToFileHeader
+                         244 GetCurrentProcess
+                         189 ExitProcess
+                         5DB TerminateProcess
+                         1D7 FreeLibrary
+                         2A7 GetModuleHandleExW
+                         2E0 GetProcAddress
+                         2A4 GetModuleFileNameW
+                         3BB IsProcessorFeaturePresent
+                         50C RtlCaptureContext
+                         51B RtlVirtualUnwind
+                         3B3 IsDebuggerPresent
+                         5FE UnhandledExceptionFilter
+                         37F HeapAlloc
+                         383 HeapFree
+                         1A0 FindClose
+                         1A6 FindFirstFileExW
+                         1B7 FindNextFileW
+                         3C1 IsValidCodePage
+                         1DE GetACP
+                         2C9 GetOEMCP
+                         1ED GetCPInfo
+                         202 GetCommandLineA
+                         203 GetCommandLineW
+                         426 MultiByteToWideChar
+                         64F WideCharToMultiByte
+                         265 GetEnvironmentStringsW
+                         1D6 FreeEnvironmentStringsW
+                         61D VirtualProtect
+                         3F9 LoadLibraryExW
+                         3E7 LCMapStringW
+                         2E7 GetProcessHeap
+                         306 GetStdHandle
+                         27D GetFileType
+                         30B GetStringTypeW
+                         388 HeapSize
+                         386 HeapReAlloc
+                         596 SetStdHandle
+                         1CB FlushFileBuffers
+                         663 WriteFile
+                         22C GetConsoleOutputCP
+                         228 GetConsoleMode
+                         56C SetFilePointerEx
+                          E9 CreateFileW
+                          A0 CloseHandle
+                         662 WriteConsoleW
+
+  Summary
+
+        2000 .data
+        1000 .fptable
+        2000 .pdata
+        A000 .rdata
+        1000 .reloc
+        1000 .rsrc
+        E000 .text

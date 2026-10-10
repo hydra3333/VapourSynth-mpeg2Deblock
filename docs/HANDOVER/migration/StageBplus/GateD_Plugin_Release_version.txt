@@ -1,0 +1,10 @@
+
+
+FileVersion      : 0.1.0.0
+ProductVersion   : 0.1.0.0
+FileDescription  : MPEG-2 Deblocking VapourSynth Plugin (scaffold)
+ProductName      : VapourSynth-mpeg2Deblock
+OriginalFilename : mpeg2Deblock.dll
+
+
+

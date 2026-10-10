@@ -1,0 +1,264 @@
+Microsoft (R) COFF/PE Dumper Version 14.51.36260.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file vs\VapourSynth-mpeg2Deblock\x64\Release\mpeg2Deblock.dll
+
+File Type: DLL
+
+  Section contains the following load config:
+
+            00000140 size
+                   0 time date stamp
+                0.00 Version
+                   0 GlobalFlags Clear
+                   0 GlobalFlags Set
+                   0 Critical Section Default Timeout
+                   0 Decommit Free Block Threshold
+                   0 Decommit Total Free Threshold
+    0000000000000000 Lock Prefix Table
+                   0 Maximum Allocation Size
+                   0 Virtual Memory Threshold
+                   0 Process Affinity Mask
+                   0 Process Heap Flags
+                   0 CSD Version
+                0000 Dependent Load Flag
+    0000000000000000 Edit List
+    0000000180019000 Security Cookie
+    000000018000F230 Guard CF address of check-function pointer
+    000000018000F240 Guard CF address of dispatch-function pointer
+    000000018000F310 Guard CF function table
+                  2E Guard CF function count
+            10417500 Guard Flags
+                       CF instrumented
+                       FID table present
+                       Protect delayload IAT
+                       Delayload IAT in its own section
+                       Export suppression info present
+                       Long jump target table present
+                       EH Continuation table present
+                0000 Code Integrity Flags
+                0000 Code Integrity Catalog
+            00000000 Code Integrity Catalog Offset
+            00000000 Code Integrity Reserved
+    0000000000000000 Guard CF address taken IAT entry table
+                   0 Guard CF address taken IAT entry count
+    0000000000000000 Guard CF long jump target table
+                   0 Guard CF long jump target count
+    0000000000000000 Dynamic value relocation table
+    0000000000000000 Hybrid metadata pointer
+    0000000000000000 Guard RF address of failure-function
+    0000000000000000 Guard RF address of failure-function pointer
+            00000000 Dynamic value relocation table offset
+                0000 Dynamic value relocation table section
+                0000 Reserved2
+    0000000000000000 Guard RF address of stack pointer verification function pointer
+            00000000 Hot patching table offset
+                0000 Reserved3
+    0000000000000000 Enclave configuration pointer
+    0000000180016E6C Volatile metadata pointer
+    000000018000F2D8 Guard EH continuation table
+                   B Guard EH continuation count
+    000000018000F238 Guard XFG address of check-function pointer
+    000000018000F248 Guard XFG address of dispatch-function pointer
+    000000018000F250 Guard XFG address of dispatch-table-function pointer
+    000000018000F258 CastGuard OS determined failure mode
+    000000018000F260 Guard memcpy function pointer
+
+    Guard CF Function Table
+
+          Address
+          --------
+           0000000180001000
+       E   00000001800010B0  VapourSynthPluginInit2
+           0000000180001170
+           00000001800014C0  _DllMainCRTStartup
+           0000000180001500  __report_gsfailure
+           0000000180001A60  _guard_check_icall_nop
+           0000000180002050  __DestructExceptionObject
+           00000001800021F0  _NLG_Notify
+           0000000180002210  __NLG_Dispatch2
+           0000000180002220  __NLG_Return2
+           0000000180002270  __vcrt_freefls
+           0000000180003E00  ??_Ebad_exception@std@@UEAAPEAXI@Z (public: virtual void * __cdecl std::bad_exception::`vector deleting destructor'(unsigned int))
+           0000000180003E50  ?CxxCallCatchBlock@__FrameHandler3@@SAPEAXPEAU_EXCEPTION_RECORD@@@Z (public: static void * __cdecl __FrameHandler3::CxxCallCatchBlock(struct _EXCEPTION_RECORD *))
+           0000000180004460  ?what@exception@std@@UEBAPEBDXZ (public: virtual char const * __cdecl std::exception::what(void)const )
+           00000001800052D0
+           00000001800052F0
+           0000000180005320  __acrt_uninitialize_command_line
+           0000000180005330
+           0000000180005340
+           0000000180005380
+           0000000180005390
+           00000001800053D0
+           0000000180005930
+           0000000180005D10  __acrt_initialize_ptd
+           0000000180005D60  __acrt_uninitialize_ptd
+           0000000180005D90  __acrt_initialize_locks
+           0000000180005E00  __acrt_uninitialize_locks
+           0000000180006510
+           00000001800079F0  __acrt_initialize_multibyte
+           0000000180007DD0  __acrt_initialize_command_line
+           00000001800087F0  __acrt_initialize_winapi_thunks
+           0000000180008870  __acrt_uninitialize_winapi_thunks
+           00000001800088D0  __acrt_initialize_heap
+           0000000180008900  __acrt_uninitialize_heap
+           0000000180008B40  __acrt_initialize_lowio
+           0000000180008B80  __acrt_uninitialize_lowio
+           00000001800093E0  __acrt_initialize_stdio
+           0000000180009520  __acrt_uninitialize_stdio
+           0000000180009CD0  __acrt_uninitialize_locale
+           000000018000B100
+           000000018000CC10  __dcrt_terminate_console_output
+           000000018000CF40  __acrt_initialize_fma3
+           000000018000D0C0  ??_Etype_info@@UEAAPEAXI@Z (public: virtual void * __cdecl type_info::`vector deleting destructor'(unsigned int))
+           000000018000D4B0  memcpy_repmovs
+           000000018000D4C0  memcpy
+           000000018000DCB0  memset_repstos
+
+    Guard EH Continuation Table
+
+          Address
+          --------
+           00000001800014A0
+           000000018000191A
+           0000000180002098
+           0000000180002675
+           00000001800030EA
+           00000001800031A3
+           0000000180003F66
+           0000000180004217
+           0000000180004972
+           00000001800054D1
+           000000018000D07D
+
+    Volatile Metadata
+
+                      18 size
+                       3 min version (8003)
+                       3 max version (8003)
+        0000000000016E84 volatile access RVA table
+                     17C volatile access RVA table size
+        0000000000017000 volatile range info table
+                      30 volatile range info table size
+
+    Volatile Access RVA Table
+
+          Address
+          --------
+           000000018000164D
+           000000018000165C
+           000000018000166E
+           0000000180001948
+           0000000180001BE8
+           0000000180001BF7
+           0000000180001C5A
+           0000000180001CAA
+           0000000180001CF1
+           0000000180002230  __except_validate_context_record
+           0000000180002243
+           000000018000266F
+           0000000180003F66
+           00000001800048D3
+           0000000180004B18  _is_c_termination_complete
+           00000001800053A0
+           000000018000575A
+           000000018000582A
+           0000000180005E54  __acrt_app_verifier_enabled
+           0000000180005E70  __acrt_is_secure_process
+           0000000180006060
+           0000000180006084
+           000000018000734D
+           0000000180007395
+           0000000180007876
+           0000000180007991
+           00000001800079B8
+           0000000180008436
+           00000001800084CF
+           0000000180008537
+           000000018000857D
+           00000001800085B6
+           0000000180008610
+           0000000180008670  __acrt_FlsGetValue2
+           00000001800086A0
+           000000018000878A
+           0000000180008828
+           00000001800090B5
+           00000001800090E8
+           0000000180009178
+           000000018000928A
+           00000001800092CE
+           00000001800092D8
+           00000001800092E0
+           0000000180009364
+           0000000180009C4A
+           0000000180009CC9
+           0000000180009D00  __acrt_add_locale_ref
+           0000000180009D10
+           0000000180009D1F
+           0000000180009D2E
+           0000000180009D3D
+           0000000180009D5F
+           0000000180009D72
+           0000000180009F1A
+           0000000180009F45
+           0000000180009F78
+           0000000180009F9D
+           0000000180009FAE
+           0000000180009FBE
+           0000000180009FCE
+           0000000180009FDE
+           000000018000A001
+           000000018000A015
+           000000018000A110  _query_new_mode
+           000000018000A13E
+           000000018000C44B
+           000000018000C4CE
+           000000018000C4DB
+           000000018000C4EC
+           000000018000CA39
+           000000018000CAAC
+           000000018000CF37
+           000000018000CF73
+           000000018000CF78
+           000000018000E11A
+           000000018000E124
+           000000018000E12B
+           000000018000E12F
+           000000018000E13B
+           000000018000E145
+           000000018000E152
+           000000018000E15F
+           000000018000E171
+           000000018000E179
+           000000018000E190
+           000000018000E197
+           000000018000E1BB
+           000000018000E1E3
+           000000018000E1F7
+           000000018000E243
+           000000018000E24A
+           000000018000E251
+           000000018000E37A
+           000000018000E37D
+
+    Volatile Info Range Table
+
+          Ranges
+          -------
+          0000000180001170 - 00000001800021C0
+          0000000180002230 - 0000000180004480
+          0000000180004500 - 000000018000C840
+          000000018000C860 - 000000018000D370
+          000000018000D3D0 - 000000018000D430
+          000000018000E060 - 000000018000E500
+
+  Summary
+
+        2000 .data
+        1000 .fptable
+        2000 .pdata
+        A000 .rdata
+        1000 .reloc
+        1000 .rsrc
+        E000 .text
