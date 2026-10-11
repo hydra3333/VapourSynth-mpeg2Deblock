@@ -1,23 +1,21 @@
-# Migration knowledge/control documentation checkpoint - 2026-10-10
+# Migration documentation: current read-first index (2026-10-11)
 
-This package exists to preserve migration continuity before the current ChatGPT chat reaches its practical limit.
+Read this first when continuing the VapourSynth-mpeg2Deblock Visual Studio / build / release migration. This file supersedes the old 2026-10-10 Stage A3 v0.9 checkpoint instructions; the historical candidate and review files remain available as evidence, not current action items.
 
-Read in this order:
+## Reading order
 
-1. `ChatGPT_Migration_Chat_Handover_v0_8.md`
-2. `StageA_VS2026_MSBuild_Hard_Earned_Knowledge_v0_1.md`
-3. `Claude_REVIEW_OF_ChatGPT_StageA_A3_v0_8_Candidate_v0_1.md`
-4. `Claude_REVIEW_OF_StageA_A3_Q1_R1_R4_Local_Evidence_Closure_v0_1.md`
-5. `Migration_Design_Record_D-C_CNR3_VS2026_Intent_v0_16.md`
-6. `StageA_Visual_Studio_Normalization_Execution_Plan_v0_11.md`
-7. `MPEG2_Deblocking_Developer_Handback_v0_10.md`
+1. `Migration_Status.md` (living document; current v0.7) - the acceptance ledger, open gates and binding Dave decisions.
+2. `ChatGPT_Migration_Chat_Handover_v0_13.md` - migration-chat continuity after published `v0.1.0` development-scaffold pre-release.
+3. `Claude_REVIEW_OF_ChatGPT_StageBPlus_Final_Gate_v0_1.md` - Stage B+ local gates A-F; all six indexes PASS.
+4. `Claude_REVIEW_OF_ChatGPT_StageBPlus_Step4_CI_Run_v0_1.md` - accepted 256-switch / HostX64 CI proving and K2 closure.
+5. The current workflow `.github/workflows/mpeg2Deblock_build-windows-x64_workflow_manual_or_release.yml` and the reviewed CSV `.github/workflows/expected_stage_bplus_switches.csv` - actual automated build/release contract.
+6. Historical `ChatGPT_Migration_Chat_Handover_v0_12.md`, Stage A, Stage C and earlier Design Record/Plan versions only if needed to trace a decision. They are not substitutes for the current status.
 
-Current A3 v0.9 candidate SHA-256:
+## Current checkpoint
 
-`ebfcde82405fd2dc25aa7a14a160f89375465d545927b3e4583e7a40fd1af668`
+- Stage A A3 v0.10: ACCEPTED; its six-index result was WAIVED, **never PASS**.
+- Step 0, Step 1 and Stage B+ / K2: ACCEPTED and CLOSED. Stage B+ six-index did PASS locally.
+- Step 3: tested single-job manual + published-Release workflow; one verified user ZIP containing EXE, DLL, LICENSE and NOTICE.md; public `v0.1.0` pre-release published. Final Claude/Dave closeout decision still pending.
+- Step 4: final common developer handback, final migration reviews and closure are next. Technical development stays paused under O6 until all migration work is closed and Dave separately authorises resumption.
 
-v0.9 is NOT Claude-accepted, NOT Dave-ratified and NOT applied.
-
-The included candidate/diff/pin/delta/PASS files are continuity evidence only. Do not copy the candidate into the production project until the v0.9 READY package has passed Dave-local validators, Claude has accepted the exact candidate, and Dave has ratified the exact SHA.
-
-After Dave agrees with these knowledge/control documents, the intended next repository action is a named-staging documentation/evidence checkpoint, followed by commit and push. Do not use `git add -A`.
+Git hygiene: `git add -A` stages all new evidence, logs and ZIPs as well as documents. Review `git diff --cached --name-status`, `--stat`, and `--check` before committing; do not assume untracked items are irrelevant or that they all belong in the repository.

@@ -1,0 +1,822 @@
+﻿2026-10-11T00:27:51.1158608Z Current runner version: '2.337.0'
+2026-10-11T00:27:51.1423377Z ##[group]Runner Image Provisioner
+2026-10-11T00:27:51.1424537Z Hosted Compute Agent
+2026-10-11T00:27:51.1425168Z Version: 20260901.588
+2026-10-11T00:27:51.1425767Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-11T00:27:51.1426453Z Build Date: 2026-09-01T19:56:44Z
+2026-10-11T00:27:51.1427155Z Worker ID: {8b9bc5f6-3ae5-4980-be01-d269beb691c4}
+2026-10-11T00:27:51.1427816Z Azure Region: eastus
+2026-10-11T00:27:51.1428369Z ##[endgroup]
+2026-10-11T00:27:51.1429857Z ##[group]Operating System
+2026-10-11T00:27:51.1430528Z Microsoft Windows Server 2025
+2026-10-11T00:27:51.1431139Z 10.0.26100
+2026-10-11T00:27:51.1431644Z Datacenter
+2026-10-11T00:27:51.1432148Z ##[endgroup]
+2026-10-11T00:27:51.1432656Z ##[group]Runner Image
+2026-10-11T00:27:51.1433266Z Image: windows-2025-vs2026
+2026-10-11T00:27:51.1433859Z Version: 20260925.250.1
+2026-10-11T00:27:51.1435340Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20260925.250/images/windows/Windows2025-VS2026-Readme.md
+2026-10-11T00:27:51.1436941Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20260925.250
+2026-10-11T00:27:51.1437914Z ##[endgroup]
+2026-10-11T00:27:51.1438977Z ##[group]GITHUB_TOKEN Permissions
+2026-10-11T00:27:51.1441682Z Contents: write
+2026-10-11T00:27:51.1442289Z Metadata: read
+2026-10-11T00:27:51.1442845Z ##[endgroup]
+2026-10-11T00:27:51.1445112Z Secret source: Actions
+2026-10-11T00:27:51.1446038Z Cache mode: write
+2026-10-11T00:27:51.1446708Z Prepare workflow directory
+2026-10-11T00:27:51.2619162Z Prepare all required actions
+2026-10-11T00:27:51.2678852Z Getting action download info
+2026-10-11T00:27:51.4496558Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-11T00:27:51.6708670Z Download action repository 'actions/upload-artifact@v7' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+2026-10-11T00:27:52.3646592Z Complete job name: proof
+2026-10-11T00:27:52.8136135Z ##[group]Run actions/checkout@v7
+2026-10-11T00:27:52.8137884Z with:
+2026-10-11T00:27:52.8138700Z   ref: 0c9bf90f92fc3a6557095232801adf6cae46ac3d
+2026-10-11T00:27:52.8140115Z   persist-credentials: false
+2026-10-11T00:27:52.8141414Z   repository: hydra3333/VapourSynth-mpeg2Deblock
+2026-10-11T00:27:52.8150343Z   token: ***
+2026-10-11T00:27:52.8150872Z   ssh-strict: true
+2026-10-11T00:27:52.8151381Z   ssh-user: git
+2026-10-11T00:27:52.8152064Z   clean: true
+2026-10-11T00:27:52.8152608Z   sparse-checkout-cone-mode: true
+2026-10-11T00:27:52.8153292Z   fetch-depth: 1
+2026-10-11T00:27:52.8153783Z   fetch-tags: false
+2026-10-11T00:27:52.8154309Z   show-progress: true
+2026-10-11T00:27:52.8154836Z   lfs: false
+2026-10-11T00:27:52.8155305Z   submodules: false
+2026-10-11T00:27:52.8155846Z   set-safe-directory: true
+2026-10-11T00:27:52.8156485Z   allow-unsafe-pr-checkout: false
+2026-10-11T00:27:52.8157539Z ##[endgroup]
+2026-10-11T00:27:53.0694947Z Syncing repository: hydra3333/VapourSynth-mpeg2Deblock
+2026-10-11T00:27:53.0702116Z ##[group]Getting Git version info
+2026-10-11T00:27:53.0706984Z Working directory is 'D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock'
+2026-10-11T00:27:53.2070533Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-11T00:27:53.7199281Z git version 2.55.0.windows.5
+2026-10-11T00:27:53.7271866Z ##[endgroup]
+2026-10-11T00:27:53.7290986Z Temporarily overriding HOME='D:\a\_temp\30764ace-2565-4c68-b0d1-cec7b81bc29d' before making global git config changes
+2026-10-11T00:27:53.7293785Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T00:27:53.7305856Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock
+2026-10-11T00:27:53.8577839Z Deleting the contents of 'D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock'
+2026-10-11T00:27:53.8584741Z ##[group]Determining repository object format
+2026-10-11T00:27:53.8590051Z ##[endgroup]
+2026-10-11T00:27:53.8592105Z ##[group]Initializing the repository
+2026-10-11T00:27:53.8598935Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock
+2026-10-11T00:27:54.0318055Z Initialized empty Git repository in D:/a/VapourSynth-mpeg2Deblock/VapourSynth-mpeg2Deblock/.git/
+2026-10-11T00:27:54.0429069Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/hydra3333/VapourSynth-mpeg2Deblock
+2026-10-11T00:27:54.2641145Z ##[endgroup]
+2026-10-11T00:27:54.2643910Z ##[group]Disabling automatic garbage collection
+2026-10-11T00:27:54.2653239Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-11T00:27:54.3989319Z ##[endgroup]
+2026-10-11T00:27:54.4003257Z ##[group]Setting up auth
+2026-10-11T00:27:54.4007506Z Removing SSH command configuration
+2026-10-11T00:27:54.4012320Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T00:27:54.4944122Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-11T00:27:57.0133436Z Removing HTTP extra header
+2026-10-11T00:27:57.0146752Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T00:27:57.1387705Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-11T00:27:58.9723079Z Removing includeIf entries pointing to credentials config files
+2026-10-11T00:27:58.9734841Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T00:27:59.1701180Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-11T00:28:01.4757938Z [command]"C:\Program Files\Git\bin\git.exe" config --file D:\a\_temp\git-credentials-48301216-d5a1-40c5-811e-e4f315499b10.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-11T00:28:01.5127836Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/VapourSynth-mpeg2Deblock/VapourSynth-mpeg2Deblock/.git.path D:\a\_temp\git-credentials-48301216-d5a1-40c5-811e-e4f315499b10.config
+2026-10-11T00:28:01.5500690Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/VapourSynth-mpeg2Deblock/VapourSynth-mpeg2Deblock/.git/worktrees/*.path D:\a\_temp\git-credentials-48301216-d5a1-40c5-811e-e4f315499b10.config
+2026-10-11T00:28:01.5962274Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-48301216-d5a1-40c5-811e-e4f315499b10.config
+2026-10-11T00:28:01.6355409Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-48301216-d5a1-40c5-811e-e4f315499b10.config
+2026-10-11T00:28:01.6787855Z ##[endgroup]
+2026-10-11T00:28:01.6788566Z ##[group]Fetching the repository
+2026-10-11T00:28:01.6800958Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 0c9bf90f92fc3a6557095232801adf6cae46ac3d
+2026-10-11T00:28:05.7354808Z From https://github.com/hydra3333/VapourSynth-mpeg2Deblock
+2026-10-11T00:28:05.7355760Z  * branch            0c9bf90f92fc3a6557095232801adf6cae46ac3d -> FETCH_HEAD
+2026-10-11T00:28:05.7422154Z [command]"C:\Program Files\Git\bin\git.exe" rev-parse --verify --quiet 0c9bf90f92fc3a6557095232801adf6cae46ac3d^{object}
+2026-10-11T00:28:05.7718081Z 0c9bf90f92fc3a6557095232801adf6cae46ac3d
+2026-10-11T00:28:05.7770299Z ##[endgroup]
+2026-10-11T00:28:05.7772097Z ##[group]Determining the checkout info
+2026-10-11T00:28:05.7772578Z ##[endgroup]
+2026-10-11T00:28:05.7779722Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-11T00:28:05.8237905Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-11T00:28:05.8552747Z ##[group]Checking out the ref
+2026-10-11T00:28:05.8561353Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force 0c9bf90f92fc3a6557095232801adf6cae46ac3d
+2026-10-11T00:28:06.5117558Z Note: switching to '0c9bf90f92fc3a6557095232801adf6cae46ac3d'.
+2026-10-11T00:28:06.5118103Z 
+2026-10-11T00:28:06.5118369Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-11T00:28:06.5119218Z changes and commit them, and you can discard any commits you make in this
+2026-10-11T00:28:06.5119717Z state without impacting any branches by switching back to a branch.
+2026-10-11T00:28:06.5120009Z 
+2026-10-11T00:28:06.5120223Z If you want to create a new branch to retain commits you create, you may
+2026-10-11T00:28:06.5120701Z do so (now or later) by using -c with the switch command. Example:
+2026-10-11T00:28:06.5120960Z 
+2026-10-11T00:28:06.5121054Z   git switch -c <new-branch-name>
+2026-10-11T00:28:06.5121221Z 
+2026-10-11T00:28:06.5121308Z Or undo this operation with:
+2026-10-11T00:28:06.5121461Z 
+2026-10-11T00:28:06.5121547Z   git switch -
+2026-10-11T00:28:06.5121656Z 
+2026-10-11T00:28:06.5121865Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-11T00:28:06.5122165Z 
+2026-10-11T00:28:06.5122351Z HEAD is now at 0c9bf90 Snapshot Step 3 reviewed release workflow v0.2
+2026-10-11T00:28:06.5309298Z ##[endgroup]
+2026-10-11T00:28:06.5761651Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-11T00:28:06.6052558Z 0c9bf90f92fc3a6557095232801adf6cae46ac3d
+2026-10-11T00:28:06.6101168Z ##[group]Removing auth
+2026-10-11T00:28:06.6101600Z Removing SSH command configuration
+2026-10-11T00:28:06.6112456Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T00:28:06.6447403Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-11T00:28:07.2385752Z Removing HTTP extra header
+2026-10-11T00:28:07.2396100Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T00:28:07.2747261Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-11T00:28:07.8571920Z Removing includeIf entries pointing to credentials config files
+2026-10-11T00:28:07.8581273Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T00:28:07.8870936Z includeif.gitdir:D:/a/VapourSynth-mpeg2Deblock/VapourSynth-mpeg2Deblock/.git.path
+2026-10-11T00:28:07.8872226Z includeif.gitdir:D:/a/VapourSynth-mpeg2Deblock/VapourSynth-mpeg2Deblock/.git/worktrees/*.path
+2026-10-11T00:28:07.8872746Z includeif.gitdir:/github/workspace/.git.path
+2026-10-11T00:28:07.8873322Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-11T00:28:07.8932907Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/VapourSynth-mpeg2Deblock/VapourSynth-mpeg2Deblock/.git.path
+2026-10-11T00:28:07.9220122Z D:\a\_temp\git-credentials-48301216-d5a1-40c5-811e-e4f315499b10.config
+2026-10-11T00:28:07.9270071Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/VapourSynth-mpeg2Deblock/VapourSynth-mpeg2Deblock/.git.path D\:\\a\\_temp\\git\-credentials\-48301216\-d5a1\-40c5\-811e\-e4f315499b10\.config
+2026-10-11T00:28:07.9604682Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/VapourSynth-mpeg2Deblock/VapourSynth-mpeg2Deblock/.git/worktrees/*.path
+2026-10-11T00:28:07.9890043Z D:\a\_temp\git-credentials-48301216-d5a1-40c5-811e-e4f315499b10.config
+2026-10-11T00:28:07.9939738Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/VapourSynth-mpeg2Deblock/VapourSynth-mpeg2Deblock/.git/worktrees/*.path D\:\\a\\_temp\\git\-credentials\-48301216\-d5a1\-40c5\-811e\-e4f315499b10\.config
+2026-10-11T00:28:08.0278816Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-11T00:28:08.0558192Z /github/runner_temp/git-credentials-48301216-d5a1-40c5-811e-e4f315499b10.config
+2026-10-11T00:28:08.0608835Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-48301216\-d5a1\-40c5\-811e\-e4f315499b10\.config
+2026-10-11T00:28:08.0956693Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-11T00:28:08.1260391Z /github/runner_temp/git-credentials-48301216-d5a1-40c5-811e-e4f315499b10.config
+2026-10-11T00:28:08.1310966Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-48301216\-d5a1\-40c5\-811e\-e4f315499b10\.config
+2026-10-11T00:28:08.1702406Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-11T00:28:08.8604259Z Removing credentials config 'D:\a\_temp\git-credentials-48301216-d5a1-40c5-811e-e4f315499b10.config'
+2026-10-11T00:28:08.8616990Z ##[endgroup]
+2026-10-11T00:28:08.9210270Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-10-11T00:28:08.9211783Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-10-11T00:28:08.9212424Z [36;1m# Any selected BRANCH is eligible for a manual run. A published Release[0m
+2026-10-11T00:28:08.9213084Z [36;1m# supplies refs/tags/<tag>; its commit must additionally belong to main.[0m
+2026-10-11T00:28:08.9213630Z [36;1mif ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch') {[0m
+2026-10-11T00:28:08.9214115Z [36;1m  if ($env:GITHUB_REF -notmatch '^refs/heads/.+$') {[0m
+2026-10-11T00:28:08.9214647Z [36;1m    throw "Manual proof requires a branch ref; got $env:GITHUB_REF"[0m
+2026-10-11T00:28:08.9215329Z [36;1m  }[0m
+2026-10-11T00:28:08.9215678Z [36;1m} elseif ($env:GITHUB_EVENT_NAME -eq 'release') {[0m
+2026-10-11T00:28:08.9216312Z [36;1m  if ($env:RELEASE_ACTION -ne 'published') { throw 'Only published Releases are supported' }[0m
+2026-10-11T00:28:08.9218726Z [36;1m  if ([string]::IsNullOrWhiteSpace($env:RELEASE_TAG) -or[0m
+2026-10-11T00:28:08.9220049Z [36;1m      $env:GITHUB_REF -ne "refs/tags/$env:RELEASE_TAG") {[0m
+2026-10-11T00:28:08.9221107Z [36;1m    throw "Release ref/tag mismatch: ref=$env:GITHUB_REF tag=$env:RELEASE_TAG"[0m
+2026-10-11T00:28:08.9221986Z [36;1m  }[0m
+2026-10-11T00:28:08.9222583Z [36;1m} else { throw "Unsupported event $env:GITHUB_EVENT_NAME" }[0m
+2026-10-11T00:28:08.9223725Z [36;1mif (-not [Environment]::Is64BitProcess) { throw 'PowerShell process is not x64' }[0m
+2026-10-11T00:28:08.9224730Z [36;1m$root = (Resolve-Path $env:GITHUB_WORKSPACE).Path[0m
+2026-10-11T00:28:08.9225648Z [36;1m$evidence = Join-Path $env:RUNNER_TEMP 'migration-proof-evidence'[0m
+2026-10-11T00:28:08.9226606Z [36;1mNew-Item -ItemType Directory -Force $evidence | Out-Null[0m
+2026-10-11T00:28:08.9227457Z [36;1m$checkoutSha = (& git -C $root rev-parse HEAD).Trim()[0m
+2026-10-11T00:28:08.9228404Z [36;1mif ($LASTEXITCODE -ne 0 -or $checkoutSha -ne $env:GITHUB_SHA) {[0m
+2026-10-11T00:28:08.9229482Z [36;1m  throw "Checkout differs from GitHub event SHA: $checkoutSha vs $env:GITHUB_SHA"[0m
+2026-10-11T00:28:08.9230448Z [36;1m}[0m
+2026-10-11T00:28:08.9231388Z [36;1mif ($env:GITHUB_EVENT_NAME -eq 'release') {[0m
+2026-10-11T00:28:08.9232247Z [36;1m  # A tag-ref identity check alone does not prove the commit is on main.[0m
+2026-10-11T00:28:08.9233335Z [36;1m  # The checkout is shallow by default. Unshallow when needed so the[0m
+2026-10-11T00:28:08.9234349Z [36;1m  # ancestry check works for an older approved main commit as well.[0m
+2026-10-11T00:28:08.9235376Z [36;1m  $shallow = (& git -C $root rev-parse --is-shallow-repository).Trim()[0m
+2026-10-11T00:28:08.9236492Z [36;1m  if ($LASTEXITCODE -ne 0) { throw 'Cannot determine Git shallow state' }[0m
+2026-10-11T00:28:08.9237602Z [36;1m  if ($shallow -eq 'true') {[0m
+2026-10-11T00:28:08.9238360Z [36;1m    & git -C $root fetch --no-tags --unshallow origin main[0m
+2026-10-11T00:28:08.9239183Z [36;1m  } else {[0m
+2026-10-11T00:28:08.9239792Z [36;1m    & git -C $root fetch --no-tags origin main[0m
+2026-10-11T00:28:08.9240456Z [36;1m  }[0m
+2026-10-11T00:28:08.9241248Z [36;1m  if ($LASTEXITCODE -ne 0) { throw 'Cannot fetch main history to validate Release ancestry' }[0m
+2026-10-11T00:28:08.9242457Z [36;1m  & git -C $root merge-base --is-ancestor $checkoutSha FETCH_HEAD[0m
+2026-10-11T00:28:08.9243247Z [36;1m  if ($LASTEXITCODE -ne 0) {[0m
+2026-10-11T00:28:08.9244065Z [36;1m    throw "Published Release tag commit $checkoutSha is not in main history"[0m
+2026-10-11T00:28:08.9244925Z [36;1m  }[0m
+2026-10-11T00:28:08.9245592Z [36;1m  "PASS: published Release commit $checkoutSha belongs to main history"[0m
+2026-10-11T00:28:08.9246414Z [36;1m}[0m
+2026-10-11T00:28:08.9247118Z [36;1m"Event: $env:GITHUB_EVENT_NAME ; ref=$env:GITHUB_REF ; checkout=$checkoutSha" |[0m
+2026-10-11T00:28:08.9248330Z [36;1m  Out-File -LiteralPath (Join-Path $evidence 'event_identity.txt') -Encoding utf8[0m
+2026-10-11T00:28:08.9252110Z [36;1m'CL','_CL_','LINK','_LINK_','Platform','PreferredToolArchitecture','VCToolsVersion' | ForEach-Object {[0m
+2026-10-11T00:28:08.9253353Z [36;1m  $v = [Environment]::GetEnvironmentVariable($_)[0m
+2026-10-11T00:28:08.9254264Z [36;1m  if ($null -ne $v) { throw "External build override $_ is set" }[0m
+2026-10-11T00:28:08.9255039Z [36;1m}[0m
+2026-10-11T00:28:08.9255697Z [36;1mif (Get-ChildItem Env:VSCMD_ARG_* -ErrorAction SilentlyContinue) {[0m
+2026-10-11T00:28:08.9257104Z [36;1m  throw 'VsDevCmd environment is active: do not build inside it'[0m
+2026-10-11T00:28:08.9257880Z [36;1m}[0m
+2026-10-11T00:28:08.9258783Z [36;1m$forbidden = 'Directory.Build.props','Directory.Build.targets','Directory.Build.rsp','MSBuild.rsp'[0m
+2026-10-11T00:28:08.9259850Z [36;1m$here = Get-Item $root[0m
+2026-10-11T00:28:08.9260383Z [36;1mwhile ($here) {[0m
+2026-10-11T00:28:08.9260981Z [36;1m  foreach ($name in $forbidden) {[0m
+2026-10-11T00:28:08.9261879Z [36;1m    if (Test-Path -LiteralPath (Join-Path $here.FullName $name) -PathType Leaf) {[0m
+2026-10-11T00:28:08.9262927Z [36;1m      throw "Forbidden auto-input: $($here.FullName)\$name"[0m
+2026-10-11T00:28:08.9263734Z [36;1m    }[0m
+2026-10-11T00:28:08.9264148Z [36;1m  }[0m
+2026-10-11T00:28:08.9264756Z [36;1m  if ($here.FullName -eq $root) {[0m
+2026-10-11T00:28:08.9265619Z [36;1m    $unreviewed = Get-ChildItem -LiteralPath $root -File -Recurse -Force |[0m
+2026-10-11T00:28:08.9266582Z [36;1m      Where-Object { $forbidden -contains $_.Name }[0m
+2026-10-11T00:28:08.9267667Z [36;1m    if ($unreviewed) { throw "Unreviewed in-tree auto-inputs: $($unreviewed.FullName -join ', ')" }[0m
+2026-10-11T00:28:08.9268633Z [36;1m  }[0m
+2026-10-11T00:28:08.9269112Z [36;1m  $here = $here.Parent[0m
+2026-10-11T00:28:08.9269698Z [36;1m}[0m
+2026-10-11T00:28:08.9270508Z [36;1m$installer = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'[0m
+2026-10-11T00:28:08.9271816Z [36;1mif (-not (Test-Path -LiteralPath $installer)) { throw "Missing vswhere: $installer" }[0m
+2026-10-11T00:28:08.9273524Z [36;1m$json = & $installer -latest -products '*' -requires Microsoft.Component.MSBuild Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -format json -utf8[0m
+2026-10-11T00:28:08.9276213Z [36;1mif ($LASTEXITCODE -ne 0) { throw "vswhere failed: $LASTEXITCODE" }[0m
+2026-10-11T00:28:08.9277351Z [36;1m$install = @($json | ConvertFrom-Json)[0m
+2026-10-11T00:28:08.9278499Z [36;1mif ($install.Count -ne 1) { throw "Expected one qualifying released Visual Studio, got $($install.Count)" }[0m
+2026-10-11T00:28:08.9279568Z [36;1m$vs = $install[0][0m
+2026-10-11T00:28:08.9280469Z [36;1mif ($vs.isPrerelease) { throw "Pre-release Visual Studio selected: $($vs.installationPath)" }[0m
+2026-10-11T00:28:08.9369574Z [36;1m$msbuild = Join-Path $vs.installationPath 'MSBuild\Current\Bin\amd64\MSBuild.exe'[0m
+2026-10-11T00:28:08.9370557Z [36;1mif (-not (Test-Path -LiteralPath $msbuild)) { throw "Missing x64 MSBuild: $msbuild" }[0m
+2026-10-11T00:28:08.9371372Z [36;1m"Visual Studio: $($vs.displayName) / $($vs.installationVersion) / $($vs.installationPath)"[0m
+2026-10-11T00:28:08.9372515Z [36;1m"MSBuild: $msbuild"[0m
+2026-10-11T00:28:08.9373152Z [36;1m& $msbuild -version -nologo -noAutoResponse[0m
+2026-10-11T00:28:08.9374197Z [36;1mif ($LASTEXITCODE -ne 0) { throw 'MSBuild version probe failed' }[0m
+2026-10-11T00:28:08.9375046Z [36;1m# Empirical M2 runtime check, required to PASS; not merely a PE-header assumption.[0m
+2026-10-11T00:28:08.9375868Z [36;1m$probe = Join-Path $env:RUNNER_TEMP 'msbuild-bitness.proj'[0m
+2026-10-11T00:28:08.9376214Z [36;1m@'[0m
+2026-10-11T00:28:08.9376681Z [36;1m<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">[0m
+2026-10-11T00:28:08.9377484Z [36;1m  <Target Name="Probe"><Message Importance="high" Text="MSBUILD_IS64=$([System.Environment]::Is64BitProcess)" /></Target>[0m
+2026-10-11T00:28:08.9378152Z [36;1m</Project>[0m
+2026-10-11T00:28:08.9379862Z [36;1m'@ | Set-Content -LiteralPath $probe -Encoding ascii[0m
+2026-10-11T00:28:08.9380518Z [36;1m$result = & $msbuild $probe -t:Probe -nologo -noAutoResponse 2>&1[0m
+2026-10-11T00:28:08.9381216Z [36;1m$result | Out-File -LiteralPath (Join-Path $evidence 'msbuild-bitness.txt') -Encoding utf8[0m
+2026-10-11T00:28:08.9381958Z [36;1mif ($LASTEXITCODE -ne 0 -or -not (($result -join "`n") -match 'MSBUILD_IS64=True')) {[0m
+2026-10-11T00:28:08.9382684Z [36;1m  throw 'Failed to independently verify running MSBuild is 64 bit'[0m
+2026-10-11T00:28:08.9383068Z [36;1m}[0m
+2026-10-11T00:28:08.9383526Z [36;1m$json | Out-File -LiteralPath (Join-Path $evidence 'vswhere.json') -Encoding utf8[0m
+2026-10-11T00:28:08.9384921Z [36;1m"VS_INSTALL=$($vs.installationPath)" >> $env:GITHUB_ENV[0m
+2026-10-11T00:28:08.9385397Z [36;1m"MSBUILD_EXE=$msbuild" >> $env:GITHUB_ENV[0m
+2026-10-11T00:28:08.9385842Z [36;1m"EVIDENCE_DIR=$evidence" >> $env:GITHUB_ENV[0m
+2026-10-11T00:28:08.9996274Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T00:28:08.9996663Z env:
+2026-10-11T00:28:08.9996854Z   RELEASE_ACTION: 
+2026-10-11T00:28:08.9997052Z   RELEASE_TAG: 
+2026-10-11T00:28:08.9997279Z ##[endgroup]
+2026-10-11T00:28:10.0882857Z Visual Studio: Visual Studio Enterprise 2026 / 18.10.12217.157 / C:\Program Files\Microsoft Visual Studio\18\Enterprise
+2026-10-11T00:28:10.0893483Z MSBuild: C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe
+2026-10-11T00:28:11.7351195Z 18.10.1.42706
+2026-10-11T00:28:13.3477626Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-10-11T00:28:13.3478070Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-10-11T00:28:13.3478598Z [36;1m$solution = Join-Path $env:GITHUB_WORKSPACE 'vs\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock.slnx'[0m
+2026-10-11T00:28:13.3479277Z [36;1mif (-not (Test-Path -LiteralPath $solution)) { throw "Missing solution: $solution" }[0m
+2026-10-11T00:28:13.3479736Z [36;1mforeach ($cfg in @('Debug','Release')) {[0m
+2026-10-11T00:28:13.3480128Z [36;1m  $log = Join-Path $env:EVIDENCE_DIR "MSBuild_$($cfg)_x64_diagnostic.log"[0m
+2026-10-11T00:28:13.3480902Z [36;1m  & $env:MSBUILD_EXE $solution -t:Rebuild -nologo -noAutoResponse "-p:Configuration=$cfg" -p:Platform=x64 "-flp:LogFile=$log;Verbosity=detailed" -v:minimal[0m
+2026-10-11T00:28:13.3481890Z [36;1m  if ($LASTEXITCODE -ne 0) { throw "MSBuild failed for $cfg : $LASTEXITCODE" }[0m
+2026-10-11T00:28:13.3482429Z [36;1m  # G7: print the real compiler/linker invocations, never reconstruct them.[0m
+2026-10-11T00:28:13.3483095Z [36;1m  Select-String -LiteralPath $log -Pattern '\\bin\\HostX64\\x64\\(?:CL|link)\.exe ' |[0m
+2026-10-11T00:28:13.3483704Z [36;1m    ForEach-Object { Write-Host $_.Line }[0m
+2026-10-11T00:28:13.3483958Z [36;1m}[0m
+2026-10-11T00:28:13.3557509Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T00:28:13.3557853Z env:
+2026-10-11T00:28:13.3558121Z   VS_INSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise
+2026-10-11T00:28:13.3558671Z   MSBUILD_EXE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe
+2026-10-11T00:28:13.3559202Z   EVIDENCE_DIR: D:\a\_temp\migration-proof-evidence
+2026-10-11T00:28:13.3559483Z ##[endgroup]
+2026-10-11T00:28:16.7712410Z   display.c
+2026-10-11T00:28:17.7594857Z   getbits.c
+2026-10-11T00:28:18.4252943Z   getblk.c
+2026-10-11T00:28:18.4469639Z   gethdr.c
+2026-10-11T00:28:18.4785476Z   getpic.c
+2026-10-11T00:28:18.5737975Z   getvlc.c
+2026-10-11T00:28:18.5969453Z   idct.c
+2026-10-11T00:28:18.6056893Z   idctref.c
+2026-10-11T00:28:18.6420534Z   motion.c
+2026-10-11T00:28:18.6637870Z   mpeg2dec.c
+2026-10-11T00:28:18.8739926Z   recon.c
+2026-10-11T00:28:18.8970030Z   spatscal.c
+2026-10-11T00:28:18.9194175Z   store.c
+2026-10-11T00:28:18.9514326Z   subspic.c
+2026-10-11T00:28:18.9757237Z   systems.c
+2026-10-11T00:28:19.0003322Z   verify.c
+2026-10-11T00:28:19.0084334Z   Generating Code...
+2026-10-11T00:28:19.2776153Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\getbits.c(66,18): warning C4013: 'read' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2798852Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\gethdr.c(461,7): warning C4101: 'pos': unreferenced local variable [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2802982Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(113,22): warning C4996: 'open': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _open. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2807811Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(148,7): warning C4996: 'lseek': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _lseek. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2813970Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(153,7): warning C4996: 'lseek': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _lseek. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2816663Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(162,25): warning C4996: 'open': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _open. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2819190Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(181,31): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _close. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2821870Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(182,22): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _close. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2824328Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(187,5): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _close. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2826798Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(190,5): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _close. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2829379Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\spatscal.c(97,17): warning C4013: 'exit' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2831261Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\store.c(160,18): warning C4013: 'open' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2833135Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\store.c(176,5): warning C4013: 'write' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2835006Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\store.c(178,3): warning C4013: 'close' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2836868Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\subspic.c(257,15): warning C4013: 'open' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2838740Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\subspic.c(263,16): warning C4013: 'read' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:19.2841220Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\subspic.c(271,3): warning C4013: 'close' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:22.2032156Z   Mpeg2BlockInspector.vcxproj -> D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Debug\Mpeg2BlockInspector.exe
+2026-10-11T00:28:22.4159303Z   plugin.cpp
+2026-10-11T00:28:27.1364880Z      Creating library D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Debug\mpeg2Deblock.lib and object D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Debug\mpeg2Deblock.exp
+2026-10-11T00:28:27.2230951Z   mpeg2Deblock.vcxproj -> D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Debug\mpeg2Deblock.dll
+2026-10-11T00:28:27.3852080Z   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /Zi /JMC /nologo /W3 /WX- /diagnostics:column /sdl- /Od /Ob2 /Oi /Ot /D _CRT_SECURE_NO_WARNINGS /GF- /Gm- /EHsc /RTC1 /MDd /GS /guard:cf /Gy- /arch:AVX2 /fp:precise /guard:ehcont /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Mpeg2Blo.F4B1A357\x64\Debug\\" /Fd"Mpeg2Blo.F4B1A357\x64\Debug\vc145.pdb" /external:W3 /Gd /TC /FC /errorReport:queue /favor:blend ..\..\src\Mpeg2BlockInspector\display.c ..\..\src\Mpeg2BlockInspector\getbits.c ..\..\src\Mpeg2BlockInspector\getblk.c ..\..\src\Mpeg2BlockInspector\gethdr.c ..\..\src\Mpeg2BlockInspector\getpic.c ..\..\src\Mpeg2BlockInspector\getvlc.c ..\..\src\Mpeg2BlockInspector\idct.c ..\..\src\Mpeg2BlockInspector\idctref.c ..\..\src\Mpeg2BlockInspector\motion.c ..\..\src\Mpeg2BlockInspector\mpeg2dec.c ..\..\src\Mpeg2BlockInspector\recon.c ..\..\src\Mpeg2BlockInspector\spatscal.c ..\..\src\Mpeg2BlockInspector\store.c ..\..\src\Mpeg2BlockInspector\subspic.c ..\..\src\Mpeg2BlockInspector\systems.c ..\..\src\Mpeg2BlockInspector\verify.c
+2026-10-11T00:28:27.3868183Z   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /ERRORREPORT:QUEUE /OUT:"D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Debug\Mpeg2BlockInspector.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\Include\Manifest\segmentheap.manifest" /DEBUG:FULL /PDB:"D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Debug\Mpeg2BlockInspector.pdb" /SUBSYSTEM:CONSOLE /LARGEADDRESSAWARE /TSAWARE /OPT:NOREF /OPT:NOICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Debug\Mpeg2BlockInspector.lib" /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA Mpeg2Blo.F4B1A357\x64\Debug\display.obj
+2026-10-11T00:28:27.3879221Z   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /I..\..\third_party\vapoursynth\include /Zi /JMC /nologo /W3 /WX- /diagnostics:column /sdl /Od /Ob2 /Oi /Ot /D NOMINMAX /D _DEBUG /D _WINDOWS /D _USRDLL /D _WINDLL /GF- /Gm- /EHsc /RTC1 /MDd /GS /guard:cf /Gy- /arch:AVX2 /fp:precise /guard:ehcont /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++20 /permissive- /Fo"mpeg2Deblock\x64\Debug\\" /Fd"mpeg2Deblock\x64\Debug\vc145.pdb" /external:W3 /Gd /TP /FC /errorReport:queue /favor:blend ..\..\src\mpeg2Deblock\plugin.cpp
+2026-10-11T00:28:27.3890494Z   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /ERRORREPORT:QUEUE /OUT:"D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Debug\mpeg2Deblock.dll" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:NO /manifest:embed /DEBUG:FULL /PDB:"D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Debug\mpeg2Deblock.pdb" /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /OPT:NOREF /OPT:NOICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Debug\mpeg2Deblock.lib" /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA /DLL mpeg2Deblock\x64\Debug\mpeg2Deblock.res
+2026-10-11T00:28:28.0584502Z   display.c
+2026-10-11T00:28:28.0717961Z   getbits.c
+2026-10-11T00:28:28.1076863Z   getblk.c
+2026-10-11T00:28:28.1444073Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\getbits.c(66,18): warning C4013: 'read' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.1463951Z   gethdr.c
+2026-10-11T00:28:28.1709306Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\gethdr.c(461,7): warning C4101: 'pos': unreferenced local variable [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.1771021Z   getpic.c
+2026-10-11T00:28:28.2123534Z   getvlc.c
+2026-10-11T00:28:28.2454351Z   idct.c
+2026-10-11T00:28:28.2580475Z   idctref.c
+2026-10-11T00:28:28.2733210Z   motion.c
+2026-10-11T00:28:28.2962798Z   mpeg2dec.c
+2026-10-11T00:28:28.3238876Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(113,22): warning C4996: 'open': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _open. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.3244045Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(148,7): warning C4996: 'lseek': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _lseek. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.3247000Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(153,7): warning C4996: 'lseek': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _lseek. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.3249701Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(162,25): warning C4996: 'open': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _open. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.3252106Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(181,31): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _close. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.3254563Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(182,22): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _close. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.3257652Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(187,5): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _close. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.3260188Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\mpeg2dec.c(190,5): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _close. See online help for details. [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.3303017Z   recon.c
+2026-10-11T00:28:28.3561149Z   spatscal.c
+2026-10-11T00:28:28.3743198Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\spatscal.c(97,17): warning C4013: 'exit' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.3800052Z   store.c
+2026-10-11T00:28:28.4044415Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\store.c(160,18): warning C4013: 'open' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.4050064Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\store.c(176,5): warning C4013: 'write' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.4053854Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\store.c(178,3): warning C4013: 'close' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.4114142Z   subspic.c
+2026-10-11T00:28:28.4335063Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\subspic.c(257,15): warning C4013: 'open' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.4337568Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\subspic.c(263,16): warning C4013: 'read' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.4340046Z D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\Mpeg2BlockInspector\subspic.c(271,3): warning C4013: 'close' undefined; assuming extern returning int [D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\Mpeg2BlockInspector.vcxproj]
+2026-10-11T00:28:28.4390299Z   systems.c
+2026-10-11T00:28:28.4684167Z   verify.c
+2026-10-11T00:28:30.3836979Z   Generating code
+2026-10-11T00:28:32.0818285Z   Finished generating code
+2026-10-11T00:28:32.4576582Z   Mpeg2BlockInspector.vcxproj -> D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Release\Mpeg2BlockInspector.exe
+2026-10-11T00:28:32.6046389Z   plugin.cpp
+2026-10-11T00:28:32.7997028Z      Creating library D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Release\mpeg2Deblock.lib and object D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Release\mpeg2Deblock.exp
+2026-10-11T00:28:32.8075846Z   Generating code
+2026-10-11T00:28:32.8192722Z   Finished generating code
+2026-10-11T00:28:32.9782806Z   mpeg2Deblock.vcxproj -> D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Release\mpeg2Deblock.dll
+2026-10-11T00:28:33.0290080Z   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /Zi /nologo /W3 /WX- /diagnostics:column /sdl- /O2 /Ob2 /Oi /Ot /GL /D _CRT_SECURE_NO_WARNINGS /GF /Gm- /EHsc /MT /GS /guard:cf /Gy /arch:AVX2 /fp:precise /guard:ehcont /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Mpeg2Blo.F4B1A357\x64\Release\\" /Fd"Mpeg2Blo.F4B1A357\x64\Release\vc145.pdb" /external:W3 /Gd /TC /FC /errorReport:queue /favor:blend ..\..\src\Mpeg2BlockInspector\display.c ..\..\src\Mpeg2BlockInspector\getbits.c ..\..\src\Mpeg2BlockInspector\getblk.c ..\..\src\Mpeg2BlockInspector\gethdr.c ..\..\src\Mpeg2BlockInspector\getpic.c ..\..\src\Mpeg2BlockInspector\getvlc.c ..\..\src\Mpeg2BlockInspector\idct.c ..\..\src\Mpeg2BlockInspector\idctref.c ..\..\src\Mpeg2BlockInspector\motion.c ..\..\src\Mpeg2BlockInspector\mpeg2dec.c ..\..\src\Mpeg2BlockInspector\recon.c ..\..\src\Mpeg2BlockInspector\spatscal.c ..\..\src\Mpeg2BlockInspector\store.c ..\..\src\Mpeg2BlockInspector\subspic.c ..\..\src\Mpeg2BlockInspector\systems.c ..\..\src\Mpeg2BlockInspector\verify.c
+2026-10-11T00:28:33.0304501Z   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /ERRORREPORT:QUEUE /OUT:"D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Release\Mpeg2BlockInspector.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\Include\Manifest\segmentheap.manifest" /DEBUG:FULL /PDB:"D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Release\Mpeg2BlockInspector.pdb" /SUBSYSTEM:CONSOLE /LARGEADDRESSAWARE /TSAWARE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Release\Mpeg2BlockInspector.lib" /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA /PDBALTPATH:%_PDB% Mpeg2Blo.F4B1A357\x64\Release\display.obj
+2026-10-11T00:28:33.0315190Z   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /I..\..\third_party\vapoursynth\include /Zi /nologo /W3 /WX- /diagnostics:column /sdl /O2 /Ob2 /Oi /Ot /GL /D NOMINMAX /D NDEBUG /D _WINDOWS /D _USRDLL /D _WINDLL /GF /Gm- /EHsc /MT /GS /guard:cf /Gy /arch:AVX2 /fp:precise /guard:ehcont /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++20 /permissive- /Fo"mpeg2Deblock\x64\Release\\" /Fd"mpeg2Deblock\x64\Release\vc145.pdb" /external:W3 /Gd /TP /FC /errorReport:queue /favor:blend ..\..\src\mpeg2Deblock\plugin.cpp
+2026-10-11T00:28:33.0325095Z   C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /ERRORREPORT:QUEUE /OUT:"D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Release\mpeg2Deblock.dll" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:NO /manifest:embed /DEBUG:FULL /PDB:"D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Release\mpeg2Deblock.pdb" /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\vs\VapourSynth-mpeg2Deblock\x64\Release\mpeg2Deblock.lib" /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA /PDBALTPATH:%_PDB% /DLL mpeg2Deblock\x64\Release\mpeg2Deblock.res
+2026-10-11T00:28:33.0727011Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-10-11T00:28:33.0727897Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-10-11T00:28:33.0728330Z [36;1m$script = Join-Path $env:RUNNER_TEMP 'check-stage-bplus-tlogs.py'[0m
+2026-10-11T00:28:33.0728840Z [36;1m# This Python script is GENERATED FROM THIS WORKFLOW ONLY; not a second[0m
+2026-10-11T00:28:33.0729347Z [36;1m# permanent harness. Windows-rules parsing via CommandLineToArgvW (N1).[0m
+2026-10-11T00:28:33.0729720Z [36;1m@'[0m
+2026-10-11T00:28:33.0729989Z [36;1mimport collections, csv, ctypes, os, pathlib, re, struct, sys[0m
+2026-10-11T00:28:33.0730460Z [36;1m# The entire checker remains embedded in this ONE workflow. No independent[0m
+2026-10-11T00:28:33.0730957Z [36;1m# flag map, checker copy or injected CL/LINK/RC options are maintained.[0m
+2026-10-11T00:28:33.0731373Z [36;1mif os.name != 'nt' or struct.calcsize('P') != 8:[0m
+2026-10-11T00:28:33.0731812Z [36;1m    raise SystemExit('FAIL: requires 64-bit Windows Python (N1)')[0m
+2026-10-11T00:28:33.0732167Z [36;1mfrom ctypes import wintypes[0m
+2026-10-11T00:28:33.0732485Z [36;1mshell32 = ctypes.WinDLL('shell32', use_last_error=True)[0m
+2026-10-11T00:28:33.0733089Z [36;1mkernel32 = ctypes.WinDLL('kernel32', use_last_error=True)[0m
+2026-10-11T00:28:33.0733609Z [36;1mshell32.CommandLineToArgvW.argtypes = (wintypes.LPCWSTR, ctypes.POINTER(ctypes.c_int))[0m
+2026-10-11T00:28:33.0734199Z [36;1mshell32.CommandLineToArgvW.restype = ctypes.POINTER(wintypes.LPWSTR)[0m
+2026-10-11T00:28:33.0734650Z [36;1mkernel32.LocalFree.argtypes = (ctypes.c_void_p,)[0m
+2026-10-11T00:28:33.0734999Z [36;1mkernel32.LocalFree.restype = ctypes.c_void_p[0m
+2026-10-11T00:28:33.0735279Z [36;1m[0m
+2026-10-11T00:28:33.0735450Z [36;1mdef win_split(line):[0m
+2026-10-11T00:28:33.0735701Z [36;1m    n = ctypes.c_int()[0m
+2026-10-11T00:28:33.0736003Z [36;1m    p = shell32.CommandLineToArgvW(line, ctypes.byref(n))[0m
+2026-10-11T00:28:33.0736439Z [36;1m    if not p: raise OSError(ctypes.get_last_error(), 'CommandLineToArgvW')[0m
+2026-10-11T00:28:33.0736855Z [36;1m    try: return [p[i] for i in range(n.value)][0m
+2026-10-11T00:28:33.0737262Z [36;1m    finally: kernel32.LocalFree(ctypes.cast(p, ctypes.c_void_p))[0m
+2026-10-11T00:28:33.0737592Z [36;1m[0m
+2026-10-11T00:28:33.0737821Z [36;1mroot = pathlib.Path(os.environ['GITHUB_WORKSPACE'])[0m
+2026-10-11T00:28:33.0738167Z [36;1mev = pathlib.Path(os.environ['EVIDENCE_DIR'])[0m
+2026-10-11T00:28:33.0738567Z [36;1mexpected = root / '.github/workflows/expected_stage_bplus_switches.csv'[0m
+2026-10-11T00:28:33.0739106Z [36;1mif not expected.is_file(): raise SystemExit('FAIL: Stage B+ expected-switch CSV missing')[0m
+2026-10-11T00:28:33.0739519Z [36;1m[0m
+2026-10-11T00:28:33.0739803Z [36;1m# Fixed supported inventory; per-key counts and inherited switch tokens[0m
+2026-10-11T00:28:33.0740258Z [36;1m# are taken ONLY from the independently reviewed CSV (G5, G7).[0m
+2026-10-11T00:28:33.0740586Z [36;1mexpected_keys = {[0m
+2026-10-11T00:28:33.0740867Z [36;1m    ('INSPECTOR','Debug','CL'), ('INSPECTOR','Debug','LINK'),[0m
+2026-10-11T00:28:33.0741266Z [36;1m    ('INSPECTOR','Release','CL'), ('INSPECTOR','Release','LINK'),[0m
+2026-10-11T00:28:33.0741663Z [36;1m    ('DLL','Debug','CL'), ('DLL','Debug','LINK'), ('DLL','Debug','RC'),[0m
+2026-10-11T00:28:33.0742073Z [36;1m    ('DLL','Release','CL'), ('DLL','Release','LINK'), ('DLL','Release','RC'),[0m
+2026-10-11T00:28:33.0742398Z [36;1m}[0m
+2026-10-11T00:28:33.0742686Z [36;1mallowed_dispositions = {'', 'toolchain-inherited, accepted 2026-10-11'}[0m
+2026-10-11T00:28:33.0743051Z [36;1m[0m
+2026-10-11T00:28:33.0743220Z [36;1mdef load_expected(path):[0m
+2026-10-11T00:28:33.0743477Z [36;1m    out = collections.defaultdict(list)[0m
+2026-10-11T00:28:33.0743816Z [36;1m    with path.open(encoding='utf-8-sig',newline='') as f:[0m
+2026-10-11T00:28:33.0744135Z [36;1m        rd = csv.DictReader(f)[0m
+2026-10-11T00:28:33.0746185Z [36;1m        if rd.fieldnames != ['project','configuration','tool','ordinal','token','disposition']:[0m
+2026-10-11T00:28:33.0747280Z [36;1m            raise SystemExit(f'FAIL: unexpected expected-switch CSV schema: {rd.fieldnames!r}')[0m
+2026-10-11T00:28:33.0747752Z [36;1m        for row in rd:[0m
+2026-10-11T00:28:33.0748068Z [36;1m            key = (row['project'],row['configuration'],row['tool'])[0m
+2026-10-11T00:28:33.0748470Z [36;1m            if not row['token'] or not row['ordinal'].isdigit():[0m
+2026-10-11T00:28:33.0748918Z [36;1m                raise SystemExit(f'FAIL: incomplete expected-switch row: {row!r}')[0m
+2026-10-11T00:28:33.0749317Z [36;1m            if key not in expected_keys:[0m
+2026-10-11T00:28:33.0749700Z [36;1m                raise SystemExit(f'FAIL: unknown expected-switch group: {key!r}')[0m
+2026-10-11T00:28:33.0750131Z [36;1m            if row['disposition'] not in allowed_dispositions:[0m
+2026-10-11T00:28:33.0750559Z [36;1m                raise SystemExit(f'FAIL: unapproved disposition in CSV: {row!r}')[0m
+2026-10-11T00:28:33.0750968Z [36;1m            if int(row['ordinal']) != len(out[key])+1:[0m
+2026-10-11T00:28:33.0751539Z [36;1m                raise SystemExit(f'FAIL: duplicate/misordered CSV ordinal: {row!r}')[0m
+2026-10-11T00:28:33.0751939Z [36;1m            out[key].append(row['token'])[0m
+2026-10-11T00:28:33.0752306Z [36;1m    if set(out) != expected_keys or any(not out[k] for k in expected_keys):[0m
+2026-10-11T00:28:33.0752830Z [36;1m        raise SystemExit(f'FAIL: incorrect expected-switch key inventory: {list(out)!r}')[0m
+2026-10-11T00:28:33.0753243Z [36;1m    return out[0m
+2026-10-11T00:28:33.0753434Z [36;1m[0m
+2026-10-11T00:28:33.0753628Z [36;1mbaseline = load_expected(expected)[0m
+2026-10-11T00:28:33.0753933Z [36;1mbase = root / 'vs/VapourSynth-mpeg2Deblock'[0m
+2026-10-11T00:28:33.0754391Z [36;1mtool_files = {'CL':'CL.command.1.tlog','LINK':'link.command.1.tlog','RC':'rc.command.1.tlog'}[0m
+2026-10-11T00:28:33.0754798Z [36;1m[0m
+2026-10-11T00:28:33.0754971Z [36;1mdef project_for_trace(path):[0m
+2026-10-11T00:28:33.0755234Z [36;1m    rel = path.relative_to(base).parts[0m
+2026-10-11T00:28:33.0755602Z [36;1m    if len(rel) < 5: raise SystemExit(f'FAIL: malformed tlog path: {path}')[0m
+2026-10-11T00:28:33.0755956Z [36;1m    top = rel[0].lower()[0m
+2026-10-11T00:28:33.0756207Z [36;1m    if top == 'mpeg2deblock': return 'DLL'[0m
+2026-10-11T00:28:33.0756532Z [36;1m    if top.startswith('mpeg2blo.'): return 'INSPECTOR'[0m
+2026-10-11T00:28:33.0756940Z [36;1m    raise SystemExit(f'FAIL: unknown project tlog directory: {path}')[0m
+2026-10-11T00:28:33.0757287Z [36;1m[0m
+2026-10-11T00:28:33.0757475Z [36;1mpaths = collections.defaultdict(list)[0m
+2026-10-11T00:28:33.0757776Z [36;1mfor tool, filename in tool_files.items():[0m
+2026-10-11T00:28:33.0758061Z [36;1m    for p in base.rglob(filename):[0m
+2026-10-11T00:28:33.0758330Z [36;1m        project = project_for_trace(p)[0m
+2026-10-11T00:28:33.0758607Z [36;1m        rel = p.relative_to(base).parts[0m
+2026-10-11T00:28:33.0759042Z [36;1m        cfgs = [cfg for cfg in ('Debug','Release') if cfg.lower() in [part.lower() for part in rel]][0m
+2026-10-11T00:28:33.0759546Z [36;1m        if len(cfgs) != 1 or 'x64' not in [part.lower() for part in rel]:[0m
+2026-10-11T00:28:33.0759990Z [36;1m            raise SystemExit(f'FAIL: incorrect x64/configuration path: {p}')[0m
+2026-10-11T00:28:33.0760368Z [36;1m        key = (project,cfgs[0],tool)[0m
+2026-10-11T00:28:33.0760783Z [36;1m        if key not in expected_keys: raise SystemExit(f'FAIL: extra/unexpected trace: {p}')[0m
+2026-10-11T00:28:33.0761199Z [36;1m        paths[key].append(p)[0m
+2026-10-11T00:28:33.0761530Z [36;1mif {k:len(v) for k,v in paths.items()} != {k:1 for k in expected_keys}:[0m
+2026-10-11T00:28:33.0762056Z [36;1m    raise SystemExit(f'FAIL: expected exactly ten CL/LINK/RC traces; found {dict(paths)!r}')[0m
+2026-10-11T00:28:33.0762465Z [36;1m[0m
+2026-10-11T00:28:33.0763290Z [36;1m# Native MSBuild tlog command lines, with the original Windows quoting rules.[0m
+2026-10-11T00:28:33.0763729Z [36;1mdef normalize_arg(arg,tool):[0m
+2026-10-11T00:28:33.0763976Z [36;1m    up=arg.upper()[0m
+2026-10-11T00:28:33.0764254Z [36;1m    if up.startswith(('/FO','/FD')): return arg[:3]+'<PATH>'[0m
+2026-10-11T00:28:33.0764651Z [36;1m    for prefix in ('/OUT:','/PDB:','/IMPLIB:','/MANIFESTINPUT:'):[0m
+2026-10-11T00:28:33.0765070Z [36;1m        if up.startswith(prefix): return arg[:len(prefix)]+'<PATH>'[0m
+2026-10-11T00:28:33.0765493Z [36;1m    if tool=='CL' and up.startswith('/I'): return arg[:2]+'<PATH>'[0m
+2026-10-11T00:28:33.0765816Z [36;1m    return arg[0m
+2026-10-11T00:28:33.0766001Z [36;1m[0m
+2026-10-11T00:28:33.0766196Z [36;1mdef parse_command(line, tool, key):[0m
+2026-10-11T00:28:33.0766466Z [36;1m    argv=win_split(line)[0m
+2026-10-11T00:28:33.0767182Z [36;1m    got=[]; libs=[]; sources=[][0m
+2026-10-11T00:28:33.0767508Z [36;1m    i=0[0m
+2026-10-11T00:28:33.0767744Z [36;1m    while i<len(argv):[0m
+2026-10-11T00:28:33.0767977Z [36;1m        a=argv[i]; up=a.upper()[0m
+2026-10-11T00:28:33.0768431Z [36;1m        if tool in ('CL','RC') and up=='/D':[0m
+2026-10-11T00:28:33.0768798Z [36;1m            if i+1>=len(argv): raise SystemExit(f'FAIL: malformed /D: {key}')[0m
+2026-10-11T00:28:33.0769201Z [36;1m            got.append(a+' '+argv[i+1]); i+=2; continue[0m
+2026-10-11T00:28:33.0769499Z [36;1m        if a.startswith('/'):[0m
+2026-10-11T00:28:33.0769765Z [36;1m            got.append(normalize_arg(a,tool))[0m
+2026-10-11T00:28:33.0770071Z [36;1m        elif tool=='LINK' and up.endswith('.LIB'):[0m
+2026-10-11T00:28:33.0770355Z [36;1m            libs.append(a)[0m
+2026-10-11T00:28:33.0770655Z [36;1m        elif ((tool=='LINK' and up.endswith(('.OBJ','.RES'))) or[0m
+2026-10-11T00:28:33.0771038Z [36;1m              (tool=='CL' and up.endswith(('.C','.CPP','.CC'))) or[0m
+2026-10-11T00:28:33.0771377Z [36;1m              (tool=='RC' and up.endswith('.RC'))):[0m
+2026-10-11T00:28:33.0771656Z [36;1m            sources.append(a)[0m
+2026-10-11T00:28:33.0771882Z [36;1m        else:[0m
+2026-10-11T00:28:33.0772178Z [36;1m            raise SystemExit(f'FAIL: unclassified {key} argument: {a!r}')[0m
+2026-10-11T00:28:33.0772516Z [36;1m        i+=1[0m
+2026-10-11T00:28:33.0772829Z [36;1m    if not sources: raise SystemExit(f'FAIL: no {key} source/object/resource')[0m
+2026-10-11T00:28:33.0773219Z [36;1m    if tool=='LINK':[0m
+2026-10-11T00:28:33.0773529Z [36;1m        if not libs: raise SystemExit(f'FAIL: {key} missing libraries')[0m
+2026-10-11T00:28:33.0774000Z [36;1m        if key[0]=='DLL' and not any(x.upper().endswith('.RES') for x in sources):[0m
+2026-10-11T00:28:33.0774536Z [36;1m            raise SystemExit(f'FAIL: DLL linker missing VERSIONINFO resource object: {key}')[0m
+2026-10-11T00:28:33.0775046Z [36;1m        pos=next((i for i,v in enumerate(got) if v.lower()=='/nologo'),None)[0m
+2026-10-11T00:28:33.0775492Z [36;1m        if pos is None: raise SystemExit(f'FAIL: {key} missing /NOLOGO')[0m
+2026-10-11T00:28:33.0775931Z [36;1m        got.insert(pos+1,'LIBS='+';'.join(libs).lower())[0m
+2026-10-11T00:28:33.0776227Z [36;1m    return got[0m
+2026-10-11T00:28:33.0776409Z [36;1m[0m
+2026-10-11T00:28:33.0776563Z [36;1mactual={}[0m
+2026-10-11T00:28:33.0776757Z [36;1mfor key in expected_keys:[0m
+2026-10-11T00:28:33.0776985Z [36;1m    p=paths[key][0][0m
+2026-10-11T00:28:33.0777267Z [36;1m    (ev / ('_'.join(key)+'_'+p.name)).write_bytes(p.read_bytes())[0m
+2026-10-11T00:28:33.0777639Z [36;1m    lines=p.read_text(encoding='utf-16').splitlines()[0m
+2026-10-11T00:28:33.0778023Z [36;1m    commands=[l for l in lines if l and not l.startswith('^')][0m
+2026-10-11T00:28:33.0778450Z [36;1m    if not commands: raise SystemExit(f'FAIL: no commands for {key}')[0m
+2026-10-11T00:28:33.0778791Z [36;1m    tool=key[2][0m
+2026-10-11T00:28:33.0779253Z [36;1m    parsed=[parse_command(c,tool,key) for c in (commands if tool=='CL' else commands[:1])][0m
+2026-10-11T00:28:33.0779670Z [36;1m    first=parsed[0][0m
+2026-10-11T00:28:33.0779958Z [36;1m    if tool=='CL' and any(record!=first for record in parsed[1:]):[0m
+2026-10-11T00:28:33.0780405Z [36;1m        raise SystemExit(f'FAIL: inconsistent source CL commands for {key}')[0m
+2026-10-11T00:28:33.0780797Z [36;1m    if tool=='RC' and len(commands)!=1:[0m
+2026-10-11T00:28:33.0781174Z [36;1m        raise SystemExit(f'FAIL: expected exactly one RC command for {key}')[0m
+2026-10-11T00:28:33.0781533Z [36;1m    actual[key]=first[0m
+2026-10-11T00:28:33.0781732Z [36;1m[0m
+2026-10-11T00:28:33.0782066Z [36;1mwith (ev/'actual_stage_bplus_switches.csv').open('w',encoding='utf-8',newline='') as f:[0m
+2026-10-11T00:28:33.0782626Z [36;1m    w=csv.writer(f); w.writerow(('project','configuration','tool','ordinal','token'))[0m
+2026-10-11T00:28:33.0783026Z [36;1m    for key in sorted(actual):[0m
+2026-10-11T00:28:33.0783418Z [36;1m        for ordinal,token in enumerate(actual[key],1): w.writerow((*key,ordinal,token))[0m
+2026-10-11T00:28:33.0783808Z [36;1mfailures=[][0m
+2026-10-11T00:28:33.0784108Z [36;1mfor key in sorted(expected_keys):[0m
+2026-10-11T00:28:33.0784353Z [36;1m    tool=key[2][0m
+2026-10-11T00:28:33.0784638Z [36;1m    canon=(lambda t:t.lower()) if tool=='LINK' else (lambda t:t)[0m
+2026-10-11T00:28:33.0785035Z [36;1m    want=collections.Counter(map(canon,baseline[key]))[0m
+2026-10-11T00:28:33.0785398Z [36;1m    got=collections.Counter(map(canon,actual[key]))[0m
+2026-10-11T00:28:33.0785768Z [36;1m    for kind,diff in (('MISSING',want-got),('EXTRA',got-want)):[0m
+2026-10-11T00:28:33.0786129Z [36;1m        for token,count in sorted(diff.items()):[0m
+2026-10-11T00:28:33.0786475Z [36;1m            failures.append(f'{key} {kind} {token} (x{count})')[0m
+2026-10-11T00:28:33.0786819Z [36;1m    if not (want-got) and not (got-want):[0m
+2026-10-11T00:28:33.0787168Z [36;1m        print(f'PASS: {key} {sum(got.values())} reviewed switches')[0m
+2026-10-11T00:28:33.0787491Z [36;1m[0m
+2026-10-11T00:28:33.0787796Z [36;1m# K2: Positive host-architecture proof for BOTH CL and LINK on BOTH projects,[0m
+2026-10-11T00:28:33.0788325Z [36;1m# in BOTH configurations. Diagnostic INVOCATIONS, not property declarations.[0m
+2026-10-11T00:28:33.0788721Z [36;1minvocation_pattern=re.compile([0m
+2026-10-11T00:28:33.0789136Z [36;1m    r'(?im)^\s*(?:\d+>\s*)?([A-Z]:\\[^\r\n]*?\\bin\\Host(?:X64|X86)\\(?:x64|x86)\\(?:CL|link)\.exe)\s+([^\r\n]+)\r?$')[0m
+2026-10-11T00:28:33.0789568Z [36;1mfor cfg in ('Debug','Release'):[0m
+2026-10-11T00:28:33.0789998Z [36;1m    log=(ev/f'MSBuild_{cfg}_x64_diagnostic.log').read_text(encoding='utf-8-sig',errors='replace')[0m
+2026-10-11T00:28:33.0790471Z [36;1m    matches=invocation_pattern.findall(log)[0m
+2026-10-11T00:28:33.0790770Z [36;1m    inv=collections.defaultdict(list)[0m
+2026-10-11T00:28:33.0791041Z [36;1m    for path,command in matches:[0m
+2026-10-11T00:28:33.0791407Z [36;1m        tool='CL' if path.lower().endswith('\\cl.exe') else 'LINK'[0m
+2026-10-11T00:28:33.0791736Z [36;1m        payload=command.lower()[0m
+2026-10-11T00:28:33.0792311Z [36;1m        if tool=='CL':[0m
+2026-10-11T00:28:33.0792629Z [36;1m            inspector=('\\src\\mpeg2blockinspector\\' in payload)[0m
+2026-10-11T00:28:33.0793018Z [36;1m            plugin=('\\src\\mpeg2deblock\\plugin.cpp' in payload)[0m
+2026-10-11T00:28:33.0793321Z [36;1m        else:[0m
+2026-10-11T00:28:33.0793664Z [36;1m            inspector=bool(re.search(r'/out:\s*"?[^\s"]*mpeg2blockinspector\.exe',payload))[0m
+2026-10-11T00:28:33.0794170Z [36;1m            plugin=bool(re.search(r'/out:\s*"?[^\s"]*mpeg2deblock\.dll',payload))[0m
+2026-10-11T00:28:33.0794536Z [36;1m        if inspector==plugin:[0m
+2026-10-11T00:28:33.0794952Z [36;1m            failures.append(f'{cfg}: unclassified/ambiguous {tool} invocation: {command[:160]}')[0m
+2026-10-11T00:28:33.0795376Z [36;1m            continue[0m
+2026-10-11T00:28:33.0795739Z [36;1m        project='INSPECTOR' if inspector else 'DLL'[0m
+2026-10-11T00:28:33.0796065Z [36;1m        inv[(project,tool)].append(path)[0m
+2026-10-11T00:28:33.0796427Z [36;1m        if not re.search(r'(?i)\\bin\\HostX64\\x64\\(?:CL|link)\.exe$',path):[0m
+2026-10-11T00:28:33.0796885Z [36;1m            failures.append(f'{cfg}/{project}/{tool}: not HostX64\\x64: {path}')[0m
+2026-10-11T00:28:33.0797406Z [36;1m        if not path.lower().startswith(os.environ['VS_INSTALL'].lower().rstrip('\\')+'\\'):[0m
+2026-10-11T00:28:33.0797934Z [36;1m            failures.append(f'{cfg}/{project}/{tool}: outside selected VS: {path}')[0m
+2026-10-11T00:28:33.0798338Z [36;1m    for project in ('INSPECTOR','DLL'):[0m
+2026-10-11T00:28:33.0798610Z [36;1m        for tool in ('CL','LINK'):[0m
+2026-10-11T00:28:33.0798862Z [36;1m            key=(project,tool)[0m
+2026-10-11T00:28:33.0799295Z [36;1m            if not inv[key]: failures.append(f'{cfg}/{project}/{tool}: actual host tool invocation missing')[0m
+2026-10-11T00:28:33.0799885Z [36;1m            print(f'{cfg}/{project}/{tool}: {len(inv[key])} real diagnostic invocation(s)')[0m
+2026-10-11T00:28:33.0800341Z [36;1m[0m
+2026-10-11T00:28:33.0800537Z [36;1mfor item in failures: print('FAIL:',item)[0m
+2026-10-11T00:28:33.0800820Z [36;1mif failures: raise SystemExit(1)[0m
+2026-10-11T00:28:33.0801142Z [36;1mtotal=sum(len(values) for values in baseline.values())[0m
+2026-10-11T00:28:33.0801648Z [36;1mprint(f'PASS: all {total} CL/LINK/RC switches and all eight HostX64 project/tool/config groups')[0m
+2026-10-11T00:28:33.0802151Z [36;1m'@ | Set-Content -LiteralPath $script -Encoding utf8[0m
+2026-10-11T00:28:33.0802686Z [36;1m& python $script[0m
+2026-10-11T00:28:33.0803300Z [36;1mif ($LASTEXITCODE -ne 0) { throw "Strict tlog/HostX64 check failed: $LASTEXITCODE" }[0m
+2026-10-11T00:28:33.0902317Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T00:28:33.0902893Z env:
+2026-10-11T00:28:33.0903347Z   VS_INSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise
+2026-10-11T00:28:33.0904324Z   MSBUILD_EXE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe
+2026-10-11T00:28:33.0905249Z   EVIDENCE_DIR: D:\a\_temp\migration-proof-evidence
+2026-10-11T00:28:33.0905729Z ##[endgroup]
+2026-10-11T00:28:34.4679045Z PASS: ('DLL', 'Debug', 'CL') 42 reviewed switches
+2026-10-11T00:28:34.4679817Z PASS: ('DLL', 'Debug', 'LINK') 23 reviewed switches
+2026-10-11T00:28:34.4680346Z PASS: ('DLL', 'Debug', 'RC') 4 reviewed switches
+2026-10-11T00:28:34.4680820Z PASS: ('DLL', 'Release', 'CL') 41 reviewed switches
+2026-10-11T00:28:34.4681292Z PASS: ('DLL', 'Release', 'LINK') 25 reviewed switches
+2026-10-11T00:28:34.4681748Z PASS: ('DLL', 'Release', 'RC') 4 reviewed switches
+2026-10-11T00:28:34.4682215Z PASS: ('INSPECTOR', 'Debug', 'CL') 34 reviewed switches
+2026-10-11T00:28:34.4682786Z PASS: ('INSPECTOR', 'Debug', 'LINK') 24 reviewed switches
+2026-10-11T00:28:34.4683191Z PASS: ('INSPECTOR', 'Release', 'CL') 33 reviewed switches
+2026-10-11T00:28:34.4683572Z PASS: ('INSPECTOR', 'Release', 'LINK') 26 reviewed switches
+2026-10-11T00:28:34.4683970Z Debug/INSPECTOR/CL: 1 real diagnostic invocation(s)
+2026-10-11T00:28:34.4684440Z Debug/INSPECTOR/LINK: 1 real diagnostic invocation(s)
+2026-10-11T00:28:34.4685089Z Debug/DLL/CL: 1 real diagnostic invocation(s)
+2026-10-11T00:28:34.4685424Z Debug/DLL/LINK: 1 real diagnostic invocation(s)
+2026-10-11T00:28:34.4685781Z Release/INSPECTOR/CL: 1 real diagnostic invocation(s)
+2026-10-11T00:28:34.4686162Z Release/INSPECTOR/LINK: 1 real diagnostic invocation(s)
+2026-10-11T00:28:34.4686519Z Release/DLL/CL: 1 real diagnostic invocation(s)
+2026-10-11T00:28:34.4686856Z Release/DLL/LINK: 1 real diagnostic invocation(s)
+2026-10-11T00:28:34.4687315Z PASS: all 256 CL/LINK/RC switches and all eight HostX64 project/tool/config groups
+2026-10-11T00:28:34.5518831Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-10-11T00:28:34.5519483Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-10-11T00:28:34.5519896Z [36;1m$root = Join-Path $env:GITHUB_WORKSPACE 'vs\VapourSynth-mpeg2Deblock'[0m
+2026-10-11T00:28:34.5520957Z [36;1m$log = Get-Content -LiteralPath (Join-Path $env:EVIDENCE_DIR 'MSBuild_Release_x64_diagnostic.log')[0m
+2026-10-11T00:28:34.5521737Z [36;1m$invocation = $log | Where-Object { $_ -match '^\s*[A-Za-z]:\\.*\\bin\\HostX64\\x64\\link\.exe\s+' } | Select-Object -First 1[0m
+2026-10-11T00:28:34.5522399Z [36;1mif (-not $invocation) { throw 'Cannot identify actual HostX64 linker invocation' }[0m
+2026-10-11T00:28:34.5523001Z [36;1m$toolDir = [regex]::Match($invocation, '(?i)([A-Z]:\\.*?\\bin\\HostX64\\x64)\\link\.exe\s+').Groups[1].Value[0m
+2026-10-11T00:28:34.5523499Z [36;1m$dumpbin = Join-Path $toolDir 'dumpbin.exe'[0m
+2026-10-11T00:28:34.5524027Z [36;1mif (-not (Test-Path -LiteralPath $dumpbin)) { throw "Missing matching x64 dumpbin: $dumpbin" }[0m
+2026-10-11T00:28:34.5524747Z [36;1m"Actual HostX64 tools folder: $toolDir" | Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'tool_versions.txt')[0m
+2026-10-11T00:28:34.5525335Z [36;1mforeach ($name in 'CL.exe','link.exe','dumpbin.exe') {[0m
+2026-10-11T00:28:34.5526499Z [36;1m  $path = Join-Path $toolDir $name[0m
+2026-10-11T00:28:34.5526887Z [36;1m  if (-not (Test-Path -LiteralPath $path)) { throw "Missing tool: $path" }[0m
+2026-10-11T00:28:34.5527418Z [36;1m  "$name file version: $((Get-Item -LiteralPath $path).VersionInfo.FileVersion)" |[0m
+2026-10-11T00:28:34.5527978Z [36;1m    Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'tool_versions.txt') -Append[0m
+2026-10-11T00:28:34.5528377Z [36;1m}[0m
+2026-10-11T00:28:34.5528675Z [36;1m# D-SDK(c): use the SDK proven by this build, not the newest installed SDK.[0m
+2026-10-11T00:28:34.5529173Z [36;1m# Cross-check UCRT library and SDK include paths in the actual Release log.[0m
+2026-10-11T00:28:34.5529901Z [36;1m$sdkPattern = '(?i)Windows Kits\\10\\(?:lib\\(?<libver>[0-9]+(?:\.[0-9]+){3})\\ucrt\\x64|include\\(?<incver>[0-9]+(?:\.[0-9]+){3}))'[0m
+2026-10-11T00:28:34.5530491Z [36;1m$sdkMatches = [regex]::Matches(($log -join "`n"), $sdkPattern)[0m
+2026-10-11T00:28:34.5530876Z [36;1m$sdkValues = @($sdkMatches | ForEach-Object {[0m
+2026-10-11T00:28:34.5531273Z [36;1m  if ($_.Groups['libver'].Success) { $_.Groups['libver'].Value }[0m
+2026-10-11T00:28:34.5531623Z [36;1m  else { $_.Groups['incver'].Value }[0m
+2026-10-11T00:28:34.5531895Z [36;1m} | Sort-Object -Unique)[0m
+2026-10-11T00:28:34.5532209Z [36;1mif ($sdkMatches.Count -eq 0 -or $sdkValues.Count -ne 1) {[0m
+2026-10-11T00:28:34.5532721Z [36;1m  throw "Could not prove one Windows SDK used by Release build; found: $($sdkValues -join ', ')"[0m
+2026-10-11T00:28:34.5533149Z [36;1m}[0m
+2026-10-11T00:28:34.5533327Z [36;1m$sdkVersion = $sdkValues[0][0m
+2026-10-11T00:28:34.5533607Z [36;1m"Windows SDK (used by build): $sdkVersion" |[0m
+2026-10-11T00:28:34.5534038Z [36;1m  Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'tool_versions.txt') -Append[0m
+2026-10-11T00:28:34.5534545Z [36;1m$binRoot = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10\bin'[0m
+2026-10-11T00:28:34.5534994Z [36;1m$preferredMt = Join-Path $binRoot "$sdkVersion\x64\mt.exe"[0m
+2026-10-11T00:28:34.5535408Z [36;1mif (Test-Path -LiteralPath $preferredMt -PathType Leaf) {[0m
+2026-10-11T00:28:34.5535740Z [36;1m  $mtExe = $preferredMt[0m
+2026-10-11T00:28:34.5536001Z [36;1m  $mtSelection = 'matching used Windows SDK'[0m
+2026-10-11T00:28:34.5536270Z [36;1m} else {[0m
+2026-10-11T00:28:34.5536741Z [36;1m  $x64Mt = @(Get-ChildItem -Path (Join-Path $binRoot '*\x64\mt.exe') -File -ErrorAction Stop |[0m
+2026-10-11T00:28:34.5537537Z [36;1m    Sort-Object { [version]$_.Directory.Parent.Name } -Descending)[0m
+2026-10-11T00:28:34.5537994Z [36;1m  if ($x64Mt.Count -eq 0) { throw 'No x64 SDK mt.exe installed' }[0m
+2026-10-11T00:28:34.5540282Z [36;1m  $mtExe = $x64Mt[0].FullName[0m
+2026-10-11T00:28:34.5540733Z [36;1m  $mtSelection = 'fallback to newest installed (matching SDK mt.exe missing)'[0m
+2026-10-11T00:28:34.5541118Z [36;1m}[0m
+2026-10-11T00:28:34.5541609Z [36;1m"Manifest Tool ($mtSelection): $mtExe ; FileVersion=$((Get-Item -LiteralPath $mtExe).VersionInfo.FileVersion)" |[0m
+2026-10-11T00:28:34.5542299Z [36;1m  Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'tool_versions.txt') -Append[0m
+2026-10-11T00:28:34.5542825Z [36;1m# O3: the version header is the ONLY owner of all four version numbers.[0m
+2026-10-11T00:28:34.5543360Z [36;1m$versionHeader = Join-Path $env:GITHUB_WORKSPACE 'src\mpeg2Deblock\plugin_version.h'[0m
+2026-10-11T00:28:34.5543901Z [36;1mif (-not (Test-Path -LiteralPath $versionHeader -PathType Leaf)) {[0m
+2026-10-11T00:28:34.5544365Z [36;1m  throw "Missing canonical plugin version header: $versionHeader"[0m
+2026-10-11T00:28:34.5544706Z [36;1m}[0m
+2026-10-11T00:28:34.5544977Z [36;1m$versionText = Get-Content -LiteralPath $versionHeader -Raw[0m
+2026-10-11T00:28:34.5545328Z [36;1m$versionParts = @()[0m
+2026-10-11T00:28:34.5545614Z [36;1mforeach ($part in @('MAJOR','MINOR','PATCH','BUILD')) {[0m
+2026-10-11T00:28:34.5546082Z [36;1m  $rx = '(?m)^[ \t]*#define[ \t]+MPEG2D_VERSION_' + $part + '[ \t]+([0-9]+)[ \t]*(?://[^\r\n]*)?\r?$'[0m
+2026-10-11T00:28:34.5546701Z [36;1m  $versionDefines = [regex]::Matches($versionText, $rx)[0m
+2026-10-11T00:28:34.5547286Z [36;1m  if ($versionDefines.Count -ne 1) { throw "Expected exactly one numeric MPEG2D_VERSION_$part in $versionHeader" }[0m
+2026-10-11T00:28:34.5547792Z [36;1m  [uint32]$number = 0[0m
+2026-10-11T00:28:34.5548158Z [36;1m  if (-not [uint32]::TryParse($versionDefines[0].Groups[1].Value, [ref]$number)) {[0m
+2026-10-11T00:28:34.5548652Z [36;1m    throw "Invalid numeric MPEG2D_VERSION_$part in $versionHeader"[0m
+2026-10-11T00:28:34.5548991Z [36;1m  }[0m
+2026-10-11T00:28:34.5549174Z [36;1m  $versionParts += $number[0m
+2026-10-11T00:28:34.5549401Z [36;1m}[0m
+2026-10-11T00:28:34.5549637Z [36;1m$expectedPluginVersion = $versionParts -join '.'[0m
+2026-10-11T00:28:34.5550075Z [36;1m"Plugin canonical version header: $expectedPluginVersion ($versionHeader)" |[0m
+2026-10-11T00:28:34.5550619Z [36;1m  Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'tool_versions.txt') -Append[0m
+2026-10-11T00:28:34.5551243Z [36;1mforeach ($item in @(@('Inspector','Mpeg2BlockInspector.exe','1'), @('Plugin','mpeg2Deblock.dll','2'))) {[0m
+2026-10-11T00:28:34.5551734Z [36;1m  $label,$file,$manifestId = $item[0m
+2026-10-11T00:28:34.5552025Z [36;1m  $bin = Join-Path $root "x64\Release\$file"[0m
+2026-10-11T00:28:34.5552441Z [36;1m  if (-not (Test-Path -LiteralPath $bin)) { throw "Missing Release image: $bin" }[0m
+2026-10-11T00:28:34.5552938Z [36;1m  foreach ($kind in @('headers','loadconfig','imports','dependents')) {[0m
+2026-10-11T00:28:34.5553313Z [36;1m    $out = & $dumpbin "/$kind" $bin 2>&1[0m
+2026-10-11T00:28:34.5553807Z [36;1m    $out | Out-File -LiteralPath (Join-Path $env:EVIDENCE_DIR "$($label)_Release_$kind.txt") -Encoding utf8[0m
+2026-10-11T00:28:34.5554390Z [36;1m    if ($LASTEXITCODE -ne 0) { throw "dumpbin /$kind failed for $label" }[0m
+2026-10-11T00:28:34.5554732Z [36;1m  }[0m
+2026-10-11T00:28:34.5555065Z [36;1m  $hdr=Get-Content (Join-Path $env:EVIDENCE_DIR "$($label)_Release_headers.txt") -Raw[0m
+2026-10-11T00:28:34.5555644Z [36;1m  $cfg=Get-Content (Join-Path $env:EVIDENCE_DIR "$($label)_Release_loadconfig.txt") -Raw[0m
+2026-10-11T00:28:34.5556209Z [36;1m  $imp=Get-Content (Join-Path $env:EVIDENCE_DIR "$($label)_Release_imports.txt") -Raw[0m
+2026-10-11T00:28:34.5556765Z [36;1m  $dep=Get-Content (Join-Path $env:EVIDENCE_DIR "$($label)_Release_dependents.txt") -Raw[0m
+2026-10-11T00:28:34.5557666Z [36;1m  foreach ($pattern in @('8664 machine','20B magic','Application can handle large','High Entropy Virtual Addresses','Dynamic base','NX compatible','Control Flow Guard','CET compatible')) {[0m
+2026-10-11T00:28:34.5559447Z [36;1m    if ($hdr -notmatch $pattern) { throw "$label lacks PE header property: $pattern" }[0m
+2026-10-11T00:28:34.5559882Z [36;1m  }[0m
+2026-10-11T00:28:34.5560069Z [36;1m  if ($label -eq 'Inspector') {[0m
+2026-10-11T00:28:34.5560507Z [36;1m    if ($hdr -notmatch 'Terminal Server Aware' -or $hdr -notmatch 'subsystem \(Windows CUI\)') {[0m
+2026-10-11T00:28:34.5561092Z [36;1m      if ($hdr -notmatch 'Terminal Server Aware') { throw 'Inspector lacks TSAWARE' }[0m
+2026-10-11T00:28:34.5561642Z [36;1m      if ($hdr -notmatch 'Windows CUI') { throw 'Inspector subsystem is not Windows CUI' }[0m
+2026-10-11T00:28:34.5562036Z [36;1m    }[0m
+2026-10-11T00:28:34.5562206Z [36;1m  } else {[0m
+2026-10-11T00:28:34.5562687Z [36;1m    if ($hdr -notmatch 'subsystem.*?Windows GUI' -and $hdr -notmatch 'Windows GUI') { throw 'Plugin subsystem is not Windows GUI' }[0m
+2026-10-11T00:28:34.5563221Z [36;1m  }[0m
+2026-10-11T00:28:34.5563580Z [36;1m  if ($hdr -notmatch [regex]::Escape([IO.Path]::GetFileNameWithoutExtension($file))+ '\.pdb') {[0m
+2026-10-11T00:28:34.5564072Z [36;1m    throw "$label PDB basename not found in headers"[0m
+2026-10-11T00:28:34.5564358Z [36;1m  }[0m
+2026-10-11T00:28:34.5564659Z [36;1m  if ($hdr -notmatch '(?m)Format: RSDS, \{[0-9A-F-]+\}, 1, [A-Za-z0-9_]+\.pdb\s*$') {[0m
+2026-10-11T00:28:34.5565212Z [36;1m    throw "$label PDB CodeView path is not basename-only"[0m
+2026-10-11T00:28:34.5565523Z [36;1m  }[0m
+2026-10-11T00:28:34.5565799Z [36;1m  $cookie=[regex]::Match($cfg,'(?m)^\s*([0-9A-Fa-f]+) Security Cookie\s*$')[0m
+2026-10-11T00:28:34.5566281Z [36;1m  $cfCount=[regex]::Match($cfg,'(?m)^\s*([0-9A-Fa-f]+) Guard CF function count\s*$')[0m
+2026-10-11T00:28:34.5566797Z [36;1m  $ehCount=[regex]::Match($cfg,'(?m)^\s*([0-9A-Fa-f]+) Guard EH continuation count\s*$')[0m
+2026-10-11T00:28:34.5567300Z [36;1m  foreach ($check in @(@('security cookie',$cookie),@('CF count',$cfCount))) {[0m
+2026-10-11T00:28:34.5567833Z [36;1m    if (-not $check[1].Success -or [Convert]::ToUInt64($check[1].Groups[1].Value,16) -eq 0) {[0m
+2026-10-11T00:28:34.5568280Z [36;1m      throw "$label missing or zero $($check[0])"[0m
+2026-10-11T00:28:34.5568547Z [36;1m    }[0m
+2026-10-11T00:28:34.5568712Z [36;1m  }[0m
+2026-10-11T00:28:34.5569038Z [36;1m  # N3: a zero EH continuation count is valid if the EHCONT flag/table are present.[0m
+2026-10-11T00:28:34.5569572Z [36;1m  if (-not $ehCount.Success) { throw "$label EH continuation count field missing" }[0m
+2026-10-11T00:28:34.5570047Z [36;1m  $ehDecimal = [Convert]::ToUInt64($ehCount.Groups[1].Value,16)[0m
+2026-10-11T00:28:34.5570514Z [36;1m  "$label EH continuation count: $ehDecimal (hex $($ehCount.Groups[1].Value))" |[0m
+2026-10-11T00:28:34.5571076Z [36;1m    Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'pe_validation_result.txt') -Append[0m
+2026-10-11T00:28:34.5571805Z [36;1m  foreach ($pattern in @('CF instrumented','FID table present','EH Continuation table present','Guard EH continuation table')) {[0m
+2026-10-11T00:28:34.5572476Z [36;1m    if ($cfg -notmatch $pattern) { throw "$label lacks loadconfig: $pattern" }[0m
+2026-10-11T00:28:34.5572840Z [36;1m  }[0m
+2026-10-11T00:28:34.5573092Z [36;1m  foreach ($pair in @(@('imports',$imp),@('dependents',$dep))) {[0m
+2026-10-11T00:28:34.5573770Z [36;1m    $dlls=[regex]::Matches($pair[1],'(?im)^\s+([A-Za-z0-9_.-]+\.dll)\s*$') | ForEach-Object {$_.Groups[1].Value.ToUpperInvariant()} | Select-Object -Unique[0m
+2026-10-11T00:28:34.5574434Z [36;1m    if (@($dlls).Count -ne 1 -or @($dlls)[0] -ne 'KERNEL32.DLL') {[0m
+2026-10-11T00:28:34.5574820Z [36;1m      throw "$label unexpected $($pair[0]) DLL(s): $dlls"[0m
+2026-10-11T00:28:34.5575109Z [36;1m    }[0m
+2026-10-11T00:28:34.5575285Z [36;1m  }[0m
+2026-10-11T00:28:34.5575602Z [36;1m  $manifest=Join-Path $env:EVIDENCE_DIR "$($label)_Release_embedded_manifest.xml"[0m
+2026-10-11T00:28:34.5576112Z [36;1m  & $mtExe -nologo "-inputresource:$bin;#$manifestId" "-out:$manifest"[0m
+2026-10-11T00:28:34.5576682Z [36;1m  if ($LASTEXITCODE -ne 0) { throw "mt.exe extraction failed for $label" }[0m
+2026-10-11T00:28:34.5577096Z [36;1m  $xml=Get-Content -LiteralPath $manifest -Raw[0m
+2026-10-11T00:28:34.5577401Z [36;1m  if ($label -eq 'Inspector') {[0m
+2026-10-11T00:28:34.5577833Z [36;1m    if ($xml -notmatch 'requestedExecutionLevel\s+level="asInvoker"\s+uiAccess="false"' -or[0m
+2026-10-11T00:28:34.5578348Z [36;1m        $xml -notmatch '<heapType>SegmentHeap</heapType>') {[0m
+2026-10-11T00:28:34.5579215Z [36;1m      throw 'Inspector manifest differs from accepted asInvoker/SegmentHeap'[0m
+2026-10-11T00:28:34.5579594Z [36;1m    }[0m
+2026-10-11T00:28:34.5579761Z [36;1m  } else {[0m
+2026-10-11T00:28:34.5580165Z [36;1m    if ($xml -notmatch '<assembly\b' -or $xml -match 'requestedExecutionLevel|trustInfo|SegmentHeap') {[0m
+2026-10-11T00:28:34.5580763Z [36;1m      throw 'DLL must have embedded plain manifest without UAC/EXE-only settings'[0m
+2026-10-11T00:28:34.5581141Z [36;1m    }[0m
+2026-10-11T00:28:34.5581338Z [36;1m    $exp=& $dumpbin /exports $bin 2>&1[0m
+2026-10-11T00:28:34.5581832Z [36;1m    $exp | Out-File -LiteralPath (Join-Path $env:EVIDENCE_DIR 'Plugin_Release_exports.txt') -Encoding utf8[0m
+2026-10-11T00:28:34.5582408Z [36;1m    if ($LASTEXITCODE -ne 0) { throw 'DLL dumpbin /exports failed' }[0m
+2026-10-11T00:28:34.5582906Z [36;1m    $expText=$exp -join "`n"[0m
+2026-10-11T00:28:34.5583227Z [36;1m    if ($expText -notmatch '(?m)^\s*1 number of functions\s*$' -or[0m
+2026-10-11T00:28:34.5583630Z [36;1m        $expText -notmatch '(?m)^\s*1 number of names\s*$' -or[0m
+2026-10-11T00:28:34.5584269Z [36;1m        $expText -notmatch '(?m)^\s*\d+\s+[0-9A-Fa-f]+\s+[0-9A-Fa-f]+\s+VapourSynthPluginInit2(?:\s+=\s+VapourSynthPluginInit2)?\s*$') {[0m
+2026-10-11T00:28:34.5584928Z [36;1m      throw 'Expected the sole unmangled export VapourSynthPluginInit2'[0m
+2026-10-11T00:28:34.5585284Z [36;1m    }[0m
+2026-10-11T00:28:34.5585584Z [36;1m    $version=[System.Diagnostics.FileVersionInfo]::GetVersionInfo($bin)[0m
+2026-10-11T00:28:34.5586032Z [36;1m    @("ExpectedVersionFromHeader=$expectedPluginVersion",[0m
+2026-10-11T00:28:34.5586529Z [36;1m      "FileVersion=$($version.FileVersion)","ProductVersion=$($version.ProductVersion)",[0m
+2026-10-11T00:28:34.5587135Z [36;1m      "FileDescription=$($version.FileDescription)","ProductName=$($version.ProductName)",[0m
+2026-10-11T00:28:34.5587634Z [36;1m      "OriginalFilename=$($version.OriginalFilename)") |[0m
+2026-10-11T00:28:34.5588157Z [36;1m      Out-File -LiteralPath (Join-Path $env:EVIDENCE_DIR 'Plugin_Release_version.txt') -Encoding utf8[0m
+2026-10-11T00:28:34.5588703Z [36;1m    if ($version.FileVersion -ne $expectedPluginVersion -or[0m
+2026-10-11T00:28:34.5589112Z [36;1m        $version.ProductVersion -ne $expectedPluginVersion -or[0m
+2026-10-11T00:28:34.5589513Z [36;1m        $version.OriginalFilename -ne 'mpeg2Deblock.dll') {[0m
+2026-10-11T00:28:34.5590470Z [36;1m      throw "Unexpected plugin VERSIONINFO: expected $expectedPluginVersion from header, got FileVersion=$($version.FileVersion), ProductVersion=$($version.ProductVersion), OriginalFilename=$($version.OriginalFilename)"[0m
+2026-10-11T00:28:34.5591364Z [36;1m    }[0m
+2026-10-11T00:28:34.5591531Z [36;1m  }[0m
+2026-10-11T00:28:34.5591810Z [36;1m  "PASS: $label x64 PE flags, CFG, EHCONT, KERNEL32-only, manifest" |[0m
+2026-10-11T00:28:34.5592333Z [36;1m    Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'pe_validation_result.txt') -Append[0m
+2026-10-11T00:28:34.5592746Z [36;1m}[0m
+2026-10-11T00:28:34.5593016Z [36;1m# NOTE: No CI functional six-index regression (O7). Executed locally.[0m
+2026-10-11T00:28:34.5665201Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T00:28:34.5665550Z env:
+2026-10-11T00:28:34.5665826Z   VS_INSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise
+2026-10-11T00:28:34.5666598Z   MSBUILD_EXE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe
+2026-10-11T00:28:34.5667124Z   EVIDENCE_DIR: D:\a\_temp\migration-proof-evidence
+2026-10-11T00:28:34.5667411Z ##[endgroup]
+2026-10-11T00:28:35.0647246Z Actual HostX64 tools folder: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64
+2026-10-11T00:28:35.0779993Z CL.exe file version: 19.51.36260.0
+2026-10-11T00:28:35.0804157Z link.exe file version: 14.51.36260.0
+2026-10-11T00:28:35.0922457Z dumpbin.exe file version: 14.51.36260.0
+2026-10-11T00:28:35.1466355Z Windows SDK (used by build): 10.0.26100.0
+2026-10-11T00:28:35.1498406Z Manifest Tool (matching used Windows SDK): C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64\mt.exe ; FileVersion=10.0.26100.8249 (WinBuild.160101.0800)
+2026-10-11T00:28:35.1717796Z Plugin canonical version header: 0.1.0.0 (D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\src\mpeg2Deblock\plugin_version.h)
+2026-10-11T00:28:35.3407227Z Inspector EH continuation count: 15 (hex F)
+2026-10-11T00:28:35.3676774Z PASS: Inspector x64 PE flags, CFG, EHCONT, KERNEL32-only, manifest
+2026-10-11T00:28:35.4933056Z Plugin EH continuation count: 11 (hex B)
+2026-10-11T00:28:35.5537456Z PASS: Plugin x64 PE flags, CFG, EHCONT, KERNEL32-only, manifest
+2026-10-11T00:28:35.6262482Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-10-11T00:28:35.6262928Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-10-11T00:28:35.6263359Z [36;1m$src = Join-Path $env:GITHUB_WORKSPACE 'vs\VapourSynth-mpeg2Deblock\x64\Release'[0m
+2026-10-11T00:28:35.6263931Z [36;1m$dst = Join-Path $env:RUNNER_TEMP 'migration-proof-evidence/Release_Binaries'[0m
+2026-10-11T00:28:35.6264402Z [36;1mNew-Item -ItemType Directory -Force $dst | Out-Null[0m
+2026-10-11T00:28:35.6264849Z [36;1mforeach ($name in @('Mpeg2BlockInspector.exe','Mpeg2BlockInspector.pdb',[0m
+2026-10-11T00:28:35.6265293Z [36;1m                    'mpeg2Deblock.dll','mpeg2Deblock.pdb')) {[0m
+2026-10-11T00:28:35.6266049Z [36;1m  $path = Join-Path $src $name[0m
+2026-10-11T00:28:35.6266371Z [36;1m  if (Test-Path -LiteralPath $path -PathType Leaf) {[0m
+2026-10-11T00:28:35.6266816Z [36;1m    Copy-Item -LiteralPath $path -Destination (Join-Path $dst $name) -Force[0m
+2026-10-11T00:28:35.6267324Z [36;1m    $file = Get-Item -LiteralPath (Join-Path $dst $name)[0m
+2026-10-11T00:28:35.6267728Z [36;1m    if ($file.Length -eq 0) { throw "Empty binary/PDB: $name" }[0m
+2026-10-11T00:28:35.6268179Z [36;1m    $sha = (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash[0m
+2026-10-11T00:28:35.6268600Z [36;1m    "$name | bytes=$($file.Length) | sha256=$sha" |[0m
+2026-10-11T00:28:35.6269163Z [36;1m      Tee-Object -FilePath (Join-Path $env:RUNNER_TEMP 'migration-proof-evidence/release_binary_hashes.txt') -Append[0m
+2026-10-11T00:28:35.6269674Z [36;1m  } else {[0m
+2026-10-11T00:28:35.6270002Z [36;1m    Write-Warning "Release binary/PDB not created by preceding steps: $path"[0m
+2026-10-11T00:28:35.6270375Z [36;1m  }[0m
+2026-10-11T00:28:35.6270531Z [36;1m}[0m
+2026-10-11T00:28:35.6343327Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-11T00:28:35.6343676Z env:
+2026-10-11T00:28:35.6343955Z   VS_INSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise
+2026-10-11T00:28:35.6344828Z   MSBUILD_EXE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe
+2026-10-11T00:28:35.6345360Z   EVIDENCE_DIR: D:\a\_temp\migration-proof-evidence
+2026-10-11T00:28:35.6345645Z ##[endgroup]
+2026-10-11T00:28:36.0724833Z Mpeg2BlockInspector.exe | bytes=237056 | sha256=53D828FA7A5EAA5101304A7E4D3603C56388C24B438435895475E6DFAD620723
+2026-10-11T00:28:36.0840342Z Mpeg2BlockInspector.pdb | bytes=4329472 | sha256=37A2284B7351960127BAA1B98D85AA08169F1F0556D8C3A2847E1F7070C4F22D
+2026-10-11T00:28:36.0874840Z mpeg2Deblock.dll | bytes=105472 | sha256=64FED356CCCA6AA02FD10463706AC1FE369D2F7BBD71F703ABD05EA7457CD050
+2026-10-11T00:28:36.0964801Z mpeg2Deblock.pdb | bytes=3534848 | sha256=1E5ED946FB983C97634B42B050B42FA889258B8E8673294B6BBF088BE6F9A95B
+2026-10-11T00:28:36.1675974Z ##[group]Run actions/upload-artifact@v7
+2026-10-11T00:28:36.1676310Z with:
+2026-10-11T00:28:36.1676548Z   name: stage-bplus-project-owned-msbuild-proof
+2026-10-11T00:28:36.1677130Z   path: D:\a\_temp/migration-proof-evidence/
+2026-10-11T00:28:36.1677439Z   if-no-files-found: warn
+2026-10-11T00:28:36.1677649Z   compression-level: 6
+2026-10-11T00:28:36.1677839Z   overwrite: false
+2026-10-11T00:28:36.1678024Z   include-hidden-files: false
+2026-10-11T00:28:36.1678234Z   archive: true
+2026-10-11T00:28:36.1678398Z env:
+2026-10-11T00:28:36.1678646Z   VS_INSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise
+2026-10-11T00:28:36.1679397Z   MSBUILD_EXE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe
+2026-10-11T00:28:36.1679907Z   EVIDENCE_DIR: D:\a\_temp\migration-proof-evidence
+2026-10-11T00:28:36.1680199Z ##[endgroup]
+2026-10-11T00:28:36.3632600Z With the provided path, there will be 35 files uploaded
+2026-10-11T00:28:36.3638830Z Artifact name is valid!
+2026-10-11T00:28:36.3640201Z Root directory input is valid!
+2026-10-11T00:28:36.5674433Z Uploading artifact: stage-bplus-project-owned-msbuild-proof.zip
+2026-10-11T00:28:36.5725101Z Beginning upload of artifact content to blob storage
+2026-10-11T00:28:36.9024559Z Uploaded bytes 1574706
+2026-10-11T00:28:36.9170666Z Finished uploading artifact content to blob storage!
+2026-10-11T00:28:36.9171749Z SHA256 digest of uploaded artifact is 74d3472a9f0e1a86f04285e5095d496251e913f172d9ad59f4a3a3fb0b094580
+2026-10-11T00:28:36.9174903Z Finalizing artifact upload
+2026-10-11T00:28:37.1188055Z Artifact stage-bplus-project-owned-msbuild-proof successfully finalized. Artifact ID 11686117855
+2026-10-11T00:28:37.1189585Z Artifact stage-bplus-project-owned-msbuild-proof has been successfully uploaded! Final size is 1574706 bytes. Artifact ID is 11686117855
+2026-10-11T00:28:37.1198179Z Artifact download URL: https://github.com/hydra3333/VapourSynth-mpeg2Deblock/actions/runs/38098503397/artifacts/11686117855
+2026-10-11T00:28:37.1723425Z Post job cleanup.
+2026-10-11T00:28:37.4219056Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-11T00:28:37.4565298Z git version 2.55.0.windows.5
+2026-10-11T00:28:37.4646034Z Temporarily overriding HOME='D:\a\_temp\e1dac867-4d03-4417-8071-c6fe77688660' before making global git config changes
+2026-10-11T00:28:37.4648992Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T00:28:37.4661564Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock
+2026-10-11T00:28:37.5156869Z Removing SSH command configuration
+2026-10-11T00:28:37.5157997Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T00:28:37.5527266Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-11T00:28:38.1652997Z Removing HTTP extra header
+2026-10-11T00:28:38.1664141Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T00:28:38.2018378Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-11T00:28:38.8395315Z Removing includeIf entries pointing to credentials config files
+2026-10-11T00:28:38.8411029Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-11T00:28:38.8763677Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-11T00:28:39.5197131Z Cleaning up orphan processes
+2026-10-11T00:28:39.5697915Z Terminate orphan process: pid (9468) (vctip)

@@ -15,11 +15,17 @@ Tools for finding and, in time, reducing MPEG-2 blocking in video, using informa
 | Item | What it is |
 |---|---|
 | `Mpeg2BlockInspector.exe` | A Windows x64 command-line tool derived from the MSSG MPEG-2 reference decoder. It reads an MPEG-2 video stream and writes a binary per-macroblock index of how each part of each picture was coded. |
-| VapourSynth plugin | A VapourSynth (API4) plugin that will use that index for deblocking. **In development; not yet available.** Its name and details are not final. |
+| `mpeg2Deblock.dll` (VapourSynth API4 plugin) | Windows x64 development scaffold. The exposed `mpeg2deblock.Identity` operation is only an identity/pass-through demonstration; **no deblocking algorithm is implemented yet**. |
 | `tools/Stage1_Inspector_Analyzer_v0_2.py` | A Python script that reads and checks an index produced by the inspector. |
 | `TESTING/` | Windows batch scripts used to run the inspector against the test recordings. |
 | `VHSC_samples/` | Test recordings and their reference indexes. Restricted use; see `NOTICE.md`. |
 | `vs/VapourSynth-mpeg2Deblock/` | The Visual Studio 2026 solution (`VapourSynth-mpeg2Deblock.slnx`) and project files. |
+
+## Current development pre-release
+
+- [`v0.1.0` - Initial Development Scaffold (pre-release)](https://github.com/hydra3333/VapourSynth-mpeg2Deblock/releases/tag/v0.1.0) is the first project build/distribution baseline; **it is not a functional deblocking-filter release**.
+- Download `mpeg2Deblock-v0.1.0-win-x64.zip`; its root contains `Mpeg2BlockInspector.exe`, `mpeg2Deblock.dll`, `LICENSE` and `NOTICE.md` only. The build's PDB symbols and diagnostic evidence are uploaded separately to GitHub Actions artifacts, which expire under GitHub's retention policy.
+- GitHub Actions supports manual builds from any branch for verification only, or builds automatically when a GitHub Release is published using a commit in `main` history. The latter attaches a verified Windows x64 ZIP. The public source archives shown by GitHub are distinct from that binary ZIP.
 
 ## System requirements
 
