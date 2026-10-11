@@ -33,7 +33,7 @@
 # G7 DLL Release LINK: link.exe /OUT:<PATH> /INCREMENTAL:NO /NOLOGO LIBS=kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib /MANIFEST /MANIFESTUAC:NO /manifest:embed /DEBUG:FULL /PDB:<PATH> /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:<PATH> /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA /PDBALTPATH:%_PDB% /DLL [inputs]
 # G7 DLL Release RC: rc.exe /D NDEBUG /l0x0409 /nologo /fo<PATH> [inputs]
 # G7 END REFERENCE ONLY; never use these lines to invoke build tools.
-name: Build and prove project-owned x64 binaries (manual/release)
+name: mpeg2Deblock - Windows x64 Build, Verify, manual or Release
 on:
   workflow_dispatch:
   release:
