@@ -5,6 +5,8 @@
 # G5: unexpected, missing or changed switch => fail loudly.
 # O7: all six MPEG-2 index regressions run LOCALLY, never in this CI job.
 # S4: retain Release EXE, DLL and both PDBs in the proof artifact.
+# Published GitHub Releases distribute ONE verified ZIP: EXE, DLL, LICENSE and NOTICE.md at root.
+# PDBs remain in Actions evidence; GitHub adds automatic source-code archives.
 # S6: checkout/upload-artifact actions use current Node 24-based major versions.
 # B6: accepted inherited switches carry reviewed disposition values in CSV.
 # G7: REFERENCE ONLY - NOT EXECUTED. DO NOT UNCOMMENT.
@@ -546,6 +548,73 @@ jobs:
             }
           }
 
+      - name: Package and verify four-file Windows x64 distribution ZIP
+        if: success()
+        shell: pwsh
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $source = Join-Path $env:EVIDENCE_DIR 'Release_Binaries'
+          $distribution = Join-Path $env:EVIDENCE_DIR 'Release_Package'
+          New-Item -ItemType Directory -Force $distribution | Out-Null
+          $names = @('Mpeg2BlockInspector.exe', 'mpeg2Deblock.dll', 'LICENSE', 'NOTICE.md')
+          $inputSources = @{
+            'Mpeg2BlockInspector.exe' = Join-Path $source 'Mpeg2BlockInspector.exe'
+            'mpeg2Deblock.dll' = Join-Path $source 'mpeg2Deblock.dll'
+            'LICENSE' = Join-Path $env:GITHUB_WORKSPACE 'LICENSE'
+            'NOTICE.md' = Join-Path $env:GITHUB_WORKSPACE 'NOTICE.md'
+          }
+          $inputs = @($names | ForEach-Object {
+            $p = $inputSources[$_]
+            if (-not (Test-Path -LiteralPath $p -PathType Leaf) -or
+                (Get-Item -LiteralPath $p).Length -eq 0) {
+              throw "Missing or empty distribution input: $p"
+            }
+            $p
+          })
+          # The release tag controls the release filename. Manual runs get a
+          # distinct commit-labelled archive in Actions evidence ONLY.
+          $label = if ($env:GITHUB_EVENT_NAME -eq 'release') {
+            $env:RELEASE_TAG
+          } else {
+            "manual-$($env:GITHUB_SHA.Substring(0,12))"
+          }
+          if ([string]::IsNullOrWhiteSpace($label)) { throw 'Empty ZIP identity label' }
+          $safeLabel = $label -replace '[^A-Za-z0-9._-]', '_'
+          $zipName = "mpeg2Deblock-$safeLabel-win-x64.zip"
+          $zipPath = Join-Path $distribution $zipName
+          Compress-Archive -LiteralPath $inputs -DestinationPath $zipPath -CompressionLevel Optimal -ErrorAction Stop
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $archive = [System.IO.Compression.ZipFile]::OpenRead($zipPath)
+          try {
+            $entries = @($archive.Entries)
+            $actualNames = @($entries | ForEach-Object { $_.FullName } | Sort-Object)
+            $expectedNames = @($names | Sort-Object)
+            if ($actualNames.Count -ne 4 -or
+                (Compare-Object -ReferenceObject $expectedNames -DifferenceObject $actualNames)) {
+              throw "Unexpected ZIP membership: $($actualNames -join ', ')"
+            }
+            foreach ($entry in $entries) {
+              $reader = $entry.Open()
+              try {
+                $sha256 = [System.Security.Cryptography.SHA256]::Create()
+                try { $unpackedHash = [Convert]::ToHexString($sha256.ComputeHash($reader)) }
+                finally { $sha256.Dispose() }
+              } finally { $reader.Dispose() }
+              $sourceHash = (Get-FileHash -LiteralPath $inputSources[$entry.FullName] -Algorithm SHA256).Hash
+              if ($unpackedHash -cne $sourceHash) {
+                throw "ZIP content mismatch for $($entry.FullName)"
+              }
+            }
+          } finally { $archive.Dispose() }
+          $file = Get-Item -LiteralPath $zipPath
+          if ($file.Length -eq 0) { throw 'Distribution ZIP is empty' }
+          $hash = (Get-FileHash -LiteralPath $zipPath -Algorithm SHA256).Hash
+          "Name=$zipName | bytes=$($file.Length) | sha256=$hash" |
+            Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'release_distribution_zip_sha256.txt')
+          "PASS: distribution ZIP $zipName contains exactly the four verified EXE, DLL, LICENSE and NOTICE.md files"
+
       - name: Upload proof evidence even on failure (including available binaries/PDBs)
         if: always()
         uses: actions/upload-artifact@v7
@@ -554,7 +623,7 @@ jobs:
           path: ${{ runner.temp }}/migration-proof-evidence/
           if-no-files-found: warn
 
-      - name: Attach verified binaries and symbols to the published GitHub Release
+      - name: Attach only the verified distribution ZIP to the published GitHub Release
         if: success() && github.event_name == 'release' && github.event.action == 'published'
         shell: pwsh
         env:
@@ -572,17 +641,19 @@ jobs:
           if ($LASTEXITCODE -ne 0 -or $tag -cne $env:RELEASE_TAG) {
             throw "Release ID/tag lookup mismatch: $tag"
           }
-          $source = Join-Path $env:EVIDENCE_DIR 'Release_Binaries'
-          $assets = @('Mpeg2BlockInspector.exe','Mpeg2BlockInspector.pdb',
-                      'mpeg2Deblock.dll','mpeg2Deblock.pdb') | ForEach-Object {
-            $file = Join-Path $source $_
-            if (-not (Test-Path -LiteralPath $file -PathType Leaf) -or
-                (Get-Item -LiteralPath $file).Length -eq 0) {
-              throw "Cannot attach missing/empty verified asset: $file"
-            }
-            $file
+          $safeTag = $env:RELEASE_TAG -replace '[^A-Za-z0-9._-]', '_'
+          $zipName = "mpeg2Deblock-$safeTag-win-x64.zip"
+          $file = Join-Path (Join-Path $env:EVIDENCE_DIR 'Release_Package') $zipName
+          if (-not (Test-Path -LiteralPath $file -PathType Leaf) -or
+              (Get-Item -LiteralPath $file).Length -eq 0) {
+            throw "Cannot attach missing/empty verified distribution ZIP: $file"
+          }
+          $hash = (Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash
+          $manifest = Get-Content -LiteralPath (Join-Path $env:EVIDENCE_DIR 'release_distribution_zip_sha256.txt') -Raw
+          if (-not $manifest.Contains("Name=$zipName | bytes=$((Get-Item -LiteralPath $file).Length) | sha256=$hash")) {
+            throw 'Distribution ZIP SHA-256 manifest mismatch before upload'
           }
           # Intentionally omit --clobber: a rerun must not silently replace published assets.
-          & gh release upload $env:RELEASE_TAG @assets --repo $env:GITHUB_REPOSITORY
+          & gh release upload $env:RELEASE_TAG $file --repo $env:GITHUB_REPOSITORY
           if ($LASTEXITCODE -ne 0) { throw "GitHub Release upload failed: $LASTEXITCODE" }
-          "PASS: attached four verified binaries/symbols to $env:RELEASE_TAG"
+          "PASS: attached one four-file verified distribution ZIP (EXE, DLL, LICENSE, NOTICE.md) $zipName to $env:RELEASE_TAG"
