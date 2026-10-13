@@ -1,0 +1,6 @@
+VapourSynth API4 headers refreshed 2026-10-10:
+VapourSynth4.h: R81
+VSHelper4.h: R81
+VSScript4.h: R81
+VSConstants4.h: R81
+VSVulkan4.h: retained post-R81 master snapshot

@@ -1,0 +1,659 @@
+# Final Stage B+ project-owned x64 CI: manual any-branch builds and main-lineage published Releases.
+# Builds both projects through the committed .slnx; no CL/LINK/RC flag injection.
+# A single CSV owns the strict expected switches (10 tool/config/project keys).
+# The earlier A3 CSV remains unchanged as historical evidence.
+# G5: unexpected, missing or changed switch => fail loudly.
+# O7: all six MPEG-2 index regressions run LOCALLY, never in this CI job.
+# S4: retain Release EXE, DLL and both PDBs in the proof artifact.
+# Published GitHub Releases distribute ONE verified ZIP: EXE, DLL, LICENSE and NOTICE.md at root.
+# PDBs remain in Actions evidence; GitHub adds automatic source-code archives.
+# S6: checkout/upload-artifact actions use current Node 24-based major versions.
+# B6: accepted inherited switches carry reviewed disposition values in CSV.
+# G7: REFERENCE ONLY - NOT EXECUTED. DO NOT UNCOMMENT.
+# Human-readable normalized CL/LINK/RC command-line SWITCH references, taken
+# directly from the ten reviewed LOCAL Stage B+ v0.2 tlogs on 2026-10-11.
+# They are NOT runnable invocations: <PATH>, LIBS= and [inputs] are placeholders.
+# The .vcxproj files alone own real flags; the expected CSV is the sole executable
+# reference for switch verification. These comments aid diagnosis only.
+# Local: VS2026 Community 18.10.12224.181; VS toolset v145;
+# MSVC tools 14.51.36231; CL 19.51.36260.0, LINK 14.51.36260.0;
+# 64-bit MSBuild, compiler/linker HostX64\x64, SDK used 10.0.28000.0.
+# CI proving run 38092449456: VS2026 Enterprise 18.10.12217.157,
+# MSVC tools 14.51.36231, SDK used 10.0.26100.0, 256/256 switches PASS.
+# When accepting a legitimate switch change: review actual differences and update
+# BOTH expected_stage_bplus_switches.csv AND this comment reference in ONE commit.
+# G7 INSPECTOR Debug CL: cl.exe /c /Zi /JMC /nologo /W3 /WX- /diagnostics:column /sdl- /Od /Ob2 /Oi /Ot /D _CRT_SECURE_NO_WARNINGS /GF- /Gm- /EHsc /RTC1 /MDd /GS /guard:cf /Gy- /arch:AVX2 /fp:precise /guard:ehcont /Zc:wchar_t /Zc:forScope /Zc:inline /Fo<PATH> /Fd<PATH> /external:W3 /Gd /TC /FC /favor:blend [inputs]
+# G7 INSPECTOR Debug LINK: link.exe /OUT:<PATH> /INCREMENTAL:NO /NOLOGO LIBS=kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib /MANIFEST /MANIFESTUAC:level='asInvoker' uiAccess='false' /manifest:embed /manifestinput:<PATH> /DEBUG:FULL /PDB:<PATH> /SUBSYSTEM:CONSOLE /LARGEADDRESSAWARE /TSAWARE /OPT:NOREF /OPT:NOICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:<PATH> /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA [inputs]
+# G7 INSPECTOR Release CL: cl.exe /c /Zi /nologo /W3 /WX- /diagnostics:column /sdl- /O2 /Ob2 /Oi /Ot /GL /D _CRT_SECURE_NO_WARNINGS /GF /Gm- /EHsc /MT /GS /guard:cf /Gy /arch:AVX2 /fp:precise /guard:ehcont /Zc:wchar_t /Zc:forScope /Zc:inline /Fo<PATH> /Fd<PATH> /external:W3 /Gd /TC /FC /favor:blend [inputs]
+# G7 INSPECTOR Release LINK: link.exe /OUT:<PATH> /INCREMENTAL:NO /NOLOGO LIBS=kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib /MANIFEST /MANIFESTUAC:level='asInvoker' uiAccess='false' /manifest:embed /manifestinput:<PATH> /DEBUG:FULL /PDB:<PATH> /SUBSYSTEM:CONSOLE /LARGEADDRESSAWARE /TSAWARE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:<PATH> /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA /PDBALTPATH:%_PDB% [inputs]
+# G7 DLL Debug CL: cl.exe /c /I<PATH> /Zi /JMC /nologo /W3 /WX- /diagnostics:column /sdl /Od /Ob2 /Oi /Ot /D NOMINMAX /D _DEBUG /D _WINDOWS /D _USRDLL /D _WINDLL /GF- /Gm- /EHsc /RTC1 /MDd /GS /guard:cf /Gy- /arch:AVX2 /fp:precise /guard:ehcont /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++20 /permissive- /Fo<PATH> /Fd<PATH> /external:W3 /Gd /TP /FC /favor:blend [inputs]
+# G7 DLL Debug LINK: link.exe /OUT:<PATH> /INCREMENTAL:NO /NOLOGO LIBS=kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib /MANIFEST /MANIFESTUAC:NO /manifest:embed /DEBUG:FULL /PDB:<PATH> /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /OPT:NOREF /OPT:NOICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:<PATH> /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA /DLL [inputs]
+# G7 DLL Debug RC: rc.exe /D _DEBUG /l0x0409 /nologo /fo<PATH> [inputs]
+# G7 DLL Release CL: cl.exe /c /I<PATH> /Zi /nologo /W3 /WX- /diagnostics:column /sdl /O2 /Ob2 /Oi /Ot /GL /D NOMINMAX /D NDEBUG /D _WINDOWS /D _USRDLL /D _WINDLL /GF /Gm- /EHsc /MT /GS /guard:cf /Gy /arch:AVX2 /fp:precise /guard:ehcont /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++20 /permissive- /Fo<PATH> /Fd<PATH> /external:W3 /Gd /TP /FC /favor:blend [inputs]
+# G7 DLL Release LINK: link.exe /OUT:<PATH> /INCREMENTAL:NO /NOLOGO LIBS=kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib /MANIFEST /MANIFESTUAC:NO /manifest:embed /DEBUG:FULL /PDB:<PATH> /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:<PATH> /MACHINE:X64 /CETCOMPAT /guard:cf /guard:ehcont /HIGHENTROPYVA /PDBALTPATH:%_PDB% /DLL [inputs]
+# G7 DLL Release RC: rc.exe /D NDEBUG /l0x0409 /nologo /fo<PATH> [inputs]
+# G7 END REFERENCE ONLY; never use these lines to invoke build tools.
+name: mpeg2Deblock - Windows x64 Build, Verify, manual or Release
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+permissions:
+  # Release asset upload needs this; checkout does NOT persist credentials.
+  contents: write
+jobs:
+  proof:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out the event commit (manual branch or published Release)
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Discover one released Visual Studio installation; check isolation
+        shell: pwsh
+        env:
+          RELEASE_ACTION: ${{ github.event.action }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          # Any selected BRANCH is eligible for a manual run. A published Release
+          # supplies refs/tags/<tag>; its commit must additionally belong to main.
+          if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch') {
+            if ($env:GITHUB_REF -notmatch '^refs/heads/.+$') {
+              throw "Manual proof requires a branch ref; got $env:GITHUB_REF"
+            }
+          } elseif ($env:GITHUB_EVENT_NAME -eq 'release') {
+            if ($env:RELEASE_ACTION -ne 'published') { throw 'Only published Releases are supported' }
+            if ([string]::IsNullOrWhiteSpace($env:RELEASE_TAG) -or
+                $env:GITHUB_REF -ne "refs/tags/$env:RELEASE_TAG") {
+              throw "Release ref/tag mismatch: ref=$env:GITHUB_REF tag=$env:RELEASE_TAG"
+            }
+          } else { throw "Unsupported event $env:GITHUB_EVENT_NAME" }
+          if (-not [Environment]::Is64BitProcess) { throw 'PowerShell process is not x64' }
+          $root = (Resolve-Path $env:GITHUB_WORKSPACE).Path
+          $evidence = Join-Path $env:RUNNER_TEMP 'migration-proof-evidence'
+          New-Item -ItemType Directory -Force $evidence | Out-Null
+          $checkoutSha = (& git -C $root rev-parse HEAD).Trim()
+          if ($LASTEXITCODE -ne 0 -or $checkoutSha -ne $env:GITHUB_SHA) {
+            throw "Checkout differs from GitHub event SHA: $checkoutSha vs $env:GITHUB_SHA"
+          }
+          if ($env:GITHUB_EVENT_NAME -eq 'release') {
+            # A tag-ref identity check alone does not prove the commit is on main.
+            # The checkout is shallow by default. Unshallow when needed so the
+            # ancestry check works for an older approved main commit as well.
+            $shallow = (& git -C $root rev-parse --is-shallow-repository).Trim()
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot determine Git shallow state' }
+            if ($shallow -eq 'true') {
+              & git -C $root fetch --no-tags --unshallow origin main
+            } else {
+              & git -C $root fetch --no-tags origin main
+            }
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot fetch main history to validate Release ancestry' }
+            & git -C $root merge-base --is-ancestor $checkoutSha FETCH_HEAD
+            if ($LASTEXITCODE -ne 0) {
+              throw "Published Release tag commit $checkoutSha is not in main history"
+            }
+            "PASS: published Release commit $checkoutSha belongs to main history"
+          }
+          "Event: $env:GITHUB_EVENT_NAME ; ref=$env:GITHUB_REF ; checkout=$checkoutSha" |
+            Out-File -LiteralPath (Join-Path $evidence 'event_identity.txt') -Encoding utf8
+          'CL','_CL_','LINK','_LINK_','Platform','PreferredToolArchitecture','VCToolsVersion' | ForEach-Object {
+            $v = [Environment]::GetEnvironmentVariable($_)
+            if ($null -ne $v) { throw "External build override $_ is set" }
+          }
+          if (Get-ChildItem Env:VSCMD_ARG_* -ErrorAction SilentlyContinue) {
+            throw 'VsDevCmd environment is active: do not build inside it'
+          }
+          $forbidden = 'Directory.Build.props','Directory.Build.targets','Directory.Build.rsp','MSBuild.rsp'
+          $here = Get-Item $root
+          while ($here) {
+            foreach ($name in $forbidden) {
+              if (Test-Path -LiteralPath (Join-Path $here.FullName $name) -PathType Leaf) {
+                throw "Forbidden auto-input: $($here.FullName)\$name"
+              }
+            }
+            if ($here.FullName -eq $root) {
+              $unreviewed = Get-ChildItem -LiteralPath $root -File -Recurse -Force |
+                Where-Object { $forbidden -contains $_.Name }
+              if ($unreviewed) { throw "Unreviewed in-tree auto-inputs: $($unreviewed.FullName -join ', ')" }
+            }
+            $here = $here.Parent
+          }
+          $installer = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'
+          if (-not (Test-Path -LiteralPath $installer)) { throw "Missing vswhere: $installer" }
+          $json = & $installer -latest -products '*' -requires Microsoft.Component.MSBuild Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -format json -utf8
+          if ($LASTEXITCODE -ne 0) { throw "vswhere failed: $LASTEXITCODE" }
+          $install = @($json | ConvertFrom-Json)
+          if ($install.Count -ne 1) { throw "Expected one qualifying released Visual Studio, got $($install.Count)" }
+          $vs = $install[0]
+          if ($vs.isPrerelease) { throw "Pre-release Visual Studio selected: $($vs.installationPath)" }
+          $msbuild = Join-Path $vs.installationPath 'MSBuild\Current\Bin\amd64\MSBuild.exe'
+          if (-not (Test-Path -LiteralPath $msbuild)) { throw "Missing x64 MSBuild: $msbuild" }
+          "Visual Studio: $($vs.displayName) / $($vs.installationVersion) / $($vs.installationPath)"
+          "MSBuild: $msbuild"
+          & $msbuild -version -nologo -noAutoResponse
+          if ($LASTEXITCODE -ne 0) { throw 'MSBuild version probe failed' }
+          # Empirical M2 runtime check, required to PASS; not merely a PE-header assumption.
+          $probe = Join-Path $env:RUNNER_TEMP 'msbuild-bitness.proj'
+          @'
+          <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+            <Target Name="Probe"><Message Importance="high" Text="MSBUILD_IS64=$([System.Environment]::Is64BitProcess)" /></Target>
+          </Project>
+          '@ | Set-Content -LiteralPath $probe -Encoding ascii
+          $result = & $msbuild $probe -t:Probe -nologo -noAutoResponse 2>&1
+          $result | Out-File -LiteralPath (Join-Path $evidence 'msbuild-bitness.txt') -Encoding utf8
+          if ($LASTEXITCODE -ne 0 -or -not (($result -join "`n") -match 'MSBUILD_IS64=True')) {
+            throw 'Failed to independently verify running MSBuild is 64 bit'
+          }
+          $json | Out-File -LiteralPath (Join-Path $evidence 'vswhere.json') -Encoding utf8
+          "VS_INSTALL=$($vs.installationPath)" >> $env:GITHUB_ENV
+          "MSBUILD_EXE=$msbuild" >> $env:GITHUB_ENV
+          "EVIDENCE_DIR=$evidence" >> $env:GITHUB_ENV
+
+      - name: Rebuild BOTH projects through the solution (no compiler/linker flag map)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $solution = Join-Path $env:GITHUB_WORKSPACE 'vs\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock.slnx'
+          if (-not (Test-Path -LiteralPath $solution)) { throw "Missing solution: $solution" }
+          foreach ($cfg in @('Debug','Release')) {
+            $log = Join-Path $env:EVIDENCE_DIR "MSBuild_$($cfg)_x64_diagnostic.log"
+            & $env:MSBUILD_EXE $solution -t:Rebuild -nologo -noAutoResponse "-p:Configuration=$cfg" -p:Platform=x64 "-flp:LogFile=$log;Verbosity=detailed" -v:minimal
+            if ($LASTEXITCODE -ne 0) { throw "MSBuild failed for $cfg : $LASTEXITCODE" }
+            # G7: print the real compiler/linker invocations, never reconstruct them.
+            Select-String -LiteralPath $log -Pattern '\\bin\\HostX64\\x64\\(?:CL|link)\.exe ' |
+              ForEach-Object { Write-Host $_.Line }
+          }
+
+      - name: Check both projects CL/LINK/RC tlogs and both HostX64 invocation sets
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $script = Join-Path $env:RUNNER_TEMP 'check-stage-bplus-tlogs.py'
+          # This Python script is GENERATED FROM THIS WORKFLOW ONLY; not a second
+          # permanent harness. Windows-rules parsing via CommandLineToArgvW (N1).
+          @'
+          import collections, csv, ctypes, os, pathlib, re, struct, sys
+          # The entire checker remains embedded in this ONE workflow. No independent
+          # flag map, checker copy or injected CL/LINK/RC options are maintained.
+          if os.name != 'nt' or struct.calcsize('P') != 8:
+              raise SystemExit('FAIL: requires 64-bit Windows Python (N1)')
+          from ctypes import wintypes
+          shell32 = ctypes.WinDLL('shell32', use_last_error=True)
+          kernel32 = ctypes.WinDLL('kernel32', use_last_error=True)
+          shell32.CommandLineToArgvW.argtypes = (wintypes.LPCWSTR, ctypes.POINTER(ctypes.c_int))
+          shell32.CommandLineToArgvW.restype = ctypes.POINTER(wintypes.LPWSTR)
+          kernel32.LocalFree.argtypes = (ctypes.c_void_p,)
+          kernel32.LocalFree.restype = ctypes.c_void_p
+
+          def win_split(line):
+              n = ctypes.c_int()
+              p = shell32.CommandLineToArgvW(line, ctypes.byref(n))
+              if not p: raise OSError(ctypes.get_last_error(), 'CommandLineToArgvW')
+              try: return [p[i] for i in range(n.value)]
+              finally: kernel32.LocalFree(ctypes.cast(p, ctypes.c_void_p))
+
+          root = pathlib.Path(os.environ['GITHUB_WORKSPACE'])
+          ev = pathlib.Path(os.environ['EVIDENCE_DIR'])
+          expected = root / '.github/workflows/expected_stage_bplus_switches.csv'
+          if not expected.is_file(): raise SystemExit('FAIL: Stage B+ expected-switch CSV missing')
+
+          # Fixed supported inventory; per-key counts and inherited switch tokens
+          # are taken ONLY from the independently reviewed CSV (G5, G7).
+          expected_keys = {
+              ('INSPECTOR','Debug','CL'), ('INSPECTOR','Debug','LINK'),
+              ('INSPECTOR','Release','CL'), ('INSPECTOR','Release','LINK'),
+              ('DLL','Debug','CL'), ('DLL','Debug','LINK'), ('DLL','Debug','RC'),
+              ('DLL','Release','CL'), ('DLL','Release','LINK'), ('DLL','Release','RC'),
+          }
+          allowed_dispositions = {'', 'toolchain-inherited, accepted 2026-10-11'}
+
+          def load_expected(path):
+              out = collections.defaultdict(list)
+              with path.open(encoding='utf-8-sig',newline='') as f:
+                  rd = csv.DictReader(f)
+                  if rd.fieldnames != ['project','configuration','tool','ordinal','token','disposition']:
+                      raise SystemExit(f'FAIL: unexpected expected-switch CSV schema: {rd.fieldnames!r}')
+                  for row in rd:
+                      key = (row['project'],row['configuration'],row['tool'])
+                      if not row['token'] or not row['ordinal'].isdigit():
+                          raise SystemExit(f'FAIL: incomplete expected-switch row: {row!r}')
+                      if key not in expected_keys:
+                          raise SystemExit(f'FAIL: unknown expected-switch group: {key!r}')
+                      if row['disposition'] not in allowed_dispositions:
+                          raise SystemExit(f'FAIL: unapproved disposition in CSV: {row!r}')
+                      if int(row['ordinal']) != len(out[key])+1:
+                          raise SystemExit(f'FAIL: duplicate/misordered CSV ordinal: {row!r}')
+                      out[key].append(row['token'])
+              if set(out) != expected_keys or any(not out[k] for k in expected_keys):
+                  raise SystemExit(f'FAIL: incorrect expected-switch key inventory: {list(out)!r}')
+              return out
+
+          baseline = load_expected(expected)
+          base = root / 'vs/VapourSynth-mpeg2Deblock'
+          tool_files = {'CL':'CL.command.1.tlog','LINK':'link.command.1.tlog','RC':'rc.command.1.tlog'}
+
+          def project_for_trace(path):
+              rel = path.relative_to(base).parts
+              if len(rel) < 5: raise SystemExit(f'FAIL: malformed tlog path: {path}')
+              top = rel[0].lower()
+              if top == 'mpeg2deblock': return 'DLL'
+              if top.startswith('mpeg2blo.'): return 'INSPECTOR'
+              raise SystemExit(f'FAIL: unknown project tlog directory: {path}')
+
+          paths = collections.defaultdict(list)
+          for tool, filename in tool_files.items():
+              for p in base.rglob(filename):
+                  project = project_for_trace(p)
+                  rel = p.relative_to(base).parts
+                  cfgs = [cfg for cfg in ('Debug','Release') if cfg.lower() in [part.lower() for part in rel]]
+                  if len(cfgs) != 1 or 'x64' not in [part.lower() for part in rel]:
+                      raise SystemExit(f'FAIL: incorrect x64/configuration path: {p}')
+                  key = (project,cfgs[0],tool)
+                  if key not in expected_keys: raise SystemExit(f'FAIL: extra/unexpected trace: {p}')
+                  paths[key].append(p)
+          if {k:len(v) for k,v in paths.items()} != {k:1 for k in expected_keys}:
+              raise SystemExit(f'FAIL: expected exactly ten CL/LINK/RC traces; found {dict(paths)!r}')
+
+          # Native MSBuild tlog command lines, with the original Windows quoting rules.
+          def normalize_arg(arg,tool):
+              up=arg.upper()
+              if up.startswith(('/FO','/FD')): return arg[:3]+'<PATH>'
+              for prefix in ('/OUT:','/PDB:','/IMPLIB:','/MANIFESTINPUT:'):
+                  if up.startswith(prefix): return arg[:len(prefix)]+'<PATH>'
+              if tool=='CL' and up.startswith('/I'): return arg[:2]+'<PATH>'
+              return arg
+
+          def parse_command(line, tool, key):
+              argv=win_split(line)
+              got=[]; libs=[]; sources=[]
+              i=0
+              while i<len(argv):
+                  a=argv[i]; up=a.upper()
+                  if tool in ('CL','RC') and up=='/D':
+                      if i+1>=len(argv): raise SystemExit(f'FAIL: malformed /D: {key}')
+                      got.append(a+' '+argv[i+1]); i+=2; continue
+                  if a.startswith('/'):
+                      got.append(normalize_arg(a,tool))
+                  elif tool=='LINK' and up.endswith('.LIB'):
+                      libs.append(a)
+                  elif ((tool=='LINK' and up.endswith(('.OBJ','.RES'))) or
+                        (tool=='CL' and up.endswith(('.C','.CPP','.CC'))) or
+                        (tool=='RC' and up.endswith('.RC'))):
+                      sources.append(a)
+                  else:
+                      raise SystemExit(f'FAIL: unclassified {key} argument: {a!r}')
+                  i+=1
+              if not sources: raise SystemExit(f'FAIL: no {key} source/object/resource')
+              if tool=='LINK':
+                  if not libs: raise SystemExit(f'FAIL: {key} missing libraries')
+                  if key[0]=='DLL' and not any(x.upper().endswith('.RES') for x in sources):
+                      raise SystemExit(f'FAIL: DLL linker missing VERSIONINFO resource object: {key}')
+                  pos=next((i for i,v in enumerate(got) if v.lower()=='/nologo'),None)
+                  if pos is None: raise SystemExit(f'FAIL: {key} missing /NOLOGO')
+                  got.insert(pos+1,'LIBS='+';'.join(libs).lower())
+              return got
+
+          actual={}
+          for key in expected_keys:
+              p=paths[key][0]
+              (ev / ('_'.join(key)+'_'+p.name)).write_bytes(p.read_bytes())
+              lines=p.read_text(encoding='utf-16').splitlines()
+              commands=[l for l in lines if l and not l.startswith('^')]
+              if not commands: raise SystemExit(f'FAIL: no commands for {key}')
+              tool=key[2]
+              parsed=[parse_command(c,tool,key) for c in (commands if tool=='CL' else commands[:1])]
+              first=parsed[0]
+              if tool=='CL' and any(record!=first for record in parsed[1:]):
+                  raise SystemExit(f'FAIL: inconsistent source CL commands for {key}')
+              if tool=='RC' and len(commands)!=1:
+                  raise SystemExit(f'FAIL: expected exactly one RC command for {key}')
+              actual[key]=first
+
+          with (ev/'actual_stage_bplus_switches.csv').open('w',encoding='utf-8',newline='') as f:
+              w=csv.writer(f); w.writerow(('project','configuration','tool','ordinal','token'))
+              for key in sorted(actual):
+                  for ordinal,token in enumerate(actual[key],1): w.writerow((*key,ordinal,token))
+          failures=[]
+          for key in sorted(expected_keys):
+              tool=key[2]
+              canon=(lambda t:t.lower()) if tool=='LINK' else (lambda t:t)
+              want=collections.Counter(map(canon,baseline[key]))
+              got=collections.Counter(map(canon,actual[key]))
+              for kind,diff in (('MISSING',want-got),('EXTRA',got-want)):
+                  for token,count in sorted(diff.items()):
+                      failures.append(f'{key} {kind} {token} (x{count})')
+              if not (want-got) and not (got-want):
+                  print(f'PASS: {key} {sum(got.values())} reviewed switches')
+
+          # K2: Positive host-architecture proof for BOTH CL and LINK on BOTH projects,
+          # in BOTH configurations. Diagnostic INVOCATIONS, not property declarations.
+          invocation_pattern=re.compile(
+              r'(?im)^\s*(?:\d+>\s*)?([A-Z]:\\[^\r\n]*?\\bin\\Host(?:X64|X86)\\(?:x64|x86)\\(?:CL|link)\.exe)\s+([^\r\n]+)\r?$')
+          for cfg in ('Debug','Release'):
+              log=(ev/f'MSBuild_{cfg}_x64_diagnostic.log').read_text(encoding='utf-8-sig',errors='replace')
+              matches=invocation_pattern.findall(log)
+              inv=collections.defaultdict(list)
+              for path,command in matches:
+                  tool='CL' if path.lower().endswith('\\cl.exe') else 'LINK'
+                  payload=command.lower()
+                  if tool=='CL':
+                      inspector=('\\src\\mpeg2blockinspector\\' in payload)
+                      plugin=('\\src\\mpeg2deblock\\plugin.cpp' in payload)
+                  else:
+                      inspector=bool(re.search(r'/out:\s*"?[^\s"]*mpeg2blockinspector\.exe',payload))
+                      plugin=bool(re.search(r'/out:\s*"?[^\s"]*mpeg2deblock\.dll',payload))
+                  if inspector==plugin:
+                      failures.append(f'{cfg}: unclassified/ambiguous {tool} invocation: {command[:160]}')
+                      continue
+                  project='INSPECTOR' if inspector else 'DLL'
+                  inv[(project,tool)].append(path)
+                  if not re.search(r'(?i)\\bin\\HostX64\\x64\\(?:CL|link)\.exe$',path):
+                      failures.append(f'{cfg}/{project}/{tool}: not HostX64\\x64: {path}')
+                  if not path.lower().startswith(os.environ['VS_INSTALL'].lower().rstrip('\\')+'\\'):
+                      failures.append(f'{cfg}/{project}/{tool}: outside selected VS: {path}')
+              for project in ('INSPECTOR','DLL'):
+                  for tool in ('CL','LINK'):
+                      key=(project,tool)
+                      if not inv[key]: failures.append(f'{cfg}/{project}/{tool}: actual host tool invocation missing')
+                      print(f'{cfg}/{project}/{tool}: {len(inv[key])} real diagnostic invocation(s)')
+
+          for item in failures: print('FAIL:',item)
+          if failures: raise SystemExit(1)
+          total=sum(len(values) for values in baseline.values())
+          print(f'PASS: all {total} CL/LINK/RC switches and all eight HostX64 project/tool/config groups')
+          '@ | Set-Content -LiteralPath $script -Encoding utf8
+          & python $script
+          if ($LASTEXITCODE -ne 0) { throw "Strict tlog/HostX64 check failed: $LASTEXITCODE" }
+
+      - name: Inspect BOTH Release binaries (PE flags, EHCONT, imports, exports, manifests, version)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $root = Join-Path $env:GITHUB_WORKSPACE 'vs\VapourSynth-mpeg2Deblock'
+          $log = Get-Content -LiteralPath (Join-Path $env:EVIDENCE_DIR 'MSBuild_Release_x64_diagnostic.log')
+          $invocation = $log | Where-Object { $_ -match '^\s*[A-Za-z]:\\.*\\bin\\HostX64\\x64\\link\.exe\s+' } | Select-Object -First 1
+          if (-not $invocation) { throw 'Cannot identify actual HostX64 linker invocation' }
+          $toolDir = [regex]::Match($invocation, '(?i)([A-Z]:\\.*?\\bin\\HostX64\\x64)\\link\.exe\s+').Groups[1].Value
+          $dumpbin = Join-Path $toolDir 'dumpbin.exe'
+          if (-not (Test-Path -LiteralPath $dumpbin)) { throw "Missing matching x64 dumpbin: $dumpbin" }
+          "Actual HostX64 tools folder: $toolDir" | Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'tool_versions.txt')
+          foreach ($name in 'CL.exe','link.exe','dumpbin.exe') {
+            $path = Join-Path $toolDir $name
+            if (-not (Test-Path -LiteralPath $path)) { throw "Missing tool: $path" }
+            "$name file version: $((Get-Item -LiteralPath $path).VersionInfo.FileVersion)" |
+              Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'tool_versions.txt') -Append
+          }
+          # D-SDK(c): use the SDK proven by this build, not the newest installed SDK.
+          # Cross-check UCRT library and SDK include paths in the actual Release log.
+          $sdkPattern = '(?i)Windows Kits\\10\\(?:lib\\(?<libver>[0-9]+(?:\.[0-9]+){3})\\ucrt\\x64|include\\(?<incver>[0-9]+(?:\.[0-9]+){3}))'
+          $sdkMatches = [regex]::Matches(($log -join "`n"), $sdkPattern)
+          $sdkValues = @($sdkMatches | ForEach-Object {
+            if ($_.Groups['libver'].Success) { $_.Groups['libver'].Value }
+            else { $_.Groups['incver'].Value }
+          } | Sort-Object -Unique)
+          if ($sdkMatches.Count -eq 0 -or $sdkValues.Count -ne 1) {
+            throw "Could not prove one Windows SDK used by Release build; found: $($sdkValues -join ', ')"
+          }
+          $sdkVersion = $sdkValues[0]
+          "Windows SDK (used by build): $sdkVersion" |
+            Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'tool_versions.txt') -Append
+          $binRoot = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10\bin'
+          $preferredMt = Join-Path $binRoot "$sdkVersion\x64\mt.exe"
+          if (Test-Path -LiteralPath $preferredMt -PathType Leaf) {
+            $mtExe = $preferredMt
+            $mtSelection = 'matching used Windows SDK'
+          } else {
+            $x64Mt = @(Get-ChildItem -Path (Join-Path $binRoot '*\x64\mt.exe') -File -ErrorAction Stop |
+              Sort-Object { [version]$_.Directory.Parent.Name } -Descending)
+            if ($x64Mt.Count -eq 0) { throw 'No x64 SDK mt.exe installed' }
+            $mtExe = $x64Mt[0].FullName
+            $mtSelection = 'fallback to newest installed (matching SDK mt.exe missing)'
+          }
+          "Manifest Tool ($mtSelection): $mtExe ; FileVersion=$((Get-Item -LiteralPath $mtExe).VersionInfo.FileVersion)" |
+            Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'tool_versions.txt') -Append
+          # O3: the version header is the ONLY owner of all four version numbers.
+          $versionHeader = Join-Path $env:GITHUB_WORKSPACE 'src\mpeg2Deblock\plugin_version.h'
+          if (-not (Test-Path -LiteralPath $versionHeader -PathType Leaf)) {
+            throw "Missing canonical plugin version header: $versionHeader"
+          }
+          $versionText = Get-Content -LiteralPath $versionHeader -Raw
+          $versionParts = @()
+          foreach ($part in @('MAJOR','MINOR','PATCH','BUILD')) {
+            $rx = '(?m)^[ \t]*#define[ \t]+MPEG2D_VERSION_' + $part + '[ \t]+([0-9]+)[ \t]*(?://[^\r\n]*)?\r?$'
+            $versionDefines = [regex]::Matches($versionText, $rx)
+            if ($versionDefines.Count -ne 1) { throw "Expected exactly one numeric MPEG2D_VERSION_$part in $versionHeader" }
+            [uint32]$number = 0
+            if (-not [uint32]::TryParse($versionDefines[0].Groups[1].Value, [ref]$number)) {
+              throw "Invalid numeric MPEG2D_VERSION_$part in $versionHeader"
+            }
+            $versionParts += $number
+          }
+          $expectedPluginVersion = $versionParts -join '.'
+          "Plugin canonical version header: $expectedPluginVersion ($versionHeader)" |
+            Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'tool_versions.txt') -Append
+          foreach ($item in @(@('Inspector','Mpeg2BlockInspector.exe','1'), @('Plugin','mpeg2Deblock.dll','2'))) {
+            $label,$file,$manifestId = $item
+            $bin = Join-Path $root "x64\Release\$file"
+            if (-not (Test-Path -LiteralPath $bin)) { throw "Missing Release image: $bin" }
+            foreach ($kind in @('headers','loadconfig','imports','dependents')) {
+              $out = & $dumpbin "/$kind" $bin 2>&1
+              $out | Out-File -LiteralPath (Join-Path $env:EVIDENCE_DIR "$($label)_Release_$kind.txt") -Encoding utf8
+              if ($LASTEXITCODE -ne 0) { throw "dumpbin /$kind failed for $label" }
+            }
+            $hdr=Get-Content (Join-Path $env:EVIDENCE_DIR "$($label)_Release_headers.txt") -Raw
+            $cfg=Get-Content (Join-Path $env:EVIDENCE_DIR "$($label)_Release_loadconfig.txt") -Raw
+            $imp=Get-Content (Join-Path $env:EVIDENCE_DIR "$($label)_Release_imports.txt") -Raw
+            $dep=Get-Content (Join-Path $env:EVIDENCE_DIR "$($label)_Release_dependents.txt") -Raw
+            foreach ($pattern in @('8664 machine','20B magic','Application can handle large','High Entropy Virtual Addresses','Dynamic base','NX compatible','Control Flow Guard','CET compatible')) {
+              if ($hdr -notmatch $pattern) { throw "$label lacks PE header property: $pattern" }
+            }
+            if ($label -eq 'Inspector') {
+              if ($hdr -notmatch 'Terminal Server Aware' -or $hdr -notmatch 'subsystem \(Windows CUI\)') {
+                if ($hdr -notmatch 'Terminal Server Aware') { throw 'Inspector lacks TSAWARE' }
+                if ($hdr -notmatch 'Windows CUI') { throw 'Inspector subsystem is not Windows CUI' }
+              }
+            } else {
+              if ($hdr -notmatch 'subsystem.*?Windows GUI' -and $hdr -notmatch 'Windows GUI') { throw 'Plugin subsystem is not Windows GUI' }
+            }
+            if ($hdr -notmatch [regex]::Escape([IO.Path]::GetFileNameWithoutExtension($file))+ '\.pdb') {
+              throw "$label PDB basename not found in headers"
+            }
+            if ($hdr -notmatch '(?m)Format: RSDS, \{[0-9A-F-]+\}, 1, [A-Za-z0-9_]+\.pdb\s*$') {
+              throw "$label PDB CodeView path is not basename-only"
+            }
+            $cookie=[regex]::Match($cfg,'(?m)^\s*([0-9A-Fa-f]+) Security Cookie\s*$')
+            $cfCount=[regex]::Match($cfg,'(?m)^\s*([0-9A-Fa-f]+) Guard CF function count\s*$')
+            $ehCount=[regex]::Match($cfg,'(?m)^\s*([0-9A-Fa-f]+) Guard EH continuation count\s*$')
+            foreach ($check in @(@('security cookie',$cookie),@('CF count',$cfCount))) {
+              if (-not $check[1].Success -or [Convert]::ToUInt64($check[1].Groups[1].Value,16) -eq 0) {
+                throw "$label missing or zero $($check[0])"
+              }
+            }
+            # N3: a zero EH continuation count is valid if the EHCONT flag/table are present.
+            if (-not $ehCount.Success) { throw "$label EH continuation count field missing" }
+            $ehDecimal = [Convert]::ToUInt64($ehCount.Groups[1].Value,16)
+            "$label EH continuation count: $ehDecimal (hex $($ehCount.Groups[1].Value))" |
+              Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'pe_validation_result.txt') -Append
+            foreach ($pattern in @('CF instrumented','FID table present','EH Continuation table present','Guard EH continuation table')) {
+              if ($cfg -notmatch $pattern) { throw "$label lacks loadconfig: $pattern" }
+            }
+            foreach ($pair in @(@('imports',$imp),@('dependents',$dep))) {
+              $dlls=[regex]::Matches($pair[1],'(?im)^\s+([A-Za-z0-9_.-]+\.dll)\s*$') | ForEach-Object {$_.Groups[1].Value.ToUpperInvariant()} | Select-Object -Unique
+              if (@($dlls).Count -ne 1 -or @($dlls)[0] -ne 'KERNEL32.DLL') {
+                throw "$label unexpected $($pair[0]) DLL(s): $dlls"
+              }
+            }
+            $manifest=Join-Path $env:EVIDENCE_DIR "$($label)_Release_embedded_manifest.xml"
+            & $mtExe -nologo "-inputresource:$bin;#$manifestId" "-out:$manifest"
+            if ($LASTEXITCODE -ne 0) { throw "mt.exe extraction failed for $label" }
+            $xml=Get-Content -LiteralPath $manifest -Raw
+            if ($label -eq 'Inspector') {
+              if ($xml -notmatch 'requestedExecutionLevel\s+level="asInvoker"\s+uiAccess="false"' -or
+                  $xml -notmatch '<heapType>SegmentHeap</heapType>') {
+                throw 'Inspector manifest differs from accepted asInvoker/SegmentHeap'
+              }
+            } else {
+              if ($xml -notmatch '<assembly\b' -or $xml -match 'requestedExecutionLevel|trustInfo|SegmentHeap') {
+                throw 'DLL must have embedded plain manifest without UAC/EXE-only settings'
+              }
+              $exp=& $dumpbin /exports $bin 2>&1
+              $exp | Out-File -LiteralPath (Join-Path $env:EVIDENCE_DIR 'Plugin_Release_exports.txt') -Encoding utf8
+              if ($LASTEXITCODE -ne 0) { throw 'DLL dumpbin /exports failed' }
+              $expText=$exp -join "`n"
+              if ($expText -notmatch '(?m)^\s*1 number of functions\s*$' -or
+                  $expText -notmatch '(?m)^\s*1 number of names\s*$' -or
+                  $expText -notmatch '(?m)^\s*\d+\s+[0-9A-Fa-f]+\s+[0-9A-Fa-f]+\s+VapourSynthPluginInit2(?:\s+=\s+VapourSynthPluginInit2)?\s*$') {
+                throw 'Expected the sole unmangled export VapourSynthPluginInit2'
+              }
+              $version=[System.Diagnostics.FileVersionInfo]::GetVersionInfo($bin)
+              @("ExpectedVersionFromHeader=$expectedPluginVersion",
+                "FileVersion=$($version.FileVersion)","ProductVersion=$($version.ProductVersion)",
+                "FileDescription=$($version.FileDescription)","ProductName=$($version.ProductName)",
+                "OriginalFilename=$($version.OriginalFilename)") |
+                Out-File -LiteralPath (Join-Path $env:EVIDENCE_DIR 'Plugin_Release_version.txt') -Encoding utf8
+              if ($version.FileVersion -ne $expectedPluginVersion -or
+                  $version.ProductVersion -ne $expectedPluginVersion -or
+                  $version.OriginalFilename -ne 'mpeg2Deblock.dll') {
+                throw "Unexpected plugin VERSIONINFO: expected $expectedPluginVersion from header, got FileVersion=$($version.FileVersion), ProductVersion=$($version.ProductVersion), OriginalFilename=$($version.OriginalFilename)"
+              }
+            }
+            "PASS: $label x64 PE flags, CFG, EHCONT, KERNEL32-only, manifest" |
+              Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'pe_validation_result.txt') -Append
+          }
+          # NOTE: No CI functional six-index regression (O7). Executed locally.
+      - name: Preserve all four Release binaries and PDBs in the proof artifact (S4)
+        if: always()
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $src = Join-Path $env:GITHUB_WORKSPACE 'vs\VapourSynth-mpeg2Deblock\x64\Release'
+          $dst = Join-Path $env:RUNNER_TEMP 'migration-proof-evidence/Release_Binaries'
+          New-Item -ItemType Directory -Force $dst | Out-Null
+          foreach ($name in @('Mpeg2BlockInspector.exe','Mpeg2BlockInspector.pdb',
+                              'mpeg2Deblock.dll','mpeg2Deblock.pdb')) {
+            $path = Join-Path $src $name
+            if (Test-Path -LiteralPath $path -PathType Leaf) {
+              Copy-Item -LiteralPath $path -Destination (Join-Path $dst $name) -Force
+              $file = Get-Item -LiteralPath (Join-Path $dst $name)
+              if ($file.Length -eq 0) { throw "Empty binary/PDB: $name" }
+              $sha = (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash
+              "$name | bytes=$($file.Length) | sha256=$sha" |
+                Tee-Object -FilePath (Join-Path $env:RUNNER_TEMP 'migration-proof-evidence/release_binary_hashes.txt') -Append
+            } else {
+              Write-Warning "Release binary/PDB not created by preceding steps: $path"
+            }
+          }
+
+      - name: Package and verify four-file Windows x64 distribution ZIP
+        if: success()
+        shell: pwsh
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $source = Join-Path $env:EVIDENCE_DIR 'Release_Binaries'
+          $distribution = Join-Path $env:EVIDENCE_DIR 'Release_Package'
+          New-Item -ItemType Directory -Force $distribution | Out-Null
+          $names = @('Mpeg2BlockInspector.exe', 'mpeg2Deblock.dll', 'LICENSE', 'NOTICE.md')
+          $inputSources = @{
+            'Mpeg2BlockInspector.exe' = Join-Path $source 'Mpeg2BlockInspector.exe'
+            'mpeg2Deblock.dll' = Join-Path $source 'mpeg2Deblock.dll'
+            'LICENSE' = Join-Path $env:GITHUB_WORKSPACE 'LICENSE'
+            'NOTICE.md' = Join-Path $env:GITHUB_WORKSPACE 'NOTICE.md'
+          }
+          $inputs = @($names | ForEach-Object {
+            $p = $inputSources[$_]
+            if (-not (Test-Path -LiteralPath $p -PathType Leaf) -or
+                (Get-Item -LiteralPath $p).Length -eq 0) {
+              throw "Missing or empty distribution input: $p"
+            }
+            $p
+          })
+          # The release tag controls the release filename. Manual runs get a
+          # distinct commit-labelled archive in Actions evidence ONLY.
+          $label = if ($env:GITHUB_EVENT_NAME -eq 'release') {
+            $env:RELEASE_TAG
+          } else {
+            "manual-$($env:GITHUB_SHA.Substring(0,12))"
+          }
+          if ([string]::IsNullOrWhiteSpace($label)) { throw 'Empty ZIP identity label' }
+          $safeLabel = $label -replace '[^A-Za-z0-9._-]', '_'
+          $zipName = "mpeg2Deblock-$safeLabel-win-x64.zip"
+          $zipPath = Join-Path $distribution $zipName
+          Compress-Archive -LiteralPath $inputs -DestinationPath $zipPath -CompressionLevel Optimal -ErrorAction Stop
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $archive = [System.IO.Compression.ZipFile]::OpenRead($zipPath)
+          try {
+            $entries = @($archive.Entries)
+            $actualNames = @($entries | ForEach-Object { $_.FullName } | Sort-Object)
+            $expectedNames = @($names | Sort-Object)
+            if ($actualNames.Count -ne 4 -or
+                (Compare-Object -ReferenceObject $expectedNames -DifferenceObject $actualNames)) {
+              throw "Unexpected ZIP membership: $($actualNames -join ', ')"
+            }
+            foreach ($entry in $entries) {
+              $reader = $entry.Open()
+              try {
+                $sha256 = [System.Security.Cryptography.SHA256]::Create()
+                try { $unpackedHash = [Convert]::ToHexString($sha256.ComputeHash($reader)) }
+                finally { $sha256.Dispose() }
+              } finally { $reader.Dispose() }
+              $sourceHash = (Get-FileHash -LiteralPath $inputSources[$entry.FullName] -Algorithm SHA256).Hash
+              if ($unpackedHash -cne $sourceHash) {
+                throw "ZIP content mismatch for $($entry.FullName)"
+              }
+            }
+          } finally { $archive.Dispose() }
+          $file = Get-Item -LiteralPath $zipPath
+          if ($file.Length -eq 0) { throw 'Distribution ZIP is empty' }
+          $hash = (Get-FileHash -LiteralPath $zipPath -Algorithm SHA256).Hash
+          "Name=$zipName | bytes=$($file.Length) | sha256=$hash" |
+            Tee-Object -FilePath (Join-Path $env:EVIDENCE_DIR 'release_distribution_zip_sha256.txt')
+          "PASS: distribution ZIP $zipName contains exactly the four verified EXE, DLL, LICENSE and NOTICE.md files"
+
+      - name: Upload proof evidence even on failure (including available binaries/PDBs)
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: stage-bplus-project-owned-msbuild-proof
+          path: ${{ runner.temp }}/migration-proof-evidence/
+          if-no-files-found: warn
+
+      - name: Attach only the verified distribution ZIP to the published GitHub Release
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_ID: ${{ github.event.release.id }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ([string]::IsNullOrWhiteSpace($env:RELEASE_TAG) -or
+              [string]::IsNullOrWhiteSpace($env:RELEASE_ID) -or
+              $env:GITHUB_REF -ne "refs/tags/$env:RELEASE_TAG") {
+            throw 'Release identity mismatch before asset upload'
+          }
+          $tag = (& gh api "repos/$env:GITHUB_REPOSITORY/releases/$env:RELEASE_ID" --jq .tag_name).Trim()
+          if ($LASTEXITCODE -ne 0 -or $tag -cne $env:RELEASE_TAG) {
+            throw "Release ID/tag lookup mismatch: $tag"
+          }
+          $safeTag = $env:RELEASE_TAG -replace '[^A-Za-z0-9._-]', '_'
+          $zipName = "mpeg2Deblock-$safeTag-win-x64.zip"
+          $file = Join-Path (Join-Path $env:EVIDENCE_DIR 'Release_Package') $zipName
+          if (-not (Test-Path -LiteralPath $file -PathType Leaf) -or
+              (Get-Item -LiteralPath $file).Length -eq 0) {
+            throw "Cannot attach missing/empty verified distribution ZIP: $file"
+          }
+          $hash = (Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash
+          $manifest = Get-Content -LiteralPath (Join-Path $env:EVIDENCE_DIR 'release_distribution_zip_sha256.txt') -Raw
+          if (-not $manifest.Contains("Name=$zipName | bytes=$((Get-Item -LiteralPath $file).Length) | sha256=$hash")) {
+            throw 'Distribution ZIP SHA-256 manifest mismatch before upload'
+          }
+          # Intentionally omit --clobber: a rerun must not silently replace published assets.
+          & gh release upload $env:RELEASE_TAG $file --repo $env:GITHUB_REPOSITORY
+          if ($LASTEXITCODE -ne 0) { throw "GitHub Release upload failed: $LASTEXITCODE" }
+          "PASS: attached one four-file verified distribution ZIP (EXE, DLL, LICENSE, NOTICE.md) $zipName to $env:RELEASE_TAG"

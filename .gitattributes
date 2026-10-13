@@ -1,0 +1,8 @@
+getpic.c text eol=lf
+mpeg2dec.c text eol=lf
+Stage1_Inspector_Analyzer_v0_2.py text eol=crlf
+vs/VapourSynth-mpeg2Deblock/*.vcxproj text eol=crlf
+vs/VapourSynth-mpeg2Deblock/*.vcxproj.filters text eol=crlf
+vs/VapourSynth-mpeg2Deblock/*.slnx text eol=crlf
+*.bat text eol=crlf
+*.BAT text eol=crlf
