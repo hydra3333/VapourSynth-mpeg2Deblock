@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""S2-I1 regression against frozen analyzer-v0.2 summary results."""
+"""S2-I1 v0.2 regression against frozen analyzer-v0.2 summary results."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ HERE = Path(__file__).resolve().parent
 REPO_ROOT = HERE.parents[1]
 sys.path.insert(0, str(HERE))
 
-import stage2_index_reader_v0_1 as s2
+import stage2_index_reader_v0_2 as s2
 
 # Frozen Stage 1 baseline identities plus summary values independently produced by
 # tools/Stage1_Inspector_Analyzer_v0_2.py from those exact files.
@@ -159,7 +159,7 @@ def main() -> int:
     else:
         print("EXPECTED NEXT S2-I1 ACTION: TEST_4A_A003_blocky.idx is absent; generate it in scratch with the frozen inspector and validate it.")
 
-    print("PASS: S2-I1 reader reproduces frozen analyzer v0.2 totals on all six accepted indexes")
+    print("PASS: S2-I1 v0.2 reader reproduces frozen analyzer v0.2 totals on all six accepted indexes")
     return 0
 
 

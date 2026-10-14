@@ -7,7 +7,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 if HERE not in sys.path:
     sys.path.insert(0, HERE)
 
-import stage2_index_reader_v0_1 as s2
+import stage2_index_reader_v0_2 as s2
 
 core = vs.core
 source_filename = globals().get("src")

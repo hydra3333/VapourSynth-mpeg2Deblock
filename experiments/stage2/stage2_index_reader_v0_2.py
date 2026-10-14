@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Stage 2 S2-I1 read-only reader for the frozen Stage 1 v1 temporary index.
 
+v0.2 incorporates Claude review SHOULD/OPTIONAL findings from v0.1.
+
 This module intentionally does not import the Stage 1 analyzer.  S2-I1 regression
 checks compare this independent interpretation with the frozen analyzer v0.2.
 """
@@ -120,19 +122,14 @@ class Stage1Index:
     def height(self) -> int:
         return self.records[0].coded_height if self.records else 0
 
+    _leading_b_ordinals: tuple[int, ...]
+
     @property
     def leading_b_ordinals(self) -> tuple[int, ...]:
-        result: list[int] = []
-        seen_i = False
-        for rec in self.records:
-            if rec.picture_coding_type == 1:
-                seen_i = True
-            elif rec.picture_coding_type == 3 and not seen_i:
-                result.append(rec.output_ordinal)
-        return tuple(result)
+        return self._leading_b_ordinals
 
     def quality_excluded(self, ordinal: int) -> bool:
-        return ordinal in self.leading_b_ordinals
+        return ordinal in self._leading_b_ordinals
 
     def summary(self) -> dict[str, object]:
         picture_types: collections.Counter[str] = collections.Counter()
@@ -142,6 +139,14 @@ class Stage1Index:
         coding: collections.Counter[str] = collections.Counter()
         q_histogram: collections.Counter[int] = collections.Counter()
         q_scale_type: collections.Counter[int] = collections.Counter()
+        frame_pred_frame_dct: collections.Counter[int] = collections.Counter()
+        custom_intra: collections.Counter[int] = collections.Counter()
+        custom_non_intra: collections.Counter[int] = collections.Counter()
+        chroma_intra_diff: collections.Counter[int] = collections.Counter()
+        chroma_non_intra_diff: collections.Counter[int] = collections.Counter()
+        mixed_transform_frames = 0
+        q_update_count = 0
+        dct_read_count = 0
         total_mb = 0
 
         for rec in self.records:
@@ -149,11 +154,24 @@ class Stage1Index:
             picture_structures[rec.picture_structure] += 1
             progressive[rec.progressive_frame] += 1
             q_scale_type[rec.q_scale_type] += 1
+            frame_pred_frame_dct[rec.frame_pred_frame_dct] += 1
+            custom_intra[rec.custom_intra] += 1
+            custom_non_intra[rec.custom_non_intra] += 1
+            chroma_intra_diff[rec.chroma_intra_diff] += 1
+            chroma_non_intra_diff[rec.chroma_non_intra_diff] += 1
             total_mb += rec.mb_count
+            frame_has_frame = False
+            frame_has_field = False
             for mb in rec.iter_macroblocks():
                 transforms[TRANSFORM[mb.transform]] += 1
                 coding[CODING[mb.coding]] += 1
                 q_histogram[mb.q] += 1
+                q_update_count += mb.q_update
+                dct_read_count += int(mb.dct_read)
+                frame_has_frame = frame_has_frame or mb.transform == 1
+                frame_has_field = frame_has_field or mb.transform == 2
+            if frame_has_frame and frame_has_field:
+                mixed_transform_frames += 1
 
         return {
             "path": str(self.path),
@@ -168,6 +186,14 @@ class Stage1Index:
             "picture_structures": {str(k): v for k, v in sorted(picture_structures.items())},
             "progressive_frame": {str(k): v for k, v in sorted(progressive.items())},
             "q_scale_type": {str(k): v for k, v in sorted(q_scale_type.items())},
+            "frame_pred_frame_dct": {str(k): v for k, v in sorted(frame_pred_frame_dct.items())},
+            "custom_intra": {str(k): v for k, v in sorted(custom_intra.items())},
+            "custom_non_intra": {str(k): v for k, v in sorted(custom_non_intra.items())},
+            "chroma_intra_diff": {str(k): v for k, v in sorted(chroma_intra_diff.items())},
+            "chroma_non_intra_diff": {str(k): v for k, v in sorted(chroma_non_intra_diff.items())},
+            "mixed_frame_field_frames": mixed_transform_frames,
+            "macroblock_q_updates": q_update_count,
+            "dct_type_bits_read": dct_read_count,
             "transform_states": dict(sorted(transforms.items())),
             "coding_states": dict(sorted(coding.items())),
             "qp_histogram": {str(k): v for k, v in sorted(q_histogram.items())},
@@ -403,10 +429,15 @@ def read_index(path: str | Path) -> Stage1Index:
                     errors.append(f"{prefix}: {name} {value} is not boolean")
             if coded_width <= 0 or coded_height <= 0 or mb_width <= 0 or mb_height <= 0:
                 errors.append(f"{prefix}: non-positive dimensions or MB grid")
+            # Current Stage 2 material is 720x576 or 352x288.  The height expression below is
+            # the progressive-sequence formula ceil(h/16).  Interlaced MPEG-2 uses
+            # 2*ceil(h/32); both formulas are identical for 576 and 288.  The index does not
+            # carry progressive_sequence, so this is deliberately a current-domain gate rather
+            # than a general MPEG-2 dimension rule.
             if mb_width != (coded_width + 15) // 16 or mb_height != (coded_height + 15) // 16:
                 errors.append(
-                    f"{prefix}: MB grid {mb_width}x{mb_height} inconsistent with coded dimensions "
-                    f"{coded_width}x{coded_height}"
+                    f"{prefix}: MB grid {mb_width}x{mb_height} inconsistent with current Stage 2 "
+                    f"coded dimensions {coded_width}x{coded_height}"
                 )
 
             dimensions = (coded_width, coded_height, mb_width, mb_height)
@@ -439,7 +470,22 @@ def read_index(path: str | Path) -> Stage1Index:
     if not records:
         raise Stage2IndexError(["index contains no records"])
 
-    return Stage1Index(path=path, version=version, file_flags=file_flags, records=tuple(records))
+    records_tuple = tuple(records)
+    leading_b: list[int] = []
+    seen_i = False
+    for rec in records_tuple:
+        if rec.picture_coding_type == 1:
+            seen_i = True
+        elif rec.picture_coding_type == 3 and not seen_i:
+            leading_b.append(rec.output_ordinal)
+
+    return Stage1Index(
+        path=path,
+        version=version,
+        file_flags=file_flags,
+        records=records_tuple,
+        _leading_b_ordinals=tuple(leading_b),
+    )
 
 
 def validate_clip_metadata(
@@ -472,27 +518,48 @@ def validate_clip_metadata(
         raise Stage2IndexError(errors)
 
 
-EXPECTED_4A_BLOCKY = {
+# Frozen Stage 1 Gate Report section 8.1 rows for TEST_4A_A003_blocky.
+EXPECTED_4A_BLOCKY_8_1 = {
     "record_count": 300,
     "dimensions": [720, 576],
     "mb_grid": [45, 36],
     "picture_types": {"B": 199, "I": 26, "P": 75},
-    "progressive_frame": {"0": 300},
     "transform_states": {"FIELD": 35243, "FRAME": 56235, "NONE": 394522},
     "coding_states": {"INTER": 316290, "INTRA": 46078, "SKIPPED": 123632},
     "q_scale_type": {"0": 300},
     "qp_histogram": {"62": 486000},
+    "mixed_frame_field_frames": 300,
+    "macroblock_q_updates": 0,
+    "dct_type_bits_read": 91478,
+    "custom_intra": {"0": 300},
+    "custom_non_intra": {"0": 300},
+    "chroma_intra_diff": {"0": 300},
+    "chroma_non_intra_diff": {"0": 300},
+    "picture_structures": {"3": 300},
+    "frame_pred_frame_dct": {"0": 300},
+}
+
+# Additional S2-I1 correspondence assertions; these are not Stage 1 section 8.1 rows.
+EXPECTED_4A_BLOCKY_S2_I1 = {
+    "progressive_frame": {"0": 300},
     "leading_b_excluded_count": 0,
+    "leading_b_excluded_ordinals": [],
 }
 
 
 def validate_4a_blocky_candidate(index: Stage1Index) -> None:
     summary = index.summary()
     errors = []
-    for key, expected in EXPECTED_4A_BLOCKY.items():
-        actual = summary[key]
-        if actual != expected:
-            errors.append(f"TEST_4A_A003_blocky {key}: {actual!r} != expected {expected!r}")
+    for label, expected_group in (
+        ("Stage 1 section 8.1", EXPECTED_4A_BLOCKY_8_1),
+        ("additional S2-I1", EXPECTED_4A_BLOCKY_S2_I1),
+    ):
+        for key, expected in expected_group.items():
+            actual = summary[key]
+            if actual != expected:
+                errors.append(
+                    f"TEST_4A_A003_blocky {label} {key}: {actual!r} != expected {expected!r}"
+                )
     if errors:
         raise Stage2IndexError(errors)
 
@@ -539,7 +606,7 @@ def main() -> int:
                 )
         elif args.command == "validate-4a-blocky":
             validate_4a_blocky_candidate(index)
-            print("PASS: TEST_4A_A003_blocky matches frozen Stage 1 section 8.1 totals")
+            print("PASS: TEST_4A_A003_blocky matches all frozen Stage 1 section 8.1 rows and S2-I1 assertions")
             print(json.dumps(index.summary(), indent=2, sort_keys=True))
     except (OSError, Stage2IndexError) as exc:
         if isinstance(exc, Stage2IndexError):
