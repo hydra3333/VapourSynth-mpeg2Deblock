@@ -1,13 +1,16 @@
 # 00 - Project Status
 
-**Document:** `00_PROJECT_STATUS_v0_5.md`
-**Version:** 0.5
-**Date:** 2026-10-14
-**Drafted by:** ChatGPT from ratified v0.4, the project owner's S2-I1 restart decision,
-Claude's verification of commit `4221f7f`, and the reported successful Windows S2-I1 acceptance;
-Claude review corrections applied.
-**Status:** RATIFIED 2026-10-14 by the project owner. Supersedes v0.4. This file is a concise shared
-current-state index, not a competing technical authority; owning authorities prevail on conflict.
+**Document:** `00_PROJECT_STATUS_v0_6.md`
+**Version:** 0.6
+**Date:** 2026-10-16
+**Drafted by:** ChatGPT from the exact owner-supplied, ratified Project Status v0.5
+(Windows CRLF SHA-256 `a5f19fa8c9dfd83b8d701b4e327f48555be613f75558938f328e6c53f61881da`),
+the owner-ratified S2-I2 Windows acceptance, Claude's independent verification, and the
+GitHub-verified S2-I2 code commit `190bd06`; Claude final-review corrections applied.
+**Status:** RATIFIED 2026-10-16 by the project owner. Supersedes v0.5, installed by the separate
+Step-B documentation/evidence commit. This file is a
+concise shared current-state index, not a competing technical authority; owning authorities
+prevail on conflict.
 
 ---
 
@@ -58,14 +61,17 @@ Root author and committer:
 hydra3333 <10749357+hydra3333@users.noreply.github.com>
 ```
 
-Last independently verified S2-I1 commit before this status refresh (Claude's GitHub source-ZIP
-comparison against `c45dcf0`):
+Last independently verified S2-I2 code commit before this status refresh (Claude checked the pushed GitHub
+source ZIP, all nine added implementation files and the six frozen baseline indexes):
 
 ```text
-4221f7f9f3c015da4ca70b4f8c0249536cd7e3b5
+190bd06ded88130ffddac7bb9adde4175d82f9f8
 ```
 
-Known post-reset commit sequence through that verified commit:
+Its parent `2286341` installed ratified Project Status v0.5 after the previously verified
+S2-I1 implementation commit `4221f7f9f3c015da4ca70b4f8c0249536cd7e3b5`.
+
+Known post-reset commit sequence through the verified S2-I2 code commit:
 
 ```text
 11f4742  fresh zero-parent repository baseline after history reset
@@ -82,14 +88,20 @@ bfaed24  owner snapshot: ChatGPT v0.7 / Claude v0.9 handovers, Claude S2-I1 revi
 10956a1  owner snapshot: docs/VS2026_Copilot_Free_CheatSheet.md
     |
 4221f7f  accepted S2-I1 v0.2 files; v0.1 drafts and package ZIPs removed; Claude S2-I1 reviews
-         moved to docs/; ChatGPT v0.6 / Claude v0.8 handovers deleted
+    |    moved to docs/; ChatGPT v0.6 / Claude v0.8 handovers deleted
+    |
+2286341  ratified Project Status v0.5 installed
+    |
+190bd06  nine accepted S2-I2 v0.1 spatial-registration files added; pushed and independently
+         GitHub source-ZIP verified; six frozen baseline indexes unchanged
 ```
 
 The transient v0.1 drafts and package ZIPs added in `bfaed24` are absent from the current tree but
 remain in Git history (they contain code and documents only, no Restricted Media).
 
-This identifies a **verified commit**, not necessarily the live/current HEAD. The commit that
-installs v0.5 will follow it or another subsequently verified commit; check the live repository.
+This identifies a **verified commit**, not necessarily the live/current HEAD. The separate Step-B
+commit that installs S2-I2 evidence, the gate report and this Project Status v0.6 follows it;
+check the live repository before making any new commit.
 
 Claude's GitHub source-ZIP comparison of `4221f7f` against `c45dcf0` established:
 
@@ -184,8 +196,10 @@ material roles and S2-I1 through S2-I10 order; implementation increments require
 project-owner authorisation. No change to the Stage 2 design has been made here.
 
 On 2026-10-14, after the knowledge-base/repository gate was closed, the project owner separately
-authorised technical restart **for S2-I1 only**. This was a conversational decision made after
-ratification of Project Status v0.4; it supersedes v0.4's historical "not authorised" state.
+authorised technical restart **initially for S2-I1 only**. This was a conversational decision made
+after ratification of Project Status v0.4; it superseded v0.4's historical "not authorised" state.
+The owner subsequently authorised S2-I2 design and implementation as distinct bounded steps and
+ratified its successful Windows gate on 2026-10-16.
 
 **S2-I1 - COMPLETE / WINDOWS ACCEPTANCE PASS / COMMITTED at `4221f7f`.**
 
@@ -216,9 +230,53 @@ The scratch `TEST_4A_A003_blocky.idx` candidate matched SHA-256:
 It is not a seventh accepted baseline and was not committed. S2-I1 establishes reader/temporal
 validation only; it does not establish spatial index-to-pixel registration or filtering quality.
 
-**S2-I2 AND ALL LATER INCREMENTS ARE NOT AUTHORISED.** S2-I2 requires a separate project-owner
-decision after review of S2-I1. Its intended scope remains the Stage 2 v0.6 seam-map and mandatory
-two-dimensional spatial-registration diagnostics.
+**S2-I2 - COMPLETE / WINDOWS ACCEPTANCE PASS / OWNER-RATIFIED 2026-10-16 / CODE COMMITTED.**
+
+The owner separately authorised S2-I2 design and implementation, ratified Design Plan v0.4
+(including the three numeric registration thresholds), and accepted the Windows result conditional
+on Claude's agreement. Claude independently confirmed PASS on original LP (mandatory primary)
+and `LG_576i_3_LP_blocky` (S2-I2-only secondary diagnostic/control). The reviewed nine-file
+implementation v0.1 was committed and pushed at
+`190bd06ded88130ffddac7bb9adde4175d82f9f8` (parent `2286341`); Claude verified the
+pushed GitHub source ZIP and that all six immutable Stage 1 indexes remained unchanged.
+
+```text
+                                      Original LP       LP_blocky
+Eligible quality frames:              202 (B 0,1 out)   204
+3x3 shifted-label registration:       PASS              PASS
+Column-phase registration:           PASS              PASS
+Same-field row-phase registration:    PASS              PASS
+Deliberately wrong offsets blocked:  7/7               7/7
+Overall spatial-registration gate:   PASS              PASS
+```
+
+The mandatory same-field row-phase test closes the demonstrated +1/+2-line blind spot of the
+original proposed two-test spatial gate. The data also include read-only seam/step-strength and
+proxy-labelled detectability reporting in both directions, with frame/GOP uncertainty; no
+filtering, denoising, tuning or K0 kernel selection occurred. LP_blocky's scratch index
+(SHA-256 `b3f1d71483bf8a1376584019a020bd476b8d43dbc431a0a13eaa3795996b5238`)
+remains **non-baseline and uncommitted**. Its S2-I2-only role does not grant it an S2-I3 role.
+Locked hold-outs were not exposed.
+
+Claude's Windows verification v0.2 reports byte-identical numerical CSVs from BestSource and
+its separate FFmpeg rehearsal; that is strong evidence of corresponding decoded luma, **not** a
+pixel-by-pixel proof. The gate checks **spatial grid registration**. A one-frame temporal slip
+passed in an LP mutation, and a field swap passed in both recordings; picture-type checks provide
+separate but incomplete temporal correspondence protection. A field-order swap is not detectable
+by the registration measurements. These limits belong in the durable S2-I2 gate report.
+
+**Step-B records are separate from the accepted code commit.** The bounded Step-B
+documentation/evidence commit installs the owner-ratified S2-I2 evidence report at `docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md`, the 25 numerical/textual
+Windows evidence files under `experiments/stage2/results/S2_I2_v0_1/`, reviewed supporting
+documents and this status v0.6 in place of v0.5. The evidence is extracted at Step B from the
+owner's untracked `experiments/stage2/Z/VapourSynth-mpeg2Deblock_S2_I2.zip` and its 25 SHA-256
+values checked before staging. The scratch `.idx` is excluded; independent post-push
+verification of the evidence hashes follows.
+
+**S2-I3 THROUGH S2-I10 ARE NOT AUTHORISED.** Stage 2 Experimental Design v0.6 remains unchanged.
+The owner-requested all-16-source objective census at S2-I8 is a separately recorded plan,
+not yet incorporated into the ratified Stage 2 v0.6 text; carry it into that document's next
+substantive revision without changing the hold-out restrictions.
 
 ### Production plugin
 
@@ -237,7 +295,8 @@ docs/REPOSITORY/06_DEBLOCK_CONCEPT.md                   v1.2 RATIFIED 2026-10-11
 docs/REPOSITORY/02_INDEX_FORMAT_SPEC.md                 v0.4 current ratified-constraints baseline; not frozen final packing
 docs/REPOSITORY/Stage1_Evidence_and_Gate_Report_v0_3.md RATIFIED / Stage 1 frozen evidence
 docs/REPOSITORY/Stage2_Experiment_Design_v0_6.md        Stage 2 design; RATIFIED 2026-10-13
-docs/REPOSITORY/00_PROJECT_STATUS_v0_5.md               current-state index
+docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md  accepted S2-I2 evidence; installed by Step B
+docs/REPOSITORY/00_PROJECT_STATUS_v0_6.md               current-state index; replaces v0.5 at Step B
 NOTICE.md                                               governing Restricted Media permission/restrictions
 README.md                                               public project/build summary
 ```
@@ -291,7 +350,12 @@ The following are complete:
 - ChatGPT v0.7 / Claude v0.9 handovers were added in `bfaed24`; the accepted S2-I1 v0.2 files were
   committed, and the transient material and superseded handovers removed, at `4221f7f`;
 - Claude's GitHub-ZIP verification of `4221f7f` confirmed the bounded change, 132 tracked files,
-  unchanged frozen sources/six baseline indexes and zero owner-identity hits.
+  unchanged frozen sources/six baseline indexes and zero owner-identity hits;
+- ratified Project Status v0.5 was installed at `2286341`, after the accepted S2-I1 code;
+- S2-I2 was subsequently authorised, passed Windows acceptance on original LP and LP_blocky, and
+  was owner-ratified on 2026-10-16 after Claude's independent verification;
+- its nine-file v0.1 implementation commit `190bd06` was pushed and GitHub-verified by Claude;
+  all six frozen indexes remained unchanged.
 
 The pre-reset SHAs and deleted artifacts remain useful as externally recorded historical provenance,
 but they are **removed from current repository history**. No current project procedure should assume
@@ -306,21 +370,24 @@ authorised for active project development under `NOTICE.md`.
 
 The coordinated cleanup/reconciliation correction set, owner-identity scrub, interim history reset,
 role-handover refresh and bounded final KB/repository verification were completed before restart.
-Project Status v0.4 recorded that completed gate. The project owner subsequently authorised the
-bounded S2-I1 restart on 2026-10-14, and S2-I1 acceptance/commit have now been reported and verified
-as recorded in section 3.
+Project Status v0.4 recorded that completed gate. The project owner authorised the bounded S2-I1
+restart on 2026-10-14 and later separately authorised S2-I2. Both increments have now passed owner
+Windows acceptance and independent Claude verification, as recorded in section 3.
 
 The authorisation boundary is now:
 
 ```text
-S2-I1         AUTHORISED 2026-10-14; COMPLETE / ACCEPTED / COMMITTED
-S2-I2         NOT AUTHORISED; requires a separate project-owner decision
-S2-I3..I10    NOT AUTHORISED; subsequent increments require separate decisions
+S2-I1         AUTHORISED 2026-10-14; COMPLETE / ACCEPTED / COMMITTED at 4221f7f
+S2-I2         SEPARATELY AUTHORISED; COMPLETE / PASS / RATIFIED 2026-10-16;
+              code committed and pushed at 190bd06; records installed by Step B
+S2-I3..I10    NOT AUTHORISED; require separate owner decisions
 ```
 
 This status file does not itself authorise any further technical increment. Stage 2 v0.6 remains
-in force, including its experiment controls and increment sequence. The project owner must review
-the accepted S2-I1 result and separately decide whether to begin S2-I2.
+in force, including its experiment controls and increment sequence. The S2-I3 entry outline is
+discussion material only, including the candidate M4a pixel-score option and preservation of the
+fixed-QP / K0-freeze / odd-GOP comparison boundary. Any S2-I3 design or implementation activity
+requires a new explicit owner authorisation.
 
 **Development Closure** remains a future, separate lifecycle event. It occurs only when the project
 owner expressly declares active development finished. At Development Closure all Restricted Media is
@@ -330,9 +397,30 @@ resulting repository history. The narrow ChatGPT/Claude AI development-media aut
 that point. The repository may then continue as an ongoing maintenance project.
 
 Markdown EOL/hash policy remains unchanged: no repository-wide `*.md eol=crlf` rule is added.
-Documents delivered by either chat for review/application are US-ASCII with CRLF line endings and
-mechanically checked before delivery. Git-stored and GitHub source-archive forms of Markdown may be
-LF. Any byte hash/EOL assertion must identify the representation being checked.
+Project-authored documents delivered by either chat for review/application are US-ASCII with CRLF
+line endings and mechanically checked before delivery, subject to the two explicitly named
+historical-source exceptions below. Git-stored and GitHub source-archive forms of Markdown may
+be LF. Any byte hash/EOL assertion must identify the representation being checked.
+
+**Owner decisions ratified 2026-10-16 for the bounded Step-B commit:**
+
+1. **Evidence byte preservation - YES.** Add exactly
+   `experiments/stage2/results/** -text` to the root `.gitattributes`, limited to the S2-I2
+   numerical/textual evidence subtree. Confirm via `git check-attr` BEFORE staging evidence;
+   verify all 25 extracted Windows-file SHA-256 values before staging and again from GitHub
+   after push. Applied in the Step-B commit.
+2. **Narrow D-23 US-ASCII exception - YES.** Retain exactly these two verbatim third-party
+   historical records unmodified, including their existing UTF-8 punctuation and names:
+   `docs/ChatGPT_Review_of_Copilot_Grok_MPEG2_Block_Detection_v0_1_FOR_CLAUDE.md` and
+   `docs/COPILOT-MPEG2_Deblocking_VHS_DVD_Research.md`. The exception does not apply to
+   other repository documents. Claude has cleared the original research source for identity,
+   NOTICE and rights-related recordkeeping; neither source is technical authority.
+
+These two decisions do **not** authorise blanket staging or repository modification by the assistant.
+Expected trailing-whitespace warnings in unchanged historical documents/evidence are not a
+commit-failure gate: only `git diff --cached --check -- .gitattributes` is a STOP whitespace
+check; numerical evidence integrity is verified using 25 declared hashes before staging and
+again after push.
 
 ---
 
@@ -353,7 +441,9 @@ Windows acceptance pending. That wording is not evidence that the tests are stil
 status refresh records the later accepted result and commit; the role handovers should be updated
 at the next appropriate continuity-maintenance milestone.
 
-The handovers are continuity aids, not technical authority or authorisation for S2-I2.
+The handovers are continuity aids, not technical authority or authorisation for subsequent
+increments. Their historical as-at statements do not override the later accepted S2-I1 and S2-I2
+results or independently authorise S2-I3.
 
 ---
 
@@ -383,21 +473,45 @@ SECONDARY PAIRED-REFERENCE / STRESS
     TEST_4A_A003_blocky
     TEST_2A_A001_blocky
 
+S2-I2-ONLY REGISTRATION / DESCRIPTIVE DIAGNOSTIC CONTROL
+    LG_576i_3_LP_blocky (index remains non-baseline scratch; no S2-I3 role by default)
+
 PRESENT BUT UNASSIGNED / SPARE
     LG_576i_1_XP and _blocky
     LG_576i_2_SP and _blocky
     TEST_3A_A002 and _blocky
-    LG_576i_3_LP_blocky
     LG_576i_4_EP_blocky
     LG_576i_5_MLS_blocky
 ```
 
 Do not infer properties or assign experimental roles to the unassigned material without explicit
-analysis and owner-approved disposition.
+analysis and owner-approved disposition. LP_blocky's temporary S2-I2-only assignment does not
+relax the original LP development or EP/2A/4A hold-out boundaries.
 
 ---
 
 ## 9. Change log
+
+### v0.6 - 2026-10-16 (RATIFIED)
+
+- Prepared exclusively from the ratified v0.5 Windows-CRLF source with SHA-256
+  `a5f19fa8c9dfd83b8d701b4e327f48555be613f75558938f328e6c53f61881da`;
+  preserves all earlier change-log entries and historical repository provenance.
+- Records S2-I2 COMPLETE / WINDOWS ACCEPTANCE PASS / owner-ratified 2026-10-16 and the
+  independent Claude verification on LP and LP_blocky; documents spatial-only limitations.
+- Records the pushed and verified nine-file S2-I2 code commit `190bd06` following status
+  commit `2286341`; no Stage 1 index baseline or production-filter changes.
+- Records the same-field row-phase registration test and S2-I2-only LP_blocky diagnostic role;
+  leaves S2-I3 and later increments NOT AUTHORISED and Stage 2 Design v0.6 unchanged.
+- Installed by the separate Step-B gate-report / numerical-evidence / document /
+  status-replacement commit. The scratch LP_blocky index is excluded from Git.
+- Records the owner's 2026-10-16 **YES** decisions: preserve exact Windows evidence bytes
+  using an evidence-only `-text` attribute, and allow two named historical UTF-8 source
+  records unchanged under a narrow D-23 ASCII exception. Both are applied in the Step-B commit.
+  No general D-23, NOTICE or media-rule change.
+- Supersedes v0.5: v0.6 added and v0.5 removed in the same bounded Step-B commit, after
+  Claude final review and owner ratification. Claude final-review corrections applied so the
+  text is true as at its installing commit.
 
 ### v0.5 - 2026-10-14 (RATIFIED)
 

@@ -6,3 +6,4 @@ vs/VapourSynth-mpeg2Deblock/*.vcxproj.filters text eol=crlf
 vs/VapourSynth-mpeg2Deblock/*.slnx text eol=crlf
 *.bat text eol=crlf
 *.BAT text eol=crlf
+experiments/stage2/results/** -text

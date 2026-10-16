@@ -1,0 +1,3 @@
+SHA256 hash of E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\LG_576i_3_LP.idx:
+849b6a9c411a7db837268af3ac54501a06f5f1158e68d5245ce2b3ec40a0d011
+CertUtil: -hashfile command completed successfully.

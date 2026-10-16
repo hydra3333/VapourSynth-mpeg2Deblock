@@ -1,0 +1,4 @@
+S2-I2 registration gate: PASS
+3x3=PASS; column=PASS; row=PASS
+seven known-bad controls caught=True
+Descriptive seam/control strength is NOT a registration gate or visible-artifact ground truth.

@@ -1,0 +1,52 @@
+S2-I2 scratch generation for LP_blocky
+source=E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\LG_576i_3_LP_blocky.mpg
+expected_index_sha=b3f1d71483bf8a1376584019a020bd476b8d43dbc431a0a13eaa3795996b5238
+Inspector exit code: 0
+PASS: S2-I2 LP_blocky independent SHA-256 and structural identity match
+SHA-256=b3f1d71483bf8a1376584019a020bd476b8d43dbc431a0a13eaa3795996b5238
+VALID: C:\Users\u\AppData\Local\Temp\VapourSynth-mpeg2Deblock_S2_I2\LP_blocky\LG_576i_3_LP_blocky.idx
+records=204 sequences=1
+expected_frames=204 count_gate=PASS
+dimensions: 720x576 MB=45x36 frames=204
+picture types: B=135 (66.18%), I=19 (9.31%), P=50 (24.51%)
+picture structures: FRAME=204 (100.00%)
+progressive_frame: 0=204 (100.00%)
+q_scale_type: 0=204 (100.00%)
+top_field_first: 1=204 (100.00%)
+repeat_first_field: 0=204 (100.00%)
+transform states: FIELD=33853 (10.24%), FRAME=54292 (16.43%), NONE=242335 (73.33%)
+coding states: INTER=212992 (64.45%), INTRA=40899 (12.38%), SKIPPED=76589 (23.18%)
+mixed FRAME/FIELD frames=197 (96.57%)
+QP effective: min=62 max=62 mean=62.000 median=62.0
+macroblock Q updates=0 (0.00%)
+dct_type bits read=88145 (26.67%)
+INTER CBP=0 with dct_type bit actually read=0
+custom matrix frames: intra=0 non_intra=0 chroma_intra_diff=0 chroma_non_intra_diff=0
+I transforms: FIELD=6272 (20.38%), FRAME=24508 (79.62%)
+P transforms: FIELD=12147 (15.00%), FRAME=14472 (17.87%), NONE=54381 (67.14%)
+B transforms: FIELD=15434 (7.06%), FRAME=15312 (7.00%), NONE=187954 (85.94%)
+horizontal state neighbours: FIELD-FIELD=14292, FIELD-FRAME=13922, FIELD-NONE=22056, FRAME-FRAME=32899, FRAME-NONE=26913, NONE-NONE=213054
+vertical state neighbours: FIELD-FIELD=16125, FIELD-FRAME=11881, FIELD-NONE=19947, FRAME-FRAME=31970, FRAME-NONE=28150, NONE-NONE=213227
+QP histogram: 62=330480
+--- [S2-I1] source = E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\LG_576i_3_LP_blocky.mpg
+--- [S2-I1] index  = C:\Users\u\AppData\Local\Temp\VapourSynth-mpeg2Deblock_S2_I2\LP_blocky\LG_576i_3_LP_blocky.idx
+Information: VideoSource track #0 index progress 1%
+--- [S2-I1] PASS records/frames = 204
+--- [S2-I1] PASS dimensions     = 720x576
+--- [S2-I1] PASS picture types  = {'B': 135, 'I': 19, 'P': 50}
+--- [S2-I1] progressive_frame   = {'0': 204}
+--- [S2-I1] leading B excluded from quality evidence = 0 ordinals=[]
+--- [S2-I1] PASS BestSource/index structural and picture-type correspondence
+Output Index: 0
+Type: Video
+Width: 720
+Height: 576
+Frames: 204
+FPS: 25/1 (25.000 fps)
+Format Name: YUV420P8
+Color Family: YUV
+Alpha: No
+Sample Type: Integer
+Bits: 8
+SubSampling W: 1
+SubSampling H: 1

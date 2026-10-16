@@ -1,0 +1,316 @@
+{
+  "label": "LP",
+  "source": "E:\\SOFTWARE-Win11\\MULTIMEDIA\\VapourSynth-mpeg2Deblock\\VapourSynth-mpeg2Deblock\\VHSC_samples\\LG_576i_3_LP.mpg",
+  "source_sha256": "521f43a2dac5257b2bce600956281f138033f358e558d6310f1f0916d808c7aa",
+  "index": "E:\\SOFTWARE-Win11\\MULTIMEDIA\\VapourSynth-mpeg2Deblock\\VapourSynth-mpeg2Deblock\\VHSC_samples\\LG_576i_3_LP.idx",
+  "index_sha256": "849b6a9c411a7db837268af3ac54501a06f5f1158e68d5245ce2b3ec40a0d011",
+  "decoded_with": "BestSource / VapourSynth",
+  "runtime_identity": {
+    "sys_executable": "d:\\test\\vapoursynth_x64_r81\\python.exe",
+    "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+    "numpy": "2.5.3",
+    "vapoursynth": "R81",
+    "bestsource_plugin_path": "D:\\TEST\\Vapoursynth_x64_R81\\Lib\\site-packages\\vapoursynth\\plugins\\libbestsource.dll",
+    "bestsource_plugin_sha256": "fa5b9016ac55724843300e5a87d988c01a98eee87b679759d0e3f4ff3617f69c",
+    "bestsource_plugin_version": "PluginVersion(major=22, minor=0)",
+    "adapter_sha256": "8a85aadc85ce6941c3467d444a1cb80c6c775ba2674c857fc659d687ed9e1e6b"
+  },
+  "statistics_engine_sha256": "2f640f17ad600c9866455d73db17142dea6bd7025cd1e99a5fcb28e4679beb1c",
+  "frozen_reader_sha256": "139f02c64bbb86f21f62f06029db1fb976914f65e7a2cf20d49fce7515c126f6",
+  "frame_count": 204,
+  "quality_excluded": [
+    0,
+    1
+  ],
+  "eligible_frames": 202,
+  "offset_convention": "pixels moved right/down by k; index unchanged; Y_shift(x,y)=Y_original(x-cx,y-ry)",
+  "frame_interior_border_px": 16,
+  "thresholds": {
+    "shift_margin": 0.1,
+    "shift_frames": 0.6666666666666666,
+    "column_margin": 0.1,
+    "row_margin": 0.05,
+    "row_frames": 0.6666666666666666
+  },
+  "sample_pair_contract": {
+    "horizontal_frame_mid": {
+      "cross": [
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          9
+        ]
+      ],
+      "comparators": [
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          9,
+          11
+        ]
+      ]
+    },
+    "horizontal_outer": {
+      "cross": [
+        [
+          -2,
+          0
+        ],
+        [
+          -1,
+          1
+        ]
+      ],
+      "comparators": [
+        [
+          -4,
+          -2
+        ],
+        [
+          -3,
+          -1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "reference": "b is top row of lower macroblock"
+    },
+    "horizontal_control_4": {
+      "cross": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "comparators": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          7
+        ]
+      ]
+    },
+    "horizontal_control_12": {
+      "cross": [
+        [
+          10,
+          12
+        ],
+        [
+          11,
+          13
+        ]
+      ],
+      "comparators": [
+        [
+          8,
+          10
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          12,
+          14
+        ],
+        [
+          13,
+          15
+        ]
+      ]
+    },
+    "horizontal_signed_step": "lower minus upper; never cross field",
+    "horizontal_robust": "two field parities x two 8-column chunks, equal mean of 4 ratios; per-group abs(mean signed cross - mean signed comparators)/(mean abs comparators+1)",
+    "vertical_relative_to_right_column": {
+      "cross": [
+        [
+          -1,
+          0
+        ]
+      ],
+      "comparators": [
+        [
+          -3,
+          -2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    "vertical_signed_step": "right minus left",
+    "vertical_robust": "two 8-row parity groups, equal mean of 2 ratios"
+  },
+  "descriptive_proxy_false_alarm_target": 0.05,
+  "declared_qp_bands": [
+    {
+      "name": "QP_0_15",
+      "min": 0,
+      "max": 15
+    },
+    {
+      "name": "QP_16_31",
+      "min": 16,
+      "max": 31
+    },
+    {
+      "name": "QP_32_63",
+      "min": 32,
+      "max": 63
+    },
+    {
+      "name": "QP_64_111",
+      "min": 64,
+      "max": 111
+    },
+    {
+      "name": "QP_112",
+      "min": 112,
+      "max": 112
+    },
+    {
+      "name": "QP_ABOVE_112",
+      "min": 113,
+      "max": 127
+    }
+  ],
+  "gate": "PASS",
+  "aligned": {
+    "cx": 0,
+    "ry": 0,
+    "shift": "PASS",
+    "column": "PASS",
+    "row": "PASS",
+    "contrast_zero": 5.912144238314273,
+    "contrast_best_other": 4.272094708064495,
+    "column_margin": 0.3514561249671067,
+    "row_margin": 0.11479522278853373,
+    "column_means": [
+      6.0607299102003225,
+      3.7669008233330175,
+      3.9216539504070105,
+      3.8408781541628856,
+      3.825064695893324,
+      3.8501436134550526,
+      3.9306492614890765,
+      3.7844896622015143
+    ],
+    "row_means": [
+      5.825554200640652,
+      5.724228834263386,
+      5.786495721648088,
+      5.713214025104631,
+      5.813184206160014,
+      5.7549958901071365,
+      6.65512538770977,
+      6.581024357993255
+    ],
+    "c": [
+      2.7206610450514352,
+      2.8143615281905143,
+      2.73734860887446,
+      4.272094708064495,
+      5.912144238314273,
+      4.037011576869606,
+      2.868090660747839,
+      2.7873061065660005,
+      2.663599494448139
+    ],
+    "shift_frame_fraction": 0.9285714285714286,
+    "column_frame_fraction": 1.0,
+    "row_frame_fraction": 0.9207920792079208,
+    "c_norm": [
+      0.17451633812022027,
+      0.1902709222238217,
+      0.1996099762512868,
+      0.5591961596249908,
+      1.3180940060077126,
+      0.5332633230409798,
+      0.12921917656141038,
+      0.14282367844616567,
+      0.12332765467053641
+    ],
+    "c_counts": [
+      67487,
+      68002,
+      67240,
+      67645,
+      68185,
+      67351,
+      68290,
+      68857,
+      67982
+    ],
+    "field_counts": [
+      150089,
+      149095,
+      150485,
+      149013,
+      147965,
+      149441,
+      148656,
+      147613,
+      149154
+    ],
+    "col_counts": [
+      9450368,
+      9450368,
+      9450368,
+      9450368,
+      9450368,
+      9450368,
+      9450368,
+      9450368
+    ],
+    "row_counts": [
+      9450368,
+      9450368,
+      9450368,
+      9450368,
+      9450368,
+      9450368,
+      9450368,
+      9450368
+    ],
+    "row_frame_n": 202,
+    "shift_frame_n": 196
+  },
+  "known_bad_all_caught": true,
+  "structural_frame_count_pass": true
+}

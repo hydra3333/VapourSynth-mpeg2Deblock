@@ -1,0 +1,99 @@
+S2-I2 LP candidate execution
+source=E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\LG_576i_3_LP.mpg
+index=E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\LG_576i_3_LP.idx
+S2-I1 repository root: E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock
+S2-I1 expected summaries: frozen analyzer v0.2 results for the six accepted baseline hashes
+S2-I1 reading accepted baseline: E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\LG_576i_3_LP.idx
+PASS LG_576i_3_LP.idx: records=204 transforms={'FIELD': 174291, 'FRAME': 75903, 'NONE': 80286} leading_B=[0, 1]
+S2-I1 reading accepted baseline: E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\LG_576i_4_EP.idx
+PASS LG_576i_4_EP.idx: records=216 transforms={'FIELD': 130385, 'FRAME': 16575, 'NONE': 24112} leading_B=[0, 1]
+S2-I1 reading accepted baseline: E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\LG_576i_5_MLS.idx
+PASS LG_576i_5_MLS.idx: records=420 transforms={'FRAME': 142100, 'NONE': 24220} leading_B=[0, 1]
+S2-I1 reading accepted baseline: E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\TEST_2A_A001.idx
+PASS TEST_2A_A001.idx: records=300 transforms={'FIELD': 29330, 'FRAME': 281112, 'NONE': 164758} leading_B=[]
+S2-I1 reading accepted baseline: E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\TEST_2A_A001_blocky.idx
+PASS TEST_2A_A001_blocky.idx: records=300 transforms={'FIELD': 108611, 'FRAME': 63019, 'NONE': 303570} leading_B=[]
+S2-I1 reading accepted baseline: E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\TEST_4A_A003.idx
+PASS TEST_4A_A003.idx: records=300 transforms={'FIELD': 333986, 'FRAME': 94741, 'NONE': 57273} leading_B=[]
+PASS negative bad-file-magic: rejected
+PASS negative incomplete-file: rejected
+PASS negative bad-first-ordinal: rejected
+PASS negative unsupported-field-picture: rejected
+EXPECTED NEXT S2-I1 ACTION: TEST_4A_A003_blocky.idx is absent; generate it in scratch with the frozen inspector and validate it.
+PASS: S2-I1 v0.2 reader reproduces frozen analyzer v0.2 totals on all six accepted indexes
+S2-I2 RUNTIME PREFLIGHT {"bestsource_plugin_path": "D:\\TEST\\Vapoursynth_x64_R81\\Lib\\site-packages\\vapoursynth\\plugins\\libbestsource.dll", "bestsource_plugin_sha256": "fa5b9016ac55724843300e5a87d988c01a98eee87b679759d0e3f4ff3617f69c", "bestsource_version": "PluginVersion(major=22, minor=0)", "numpy_version": "2.5.3", "python_executable": "d:\\test\\vapoursynth_x64_r81\\python.exe", "python_version": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]", "vapoursynth_core_version": "not exposed", "vapoursynth_version": "R81"}
+Output Index: 0
+Type: Video
+Width: 16
+Height: 16
+Frames: 1
+FPS: 24/1 (24.000 fps)
+Format Name: RGB24
+Color Family: RGB
+Alpha: No
+Sample Type: Integer
+Bits: 8
+SubSampling W: 0
+SubSampling H: 0
+PASS seven defined offsets
+PASS nine shifted-label hypotheses
+PASS 95th empirical percentile, strict >
+PASS tie-aware AUC
+PASS perfect AUC
+PASS positive x,y moves pixels right/down
+PASS outside fixed interior unaffected by padding
+PASS column phase uses right-side x coordinate
+PASS same-field row-phase peaks at q6 q7
+PASS all three registered gates PASS
+PASS column tie returns INCONCLUSIVE, not FAIL
+PASS outside row-phase aggregate top two FAIL
+PASS vertical robust perfect flat step
+PASS horizontal parity-safe robust perfect flat step
+PASS row margin and column margin distinct
+PASS S2-I2 all synthetic checks
+--- [S2-I1] source = E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\LG_576i_3_LP.mpg
+--- [S2-I1] index  = E:\SOFTWARE-Win11\MULTIMEDIA\VapourSynth-mpeg2Deblock\VapourSynth-mpeg2Deblock\VHSC_samples\LG_576i_3_LP.idx
+--- [S2-I1] PASS records/frames = 204
+--- [S2-I1] PASS dimensions     = 720x576
+--- [S2-I1] PASS picture types  = {'B': 136, 'I': 17, 'P': 51}
+--- [S2-I1] progressive_frame   = {'0': 204}
+--- [S2-I1] leading B excluded from quality evidence = 2 ordinals=[0, 1]
+--- [S2-I1] PASS BestSource/index structural and picture-type correspondence
+Output Index: 0
+Type: Video
+Width: 720
+Height: 576
+Frames: 204
+FPS: 25/1 (25.000 fps)
+Format Name: YUV420P8
+Color Family: YUV
+Alpha: No
+Sample Type: Integer
+Bits: 8
+SubSampling W: 1
+SubSampling H: 1
+S2-I2 processed 25/204
+S2-I2 processed 50/204
+S2-I2 processed 75/204
+S2-I2 processed 100/204
+S2-I2 processed 125/204
+S2-I2 processed 150/204
+S2-I2 processed 175/204
+S2-I2 processed 200/204
+S2-I2 processed 204/204
+S2-I2 completed: {"gate": "PASS", "aligned": {"cx": 0, "ry": 0, "shift": "PASS", "column": "PASS", "row": "PASS", "contrast_zero": 5.912144238314273, "contrast_best_other": 4.272094708064495, "column_margin": 0.3514561249671067, "row_margin": 0.11479522278853373, "column_means": [6.0607299102003225, 3.7669008233330175, 3.9216539504070105, 3.8408781541628856, 3.825064695893324, 3.8501436134550526, 3.9306492614890765, 3.7844896622015143], "row_means": [5.825554200640652, 5.724228834263386, 5.786495721648088, 5.713214025104631, 5.813184206160014, 5.7549958901071365, 6.65512538770977, 6.581024357993255], "c": [2.7206610450514352, 2.8143615281905143, 2.73734860887446, 4.272094708064495, 5.912144238314273, 4.037011576869606, 2.868090660747839, 2.7873061065660005, 2.663599494448139], "shift_frame_fraction": 0.9285714285714286, "column_frame_fraction": 1.0, "row_frame_fraction": 0.9207920792079208, "c_norm": [0.17451633812022027, 0.1902709222238217, 0.1996099762512868, 0.5591961596249908, 1.3180940060077126, 0.5332633230409798, 0.12921917656141038, 0.14282367844616567, 0.12332765467053641], "c_counts": [67487, 68002, 67240, 67645, 68185, 67351, 68290, 68857, 67982], "field_counts": [150089, 149095, 150485, 149013, 147965, 149441, 148656, 147613, 149154], "col_counts": [9450368, 9450368, 9450368, 9450368, 9450368, 9450368, 9450368, 9450368], "row_counts": [9450368, 9450368, 9450368, 9450368, 9450368, 9450368, 9450368, 9450368], "row_frame_n": 202, "shift_frame_n": 196}, "known_bad_all_caught": true, "processed": 202}
+Output Index: 0
+Type: Video
+Width: 720
+Height: 576
+Frames: 204
+FPS: 25/1 (25.000 fps)
+Format Name: YUV420P8
+Color Family: YUV
+Alpha: No
+Sample Type: Integer
+Bits: 8
+SubSampling W: 1
+SubSampling H: 1
+S2-I2 LP gate: PASS
+3x3=PASS column=PASS row=PASS

@@ -1,0 +1,3 @@
+SHA256 hash of C:\Users\u\AppData\Local\Temp\VapourSynth-mpeg2Deblock_S2_I2\LP_blocky\LG_576i_3_LP_blocky.idx:
+b3f1d71483bf8a1376584019a020bd476b8d43dbc431a0a13eaa3795996b5238
+CertUtil: -hashfile command completed successfully.
