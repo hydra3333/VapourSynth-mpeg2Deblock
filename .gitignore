@@ -47,3 +47,13 @@ CMakeUserPresets.json
 
 **/__pycache__/
 *.pyc
+
+# Review correspondence must never be committed (standing project rule).
+# Archives, patches and diffs are the recurring carriers: a diff that REMOVES
+# owner-identifying text still CONTAINS it, and three snapshot commits
+# (6b7acc3, 4636c33, 03edabf) swept such files in via a broad "git add".
+# Review DOCUMENTS (.md) are deliberately not ignored - those are committed
+# on purpose. Use "git add -f <path>" if an archive is ever genuinely wanted.
+*.zip
+*.patch
+*.diff
