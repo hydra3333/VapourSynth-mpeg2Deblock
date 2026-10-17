@@ -1,16 +1,18 @@
 # 00 - Project Status
 
-**Document:** `00_PROJECT_STATUS_v0_6.md`
-**Version:** 0.6
-**Date:** 2026-10-16
+**Document:** `00_PROJECT_STATUS_v0_7.md`
+**Version:** 0.7
+**Date:** 2026-10-17
 **Drafted by:** ChatGPT from the exact owner-supplied, ratified Project Status v0.5
 (Windows CRLF SHA-256 `a5f19fa8c9dfd83b8d701b4e327f48555be613f75558938f328e6c53f61881da`),
 the owner-ratified S2-I2 Windows acceptance, Claude's independent verification, and the
-GitHub-verified S2-I2 code commit `190bd06`; Claude final-review corrections applied.
-**Status:** RATIFIED 2026-10-16 by the project owner. Supersedes v0.5, installed by the separate
-Step-B documentation/evidence commit. This file is a
-concise shared current-state index, not a competing technical authority; owning authorities
-prevail on conflict.
+GitHub-verified S2-I2 code commit `190bd06`; the subsequently pushed and Claude-verified
+Step-B documentation/evidence commit `6e7b5c53df1c65775524936fc945c449cc9fa100`;
+and the 2026-10-17 owner-ratified S2-I3 design decisions.
+**Status:** RATIFIED 2026-10-17 by the project owner. Supersedes v0.6, installed by the
+documentation-only commit that also installs Stage 2 v0.7 and S2-I3 v0.3 (both RATIFIED
+2026-10-17). Claude final-review corrections applied. This file is a concise shared
+current-state index, not a competing technical authority; owning authorities prevail on conflict.
 
 ---
 
@@ -61,7 +63,7 @@ Root author and committer:
 hydra3333 <10749357+hydra3333@users.noreply.github.com>
 ```
 
-Last independently verified S2-I2 code commit before this status refresh (Claude checked the pushed GitHub
+Independently verified S2-I2 code commit (Claude checked the pushed GitHub
 source ZIP, all nine added implementation files and the six frozen baseline indexes):
 
 ```text
@@ -94,14 +96,18 @@ bfaed24  owner snapshot: ChatGPT v0.7 / Claude v0.9 handovers, Claude S2-I1 revi
     |
 190bd06  nine accepted S2-I2 v0.1 spatial-registration files added; pushed and independently
          GitHub source-ZIP verified; six frozen baseline indexes unchanged
+    |
+6e7b5c5  installed S2-I2 numerical evidence, gate report and Project Status v0.6;
+         40 A / 1 M / 1 D, pushed and GitHub source-ZIP verified
 ```
 
 The transient v0.1 drafts and package ZIPs added in `bfaed24` are absent from the current tree but
 remain in Git history (they contain code and documents only, no Restricted Media).
 
-This identifies a **verified commit**, not necessarily the live/current HEAD. The separate Step-B
-commit that installs S2-I2 evidence, the gate report and this Project Status v0.6 follows it;
-check the live repository before making any new commit.
+The last independently verified repository commit before this status refresh is
+`6e7b5c53df1c65775524936fc945c449cc9fa100` (parent `190bd06`). The bounded
+new documentation-only commit installs Stage 2 v0.7, S2-I3 v0.3 and this Project Status
+v0.7; it does not install filtering code or indexes. Verify live HEAD before committing.
 
 Claude's GitHub source-ZIP comparison of `4221f7f` against `c45dcf0` established:
 
@@ -191,9 +197,10 @@ project-owner decision. Accepted baseline indexes were not regenerated or change
 
 ### Stage 2
 
-Stage 2 Experimental Design v0.6 remains RATIFIED. It governs the experiment methodology,
-material roles and S2-I1 through S2-I10 order; implementation increments require separate
-project-owner authorisation. No change to the Stage 2 design has been made here.
+Stage 2 Experimental Design v0.7 was RATIFIED 2026-10-17. It replaces v0.6 as the current
+experiment methodology and sample-role authority upon this documentation-only installation.
+S2-I3 full-data multi-source experimental design v0.3 was separately ratified the same day.
+No S2-I3 implementation, filtering or quality run is authorised by either ratification.
 
 On 2026-10-14, after the knowledge-base/repository gate was closed, the project owner separately
 authorised technical restart **initially for S2-I1 only**. This was a conversational decision made
@@ -266,17 +273,25 @@ separate but incomplete temporal correspondence protection. A field-order swap i
 by the registration measurements. These limits belong in the durable S2-I2 gate report.
 
 **Step-B records are separate from the accepted code commit.** The bounded Step-B
-documentation/evidence commit installs the owner-ratified S2-I2 evidence report at `docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md`, the 25 numerical/textual
+documentation/evidence commit installs the owner-ratified S2-I2 evidence report at
+`docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md`, the 25 numerical/textual
 Windows evidence files under `experiments/stage2/results/S2_I2_v0_1/`, reviewed supporting
-documents and this status v0.6 in place of v0.5. The evidence is extracted at Step B from the
-owner's untracked `experiments/stage2/Z/VapourSynth-mpeg2Deblock_S2_I2.zip` and its 25 SHA-256
-values checked before staging. The scratch `.idx` is excluded; independent post-push
-verification of the evidence hashes follows.
+documents and Project Status v0.6 in place of v0.5. The evidence was extracted at Step B from the
+owner's untracked `experiments/stage2/Z/VapourSynth-mpeg2Deblock_S2_I2.zip`.
+The scratch `.idx` was excluded; exact SHA-256 checks and independent post-push
+verification were completed.
 
-**S2-I3 THROUGH S2-I10 ARE NOT AUTHORISED.** Stage 2 Experimental Design v0.6 remains unchanged.
-The owner-requested all-16-source objective census at S2-I8 is a separately recorded plan,
-not yet incorporated into the ratified Stage 2 v0.6 text; carry it into that document's next
-substantive revision without changing the hold-out restrictions.
+**S2-I3 DESIGN - RATIFIED 2026-10-17; IMPLEMENTATION NOT AUTHORISED.** Ratified Stage 2
+v0.7 and S2-I3 v0.3 use four source-content groups (XP, SP, LP, TEST 3A), each original
+plus `_blocky` re-encode, for eight-source full-data fixed-QP development. Entire-group
+leave-one-out comparison ranks candidate procedures; final K0 is fitted on all eight.
+The Windows BestSource exact P-skip registration and paired-frame preflight must pass before
+quality/filtering runs. Seven additional indexes are approved for future tracking as
+non-baseline development indexes, NOT part of this documentation commit.
+S2-I4 retains the separately controlled real-QP/fixed-QP comparisons; EP, 2A and 4A paired
+hold-outs remain locked until S2-I8. The owner-requested all-16-source census is now
+recorded in v0.7 for S2-I8 after the final freeze. S2-I4 through S2-I10 still require
+separate implementation authorisations.
 
 ### Production plugin
 
@@ -294,9 +309,10 @@ docs/REPOSITORY/05_DECISIONS_v1_2.md                    decision authority
 docs/REPOSITORY/06_DEBLOCK_CONCEPT.md                   v1.2 RATIFIED 2026-10-11
 docs/REPOSITORY/02_INDEX_FORMAT_SPEC.md                 v0.4 current ratified-constraints baseline; not frozen final packing
 docs/REPOSITORY/Stage1_Evidence_and_Gate_Report_v0_3.md RATIFIED / Stage 1 frozen evidence
-docs/REPOSITORY/Stage2_Experiment_Design_v0_6.md        Stage 2 design; RATIFIED 2026-10-13
+docs/REPOSITORY/Stage2_Experiment_Design_v0_7.md        Stage 2 design; RATIFIED 2026-10-17
+docs/REPOSITORY/S2_I3_Full_Data_Multi_Source_Experimental_Design_v0_3.md  RATIFIED design only
 docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md  accepted S2-I2 evidence; installed by Step B
-docs/REPOSITORY/00_PROJECT_STATUS_v0_6.md               current-state index; replaces v0.5 at Step B
+docs/REPOSITORY/00_PROJECT_STATUS_v0_7.md               current-state index; replaces v0.6
 NOTICE.md                                               governing Restricted Media permission/restrictions
 README.md                                               public project/build summary
 ```
@@ -377,17 +393,20 @@ Windows acceptance and independent Claude verification, as recorded in section 3
 The authorisation boundary is now:
 
 ```text
-S2-I1         AUTHORISED 2026-10-14; COMPLETE / ACCEPTED / COMMITTED at 4221f7f
-S2-I2         SEPARATELY AUTHORISED; COMPLETE / PASS / RATIFIED 2026-10-16;
-              code committed and pushed at 190bd06; records installed by Step B
-S2-I3..I10    NOT AUTHORISED; require separate owner decisions
+S2-I1         COMPLETE / ACCEPTED / COMMITTED at 4221f7f
+S2-I2         COMPLETE / PASS / RATIFIED 2026-10-16; code 190bd06;
+              gate report/evidence/status commit 6e7b5c5 VERIFIED
+S2-I3         DESIGN RATIFIED 2026-10-17; IMPLEMENTATION NOT AUTHORISED
+S2-I4..I10    NOT AUTHORISED for implementation; require separate owner decisions
 ```
 
-This status file does not itself authorise any further technical increment. Stage 2 v0.6 remains
-in force, including its experiment controls and increment sequence. The S2-I3 entry outline is
-discussion material only, including the candidate M4a pixel-score option and preservation of the
-fixed-QP / K0-freeze / odd-GOP comparison boundary. Any S2-I3 design or implementation activity
-requires a new explicit owner authorisation.
+This status file does not itself authorise implementation or filtering. Stage 2 v0.7 and the
+S2-I3 design v0.3 are owner-ratified; S2-I3 remains FIXED-QP ONLY, with full eight-source
+final fit and whole-content-group leave-one-out comparisons. The earlier LP even/odd
+hold-out rule is superseded by v0.7; even/odd is descriptive in-sample reporting only.
+The later S2-I4 QP comparisons and S2-I8 locked hold-out evaluation remain separate increments.
+Before the first S2-I3 implementation/preflight run the owner must expressly authorise code.
+Both ratified designs must be installed and independently verified in GitHub first.
 
 **Development Closure** remains a future, separate lifecycle event. It occurs only when the project
 owner expressly declares active development finished. At Development Closure all Restricted Media is
@@ -458,39 +477,47 @@ XP -> SP -> LP -> EP -> MLS
 Experimental roles are separate from that quality order:
 
 ```text
-PRIMARY DEVELOPMENT / TUNING
-    LG_576i_3_LP
+S2-I3 DEVELOPMENT: FOUR CONTENT GROUPS, EIGHT RECORDINGS
+    LG_576i_1_XP and LG_576i_1_XP_blocky
+    LG_576i_2_SP and LG_576i_2_SP_blocky
+    LG_576i_3_LP and LG_576i_3_LP_blocky
+    TEST_3A_A002 and TEST_3A_A002_blocky
 
-LOCKED INTERLACED HOLD-OUTS
-    LG_576i_4_EP
-    TEST_4A_A003 original
-    TEST_2A_A001 original
+LOCKED PAIRED HOLD-OUT CONTENT: NO DEVELOPMENT CONTACT UNTIL S2-I8
+    LG_576i_4_EP and LG_576i_4_EP_blocky
+    TEST_4A_A003 and TEST_4A_A003_blocky
+    TEST_2A_A001 and TEST_2A_A001_blocky
 
-PROGRESSIVE / CONTROL
-    LG_576i_5_MLS
-
-SECONDARY PAIRED-REFERENCE / STRESS
-    TEST_4A_A003_blocky
-    TEST_2A_A001_blocky
-
-S2-I2-ONLY REGISTRATION / DESCRIPTIVE DIAGNOSTIC CONTROL
-    LG_576i_3_LP_blocky (index remains non-baseline scratch; no S2-I3 role by default)
-
-PRESENT BUT UNASSIGNED / SPARE
-    LG_576i_1_XP and _blocky
-    LG_576i_2_SP and _blocky
-    TEST_3A_A002 and _blocky
-    LG_576i_4_EP_blocky
-    LG_576i_5_MLS_blocky
+LATER CONTROL MATERIAL, NOT K0 DEVELOPMENT
+    LG_576i_5_MLS and LG_576i_5_MLS_blocky
 ```
 
-Do not infer properties or assign experimental roles to the unassigned material without explicit
-analysis and owner-approved disposition. LP_blocky's temporary S2-I2-only assignment does not
-relax the original LP development or EP/2A/4A hold-out boundaries.
+These roles are ratified in Stage 2 v0.7. Pairs share picture content and must remain together
+when cross-validating; each recording retains its own index-derived dimensions and coding facts.
+Seven development indexes are approved for later tracking as non-baseline material, after Windows
+validation; the six frozen Stage 1 indexes are unchanged. EP/2A/4A and their blocky copies remain
+unopened for S2-I3 quality work. MLS pair remains control material.
 
 ---
 
 ## 9. Change log
+
+### v0.7 - 2026-10-17 (RATIFIED)
+
+- Records owner ratification of Stage 2 Experimental Design v0.7 and S2-I3 full-data
+  multi-source design v0.3 after independent Claude clearance; installs both with this status
+  refresh in one documentation-only commit, replacing Stage 2 v0.6 and status v0.6. Claude
+  final-review corrections applied so the text is true as at its installing commit.
+- Changes current source roles to XP/SP/LP/3A original+blocky development groups;
+  protects EP/2A/4A pairs until S2-I8 and keeps MLS pairs as controls.
+- Records all-eight full-data final K0 fit, leave-one-content-group-out QA, exact BestSource
+  P-skip registration admission, fixed-QP-only S2-I3 and separate S2-I4 QP comparisons.
+- Records the owner's approval for later tracking of seven non-baseline development indexes,
+  explicitly excluded from this commit; preserves the six immutable Stage 1 indexes.
+- Updates the known repository baseline to the independently GitHub-verified Step-B commit
+  `6e7b5c53df1c65775524936fc945c449cc9fa100`, parent `190bd06`.
+- No filtering implementation, source/index changes or S2-I3 code authorisation follows
+  from this documentation-only ratification and installation.
 
 ### v0.6 - 2026-10-16 (RATIFIED)
 

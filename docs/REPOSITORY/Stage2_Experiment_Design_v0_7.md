@@ -1,13 +1,14 @@
 # Stage 2 Experimental Deblocking Design
 
-**Filename:** `Stage2_Experiment_Design_v0_6.md`
-**Version:** 0.6
-**Date:** 2026-10-12
-**Drafted by:** ChatGPT from the independent ChatGPT/Claude knowledge-base reconciliation and the project owner's 2026-10-12 rulings
-**Status:** RATIFIED by the project owner on 2026-10-13. This revision synchronizes media/lifecycle policy and post-handover knowledge only. No Stage 2 code has started, and this revision does not authorise technical restart.
-**Stage 1 prerequisite:** `Stage1_Evidence_and_Gate_Report_v0_3.md` ratified by the project owner.
-**Repository authority:** `05_DECISIONS_v1_2.md` RATIFIED; `06_DEBLOCK_CONCEPT.md` v1.2 RATIFIED; `02_INDEX_FORMAT_SPEC.md` v0.4 current ratified-constraints baseline, still DRAFT / NOT FROZEN.
-**Scope:** Stage 2 Python/scalar prototype and experiment design only.
+**Filename:** `Stage2_Experiment_Design_v0_7.md`
+**Version:** 0.7 - RATIFIED 2026-10-17
+**Date:** 2026-10-17
+**Prepared by:** ChatGPT, from the ratified Stage 2 v0.6 source and Claude's reviews of S2-I3 designs v0.1/v0.2
+**Status:** RATIFIED 2026-10-17 by the project owner following independent Claude clearance. Supersedes ratified Stage 2 v0.6 at the documentation-only installation. S2-I1 and S2-I2 are closed; S2-I3 experimental design v0.3 is ratified, but no S2-I3 implementation, filtering or quality runs are authorised.
+**Stage 1 prerequisite:** `Stage1_Evidence_and_Gate_Report_v0_3.md` ratified.
+**Repository authority:** `05_DECISIONS_v1_2.md` ratified; `06_DEBLOCK_CONCEPT.md` v1.2 ratified; `02_INDEX_FORMAT_SPEC.md` v0.4 current ratified constraints (not final frozen packing).
+**Scope:** Stage 2 Python/scalar experiment design, sample assignments and evidence protocol. The inherited MPEG-2, index, frame, chroma and Restricted Media rules remain unchanged.
+**Base:** `Stage2_Experiment_Design_v0_6.md` as carried at repository commit `6e7b5c53df1c65775524936fc945c449cc9fa100`. Source bytes hashed in review manifest.
 
 ---
 
@@ -225,13 +226,19 @@ without unacceptable detail damage?
 
 ### Q2-02 - Does the real per-MB QP map help?
 
-With indexed geometry, pixels, kernel and parameters held constant, does replacing one fixed
-clip-wide representative QP with the real effective per-macroblock QP improve behaviour?
+Use two explicitly separate comparisons on the real original recordings: (a) with one fully frozen
+kernel and all other parameters identical, swap only clip-median QP for the real effective per-MB QP
+(identifies the effect of the QP input for that kernel); and (b) fit fixed-QP and indexed-QP branches
+with equal search effort inside identical content-group cross-validation folds (compares performance
+under equally tuned regimes). Do not conflate these estimands. All `_blocky` source QPs are constant
+62, so they cannot independently identify the value of a spatial QP map.
 
 ### Q2-03 - What kernel / thresholds / strength are useful?
 
-Once the fixed-versus-real QP comparison is interpretable, what bounded correction and gating
-behaviour works best on the development material?
+What bounded, no-harm-protected, index-directed luma correction generalises across different
+actual recording content groups when finally fitted using all designated development recordings?
+Use the entire eligible development population; evaluate generalisation by leaving an entire
+source-content group out rather than reserving half of one clip.
 
 ### Q2-04 - How should `NONE` be treated?
 
@@ -266,154 +273,90 @@ consumes.
 
 ### 3.0 Recorder quality order versus experimental role
 
-The project owner confirmed the LG recorder quality order, best to worst:
+The LG recorder quality order remains `XP -> SP -> LP -> EP -> MLS`; this is not an assignment
+of experimental role. The four S2-I3 development content groups, in each case using native,
+unaltered decoded frames and native macroblock indexes, are:
 
-```text
-XP -> SP -> LP -> EP -> MLS
-```
+| Group | Original recording | Software re-encode | Original Q_fixed | Blocky Q_fixed |
+|---|---|---|---:|---:|
+| XP | `LG_576i_1_XP` | `LG_576i_1_XP_blocky` | 14 | 62 |
+| SP | `LG_576i_2_SP` | `LG_576i_2_SP_blocky` | 16 | 62 |
+| LP | `LG_576i_3_LP` | `LG_576i_3_LP_blocky` | 18 | 62 |
+| 3A | `TEST_3A_A002` | `TEST_3A_A002_blocky` | 14 | 62 |
 
-This quality ladder is **not** the Stage 2 role hierarchy. Stage 2 roles are assigned separately by
-experimental purpose and evidence discipline. In particular, LP remains the primary development /
-tuning clip because it retains 720x576 spatial resolution while providing materially stronger real
-quantisation and rich FRAME/FIELD/NONE coverage. EP is deliberately held out despite being a lower
-quality mode.
+Every group is distinct source content; the original and `_blocky` of a group share picture
+content, despite being different encodes. These assignments are ratified in v0.7
+(2026-10-17). All quality-eligible frames of each accepted source
+are used in full-data development. Leading B pictures remain subject to section 4.
 
-Present but currently **UNASSIGNED / SPARE**:
+Geometry is source-specific, not forced to LP: XP/SP/LP are 720x576; 3A is 704x576. The
+prototype must derive coded MB columns/rows, pixel dimensions and valid picture structure from
+the validated source index; NEVER hard-code 720 width or 45 macroblock columns.
 
-```text
-LG_576i_1_XP and _blocky
-LG_576i_2_SP and _blocky
-TEST_3A_A002 and _blocky
-LG_576i_3_LP_blocky
-LG_576i_4_EP_blocky
-LG_576i_5_MLS_blocky
-```
+The sources reassigned from the historical unassigned/spare category
+are XP, SP and 3A (both versions), and LP_blocky. There are no new *unassigned* blocky variants of these four groups. The remaining
+protected/control samples are explicitly assigned below, rather than being silently treated
+as tunable material.
 
-The LP/EP/MLS originals retain their assigned roles above; the project owner has explicitly ruled that these
-three `_blocky` copies currently have **no assigned Stage 2 role**. Do not infer one from the role
-of the corresponding original.
+### 3.1 Primary product and development evidence
 
-Do not infer their resolution, interlace state, transform-state distribution or experimental role until
-they are explicitly indexed/analyzed and assigned. They must not silently become hold-outs or tuning
-material.
+**D-26 remains controlling: real recorder material is primary.** S2-I3 develops using the four
+originals above, together with their four software re-encodes as paired stress/comparison material;
+it does not treat the re-encodes as four independent recordings. The primary final joint K0
+procedure is fitted on **all eight** designated sources, after full leave-one-content-group-out
+procedure assessment, using a source/content-group-balanced objective defined in section 8.4.
 
-### 3.1 Primary product evidence
+Original-only, blocky-only, LP-only and LP-pair routes may be retained as controlled comparison
+arms, but not substituted for the declared final full eight-source fit without an explicit
+owner decision. Failed or registration-blocked sources are NOT quietly dropped; they suspend
+final full-data development until the common admission procedure in section 6.3 resolves them.
 
-**DECIDED (D-26).**
+Product evidence consists chiefly of the owner's visual assessment, seam-local diagnostics,
+collateral/no-harm diagnostics and consistency across materially different content groups.
+Do not let sample counts or the greater number of NONE MBs in re-encodes dominate that judgement.
 
-Real LG recorder material is primary.
+### 3.2 LP heritage and unchanged technical rationale
 
-Use:
+LP remains a particularly informative development source: 720x576, original 204 frames,
+45x36 MBs, rich FRAME/FIELD/NONE coverage, and all-MB median QP 18. Its Stage 1 reference
+histogram and code baselines are unchanged. Stage 2 v0.6's justification of LP as the first
+real LG tuning clip remains historical motivation, but is not a restriction that excludes XP,
+SP or 3A from v0.7 development.
 
-```text
-DEVELOPMENT / TUNING
-    LG_576i_3_LP
+### 3.3 Locked hold-out content
 
-LOCKED INTERLACED HOLD-OUTS
-    LG_576i_4_EP
-    TEST_4A_A003 original
-    TEST_2A_A001 original
+Until S2-I8 (after final kernel and thresholds are frozen), no development, screening,
+visualisation, tuning, filtered-output viewing or procedure selection may use:
 
-SEPARATE PROGRESSIVE / CONTROL MATERIAL
-    LG_576i_5_MLS
-```
+- `LG_576i_4_EP` and `LG_576i_4_EP_blocky`;
+- `TEST_2A_A001` and `TEST_2A_A001_blocky`;
+- `TEST_4A_A003` and `TEST_4A_A003_blocky`.
 
-The real-recorder decision is based primarily on:
+The original clips are the ratified locked interlaced hold-outs. Their `_blocky` copies share
+the same picture content and therefore inherit the protection, despite their earlier
+paired-reference/secondary label. If a hold-out exposes a flaw, record it; any retuning makes
+that material no longer pristine for a subsequent independence claim. Do not automatically
+alter S2-I3 in response to S2-I8 results.
 
-- the project owner's visual assessment;
-- seam-local diagnostics;
-- collateral-change / no-harm diagnostics;
-- consistency across materially different recorder modes.
+### 3.4 MLS control pair
 
-### 3.2 Why LP is the development clip
+`LG_576i_5_MLS` remains the 352x288 progressive control (original: progressive_frame=1;
+FIELD=0); `LG_576i_5_MLS_blocky` is a separate 352x288 control whose syntax reports
+progressive_frame=0 and only 230 FIELD MBs in 420 frames. A picture flag is not license to
+pretend that FRAME/FIELD contrast has adequate population. Neither MLS clip is development
+or held-out interlaced quality evidence. Evaluate both after freeze for no-harm,
+frame-domain handling and format robustness, with separate applicability of field-specific
+registration diagnostics. The unexpected metadata combination is a reported condition, not
+normalised away.
 
-Known Stage 1 properties include:
+### 3.5 Paired-reference status and applicability
 
-```text
-720x576
-204 frames
-45x36 MBs
-interlaced / top-field-first
-FRAME 22.97%
-FIELD 52.74%
-NONE  24.29%
-mixed FRAME/FIELD frames 97.06%
-QP median 18
-QP mean   21.285
-QP max    112
-```
-
-This gives one real LG sample with:
-
-- full spatial resolution;
-- materially stronger real quantisation;
-- substantial FRAME and FIELD populations;
-- substantial NONE population;
-- I/P/B coverage.
-
-It is therefore a good first development source for both authoritative luma geometry paths.
-
-### 3.3 Locked hold-outs
-
-After a candidate parameter set is fixed on LP, evaluate unchanged on:
-
-```text
-LG_576i_4_EP
-TEST_4A_A003 original
-TEST_2A_A001 original
-```
-
-Do not retune on a hold-out and continue calling it hold-out validation.
-
-If a hold-out exposes a real design flaw:
-
-1. report the failure;
-2. reopen development explicitly;
-3. label the next parameter search as a new tuning round;
-4. do not treat already viewed hold-outs as pristine independent validation thereafter.
-
-The fact that metadata distributions for these clips are already known does not invalidate them as
-filter hold-outs; no filtered-output tuning has yet been performed on them.
-
-### 3.4 MLS role
-
-`LG_576i_5_MLS` is progressive 352x288 material:
-
-```text
-progressive_frame = 1 throughout
-FIELD = 0
-FRAME = 85.44%
-NONE  = 14.56%
-QP median = 10
-```
-
-It is not a FRAME-versus-FIELD exercise source.
-
-Use it for:
-
-- progressive frame-domain access;
-- general low-resolution no-harm behaviour;
-- progressive chroma behaviour;
-- a check that the filter does not depend accidentally on interlaced special cases.
-
-### 3.5 Secondary paired-reference material
-
-Retain:
-
-```text
-TEST_4A_A003_blocky
-TEST_2A_A001_blocky
-```
-
-with the corresponding higher-quality originals as secondary practical references.
-
-They are deliberately degraded re-encodes and are **not** pristine ground truth.
-
-Paired-reference numerical metrics mean only:
-
-> movement toward or away from the decoded higher-quality source.
-
-They do not dominate the product decision.
+XP, SP, LP and 3A each have an original/blocky development pair; after proving temporal frame
+correspondence, the original may serve as a **higher-quality decoded reference** for the blocky
+member's relative MAE/MSE/PSNR and seam/non-seam comparisons. The original is NOT pristine
+ground truth. Pair metrics are admissible in development and per-group cross-validation only
+where pairing is independently proven, with both members of a content group kept within the
+same fold. EP/2A/4A pairs remain entirely locked until S2-I8; MLS pair remains control.
 
 ### 3.6 Accepted Stage 1 index baselines and derived-media discipline
 
@@ -431,6 +374,33 @@ TEST_4A_A003.idx
 
 Do **not** regenerate or replace these files merely to make a reader or test pass. A genuine format or
 accepted-baseline change requires its own explicit change control and verification.
+
+**Distinct, owner-approved Stage 2 non-baseline index set:** the seven
+additional development indexes, not members of the six frozen baselines, are:
+
+```text
+VHSC_samples/LG_576i_1_XP.idx
+VHSC_samples/LG_576i_1_XP_blocky.idx
+VHSC_samples/LG_576i_2_SP.idx
+VHSC_samples/LG_576i_2_SP_blocky.idx
+VHSC_samples/LG_576i_3_LP_blocky.idx
+VHSC_samples/TEST_3A_A002.idx
+VHSC_samples/TEST_3A_A002_blocky.idx
+```
+
+The owner approved Git tracking of these seven **only as Stage 2 development
+inputs**, not Stage 1 accepted baselines. Six are newly generated scratch
+indexes; the LP_blocky index was previously generated for S2-I2 and remains
+non-baseline. Before any installation, the authoritative Windows inspector
+and Stage 1 structural reader must verify them against their source media;
+record Windows SHA-256, size, index version, source identity and Linux
+cross-check hashes in a separate manifest. Retain the reviewed bytes in Git,
+with explicit named staging and after-push verification. If the LP_blocky
+Windows index differs from the earlier scratch hash, investigate; do not
+silently replace it. Indexes containing ordinary nonvisual coding metadata
+are not Restricted Media under the existing section 3.6/NOTICE distinction;
+verify no embedded media or owner-identifying material before committing.
+Tracking approval is not an instruction to generate or stage them now.
 
 Stage 2 may create Restricted Media and non-media diagnostic artefacts as bounded evidence. The
 governing definitions are in `NOTICE.md`; this section summarizes the Stage 2 consequences.
@@ -554,7 +524,7 @@ For each clip:
 ```text
 BestSource decoded frame
 +
-matching Stage 1 index record
+matching validated index (accepted Stage 1 baseline or section 6.3-admitted non-baseline index)
 ```
 
 Reject:
@@ -638,6 +608,14 @@ The generated `TEST_4A_A003_blocky.idx` and `.log` remain uncommitted unless the
 
 **MUST complete before filtering-quality conclusions.**
 
+The following is the S2-I2 diagnostic originally validated on LP. Its numerical
+benchmarks remain unchanged; it does not imply that an intrinsically
+low-information population is misregistered. For *new-source admission* the
+uniform PASS / INCONCLUSIVE / FAIL interpretation in section 6.3 additionally
+controls. In particular, the original section's generic "failure requiring
+investigation" does not automatically become a demonstrated coordinate error
+when the signed contrast or phase signal is non-discriminating.
+
 Stage 1 proved temporal correspondence but did not independently prove that macroblock `(x,y)` in
 the index is spatially registered to decoded pixels at the intended 16x16 luma location.
 
@@ -697,19 +675,138 @@ These tests are **registration validation**, not production seam detectors:
 - they do not move the production seam map;
 - they only test whether the authoritative index and decoded pixels are spatially aligned.
 
-If zero shift does not give the expected contrast peak, or the 8-pixel column phase does not peak
-at phase 0:
+For the historical LP-specific S2-I2 gate, missing an expected zero-shift peak
+required investigation before accepting the S2-I2 spatial registration result.
+That historical outcome is not rewritten. Under the eight-source S2-I3
+scheme, non-peaking or weak contrasts remain mandatory **reported diagnostics**:
+inspect seam coordinates, crop, shifts and parity, but decide source admission
+**only** by section 6.3's structural and exact P-skip hard checks. A diagnostic
+score by itself is not a reason to block an otherwise REGISTERED source.
 
-- stop before filtering-quality conclusions;
-- inspect seam maps / coordinates;
-- check for crop, horizontal/vertical offset, parity swap or other registration error.
-
-Be aware that an 8-pixel horizontal offset is itself on the 8-pixel phase and may therefore leave
-the grid-phase test looking plausible; in that residual case the shifted-label contrast may appear
-ambiguous rather than producing a clean wrong peak. Treat an absent clear zero-shift maximum as a
-failure requiring investigation.
+An 8-pixel horizontal offset may preserve the 8-pixel column phase and make a
+single grid-phase measure look plausible. Preserve this known limitation and
+report its numeric observations without converting it to a new gate.
 
 Do not automatically reinterpret pixels to override indexed geometry.
+
+### 6.3 Per-source pre-filter admission gate (v0.7)
+
+**Scope and rationale.** Apply the same registration admission to all eight development
+sources, even where the original S2-I2 numerical test passed. The S2-I2 3x3 and
+column/row-phase tests measure content-dependent contrast; they are not, by themselves,
+an exact registration proof for all coding-state populations. Admission instead uses
+index/decoder structural agreement plus the exact P-picture skipped-macroblock identity
+in section 6.3.2. These are hard gates, not recalibrated LP-specific thresholds.
+
+#### 6.3.1 HARD structure and correspondence
+
+Validate the source's accepted Stage 1 baseline index or newly generated, explicitly
+non-baseline index against the **same** decoded recording: reader version/magic and
+completeness, file and picture structure (MPEG-2 frame pictures, 4:2:0), dimensions,
+macroblock geometry, frame counts/ordinals, picture-type correspondence, expected
+leading-B exclusion and structural summaries, no damage or unsupported frame/picture
+format. All seven known-bad S2-I2 offset mutations must be detected. Any mismatch is
+a **HARD FAIL**, not an inconclusive statistical result. The six accepted Stage 1
+indexes must never be modified or regenerated to obtain a PASS.
+
+#### 6.3.2 HARD P-skip identity in the actual Windows BestSource path
+
+For an MPEG-2 frame P picture, a skipped macroblock with zero motion, frame
+prediction and no coded residual must reconstruct as an exact co-located 16x16
+luma copy from the forward reference picture (the immediately preceding I
+or P picture in display order, which is also the most recently decoded
+anchor). MPEG-2 has no in-loop filter. Using the *actual source index's*
+P-skip flags and reference-picture mapping, compare every eligible such block
+with the co-located decoded reference block, all pixel values exactly:
+
+A qualifying block is a macroblock whose index coding state is SKIPPED
+(skipped by macroblock_address_increment) inside a P frame picture. NONE
+macroblocks of any other coding state (for example INTER with CBP 0, which
+may carry a non-zero motion vector) do not qualify.
+
+```
+Y[P][16*mb_y : 16*mb_y+16, 16*mb_x : 16*mb_x+16]
+    == Y[prior_I_or_P_reference][same 16x16 region]
+```
+
+The identity rate **must equal 100.000%**, including per-P-picture rates on
+pictures containing qualifying P-skip blocks; **any single wrong pixel in any
+true-position qualifying block is REGISTRATION FAIL**, regardless of aggregate
+rate. A test may not round a near-perfect result up to 100%.
+
+**Negative controls:** rerun the same eligible comparison with shifted sampled
+windows at +/-1, +/-2, +/-4, +/-8 and +/-16 pixels in horizontal and vertical
+directions, and with declared diagonal offsets; preserve the seven known-bad
+S2-I2 offsets as structural mutations. The same offset is applied to the
+current and reference windows; only windows lying wholly inside the picture
+are counted. Also use wrong temporal references:
+older I/P anchor (when available), next picture in display order, and
+immediately previous picture in display order whenever that is not the
+correct reference. For
+**each** declared spatial and temporal negative-control case having valid
+comparisons, the exact-block identity rate **must be strictly below 100%**.
+Log the attempted, in-bounds, excluded and compared block counts per control;
+a missing, zero-denominator, or unexecuted control is **INCONCLUSIVE**, never
+silently counted as a PASS. Freeze the explicit finite shift/diagonal and
+reference-selection list in the separately reviewed implementation plan before
+running admission. The true-coordinate rule is dictated by MPEG-2 syntax, not
+tuned to previous outcome scores. Static pictures may give high but sub-100%
+control rates; no arbitrary margin is imposed.
+
+**Applicability floor:** at least **200 qualifying P-skip macroblocks** from at
+least **10 distinct quality-eligible P pictures**. Below either count the
+source is **INCONCLUSIVE - QUALITY BLOCKED** even if every observed block
+matches. These robustness floors are declared in advance, not fitted from
+registration scores.
+
+**Disposition:** structural FAIL or any true-position mismatch is
+**REGISTRATION FAIL - HARD STOP**. Insufficient qualifying blocks or P pictures,
+a missing valid negative control, or any executed negative control also
+reaching 100% (non-discriminating content) is
+**INCONCLUSIVE - QUALITY BLOCKED**. All conditions met is **REGISTERED**.
+The exact P-skip proof is orthogonal to the S2-I2 seam/FRAME-FIELD proxies
+and additionally tests temporal index/decoder alignment; it does **not**
+prove an independent field-swap guarantee when the same swap affects both
+pictures. Do not silently drop an INCONCLUSIVE source from the eight-source fit.
+
+#### 6.3.3 Required diagnostic reporting (not an admission gate)
+
+Run the **unchanged** S2-I2 3x3 shifted-offset, column-phase and row-phase
+measurements, including the original thresholds, frame fractions, signed
+contrasts, population sizes and 7/7 mutation outcomes, on every structurally
+valid development source (including P-skip-INCONCLUSIVE ones where safe). Report PASS/FAIL/INCONCLUSIVE under the *original* S2-I2 criteria as
+**diagnostic**, separately from the section 6.3.2 admission disposition.
+Never relabel a historical S2-I2 result or loosen its threshold to admit a
+source. Sparse FRAME/FIELD populations, zero or negative contrast and weak
+row-phase modulation explain why those diagnostics may be inconclusive even
+when exact P-skip registration succeeds.
+
+#### 6.3.4 Evidence and first authorised implementation preflight
+
+Claude's **FFmpeg/Linux rehearsal**, prior to Windows authorisation, gave
+100% true-position P-skip identity on all eight sources and less than 100%
+for every tested shifted/wrong-reference control. This is strong,
+**non-authoritative rehearsal evidence**; its method was proposed after the
+reviewer had seen the old S2-I2 outcomes, but its exactness criterion comes
+from MPEG-2 reconstruction semantics, not an outcome-fitted threshold.
+
+On the owner's **first separately authorised S2-I3 implementation preflight**,
+Windows generates/verifies the seven non-baseline development indexes as
+needed and records hashes; the owner's accepted LP index remains untouched.
+The actual **BestSource** pipeline must perform all section 6.3.1/6.3.2 hard
+checks on **all eight** prior to any filtering/quality run. Run 6.3.3 for
+reporting, plus the four development-pair temporal correspondence checks
+(section 15). Stop on any FAIL. Inconclusive admission blocks quality runs
+pending review. No Linux-only result substitutes for the Windows result.
+
+Seven additional indexes (six new source indexes plus the existing
+LP_blocky scratch index) are approved for Git tracking as **non-baseline
+Stage 2 development inputs**, conditional on authoritative Windows validation,
+complete SHA-256 manifest, absence of embedded Restricted Media or identity
+material, and named-file staging/review. Preserve their exact file bytes;
+track neither intermediate elementary streams nor decoded media. A separately
+ratified installation procedure is required; approval to track indexes does
+not itself authorise generating, committing or executing S2-I3 code.
 
 ---
 
@@ -798,46 +895,72 @@ Requirements:
 - near-zero-sum local correction where practical;
 - no support across another known transform seam.
 
-### 8.4 Initial-kernel freeze for the QP ablation
+### 8.4 Full-data procedure assessment, candidate development and freeze (v0.7)
 
-Steps 2 and 3 of the experiment require one initial candidate kernel and parameter set.
+The old rule (even LP GOPs tune K0, odd LP GOPs test QP) is replaced. Preserve
+even/odd native GOP reports as **in-sample stability diagnostics**, not independent evaluation.
+Never move a frame into another recording's GOP structure.
 
-To avoid favouring the fixed-QP variant by selecting K0 on the same LP frames used for the
-fixed-versus-real comparison, split LP deterministically by GOP ordinal after applying the
-leading-B quality exclusion.
+**Eight-source assessment:** four independent content groups (XP, SP, LP, 3A), each an original
+and its blocky re-encode. For each group in turn, leave **the whole group** out; on the other
+three complete groups, screen M/F/R/T/P/K options, choose a small declared shortlist and
+tune within fixed, reproducible budgets; evaluate the untouched fourth group. Refit the
+procedure from scratch per fold. No fold's held-out metrics may influence its fit.
 
-For this Stage 2 split, define a **GOP** operationally from the display-order index as:
+Comparison arms share candidate families, budget and fold partition:
 
-> the display-order run of pictures from one I picture up to, but not including, the next I
-> picture.
+- originals-only fitting on the three training originals;
+- blocky-only fitting on the three training re-encodes;
+- joint fitting on all six training recordings (PRIMARY procedure);
+- optional LP-original-only and LP-pair historical arms, evaluable on held-out XP, SP and
+  3A groups only; the held-out LP fold has no LP training observations and is **N/A**,
+  not secretly trained from held-out content.
 
-Number GOPs from **0 at the first I picture of the clip**.
+For **any numerical comparison involving historical L or LB**, restrict **every
+arm in that comparison** to the identical held-out XP, SP and 3A groups and
+the same predeclared weighting. Do not compare an all-four-fold J/O/X score
+against a three-fold L/LB score. J/O/X's separate full-four-fold analysis
+remains available but is not the L/LB comparison.
 
-Use:
+**Predeclared balancing:** each content group contributes the same total weight. In the joint
+arm, each group's original contributes 2/3 and `_blocky` 1/3 within that group. Raw source
+statistics remain visible. The same evaluation weights apply in each held-out group;
+per-seam counts are not pooled directly across groups to select a winner. The choice of 2:1
+is an engineering prior favouring real recorder content, not a fitted numerical result.
+If significant trade-offs arise, disclose the Pareto frontier and let the owner arbitrate
+instead of retroactively changing weights.
 
-```text
-K0 selection / tuning:
-    even-numbered usable LP GOPs (0, 2, 4, ...)
+**Selection sequence:** predeclare quality/no-harm rubric and budgets, make the four-fold
+candidate-procedure comparison (including per-group failures), select procedure/options
+without seeing protected EP/2A/4A material, then fit the final **joint K0 on all eight**
+quality-eligible source populations using the selected procedure, exactly as the owner
+requested. Freeze code hash, metadata, options, thresholds, manual strength and run inputs.
+Originals-only and blocky-only final fits on their full four-source populations are frozen
+comparison kernels, not silently substituted for joint K0. If the joint result is
+unacceptable while a comparator succeeds, report that as a design decision requiring
+explicit owner approval; do not force an unsatisfactory K0.
 
-fixed-QP versus real-QP comparison:
-    odd-numbered usable LP GOPs (1, 3, 5, ...)
-```
+**Uncertainty:** four content groups mean only four truly independent content-group
+held-out results. Report all four, plus within-group frame/GOP dispersion; no inferential
+p-values, no claim of independent frame-level observations. Paired-content leakage is
+prevented by keeping both encodes in one fold. Full-data final fits are in-sample on all
+eight; the fold's held-out evaluations are out-of-training-*content* for the procedure
+run within that fold, not for the final eight-source K0. Selecting the winning procedure using these
+cross-validation results makes its reported CV score subject to selection
+optimism; these runs **rank procedures**, not provide an unbiased estimate of
+the selected final K0. S2-I8, after the final candidate freeze, supplies the
+first independent protected-content estimate. EP/2A/4A remain locked until
+S2-I8.
 
-The definition, numbering base and parity assignment are declared before filtered results are
-viewed and must not be changed after seeing results.
+**S2-I3 scope boundary:** all screening, candidate fitting and comparison
+filtering in S2-I3 use **fixed per-clip QP only**, determined as each source's
+all-MB median; no actual per-MB-QP branch or ablation is run until separately
+authorised S2-I4. The existing all-MB medians are not re-fitted on folds.
 
-Development sequence:
-
-1. on the K0-selection GOPs, use LP with fixed clip-wide QP;
-2. select a bounded initial candidate parameter set;
-3. freeze it as **K0**;
-4. on the separate comparison GOPs, compare fixed QP versus real per-MB QP using exactly K0.
-
-Do not retune K0 separately for the real-QP variant or on the comparison GOPs.
-
-After that clean comparison is complete, further kernel / threshold / strength development may
-continue using real QP and the full declared development material, with that later work clearly
-separated from the QP-ablation result.
+**S2-I4 linkage:** K0 is frozen for a direct fixed-QP vs real indexed-QP input swap;
+the complementary symmetric optimisation comparison is separately labelled and never
+misrepresented as a frozen-parameter QP swap. Section 19 defines their authorisation
+and ordering. B0 remains the sole initial metadata policy; B1 requires a new owner decision.
 
 ---
 
@@ -848,23 +971,28 @@ separated from the QP-ablation result.
 For the fixed-versus-real QP comparison:
 
 ```text
-Q_fixed(clip) = median effective per-MB QP for that clip
+Q_fixed(clip) = median of all effective per-MB QP entries in that clip's full index
 ```
 
-Use that one scalar for every macroblock in that clip.
+The population includes FRAME, FIELD and NONE macroblocks (including leading-B frames for
+this descriptive fixed control), with the clip-wide median locked before any filtering
+results are seen. Leading B pictures are still excluded from quality evidence per section 4;
+the full-index fixed-QP definition is not silently recalculated on quality-eligible frames,
+per-GOP folds, coded-only states or after seeing outcomes.
 
-Known examples:
+Known verified examples:
 
 ```text
-LP  -> 18
-EP  -> 14
-MLS -> 10
+XP original = 14      SP original = 16
+LP original = 18      3A original = 14
+all eight-pool `_blocky` recordings = 62
+EP original = 14 (HOLD-OUT METADATA ONLY)      MLS original = 10 (CONTROL METADATA ONLY)
 ```
 
-Apply the same median rule to other clips.
-
-This control preserves an approximate clip-level compression severity while removing spatial QP
-variation.
+Use that one scalar for every MB in the clip. All-MB and coded-only medians differ for
+LP (18 vs 16); coded-only 16 MUST NOT replace Q_fixed. New source distributions are
+reverified from the owner's authoritative index before trials, and any disagreement
+requires resolution rather than silently re-estimating from chosen subsets.
 
 ### 9.2 Real-QP variant
 
@@ -941,58 +1069,37 @@ Purpose:
 
 ### Step 2 - indexed geometry + fixed clip-wide QP
 
-Use:
-
-- authoritative indexed luma geometry;
-- fixed clip-wide median QP;
-- initial candidate kernel K0;
-- pixel edge/activity protection.
-
-Purpose:
-
-- establish K0 under the actual index-driven architecture;
-- provide the control for spatial real-QP value.
+Use validated indexed geometry, fixed clip-wide QP as section 9.1, and the selected
+short-support, edge-protected candidate K0. S2-I3 selects the final joint K0 via full
+multi-source development with grouped procedure assessment (section 8.4). Record complete
+per-source original and blocky outcomes, with source-balanced diagnostics.
 
 ### Step 3 - indexed geometry + real per-MB QP
 
-Hold constant:
+S2-I4 addresses two separate estimands on the real originals:
 
-- authoritative geometry;
-- K0;
-- pixel tests;
-- strength;
-- all other parameters.
+- **Frozen switch:** with K0, geometry, pixels, strength, thresholds and every non-QP
+  parameter unchanged, replace the clip median by each actual indexed effective MB QP.
+  Paired same-frame/same-seam differences isolate the QP-map input's effect for K0.
+- **Symmetric tuned comparison:** develop a fixed-QP branch and a real-QP branch with
+  equal search budgets in the same content-group folds and compare their held-out-group
+  metrics. Distinct fitted parameter sets are declared openly; this answers which
+  approach achieves better quality with fair calibration, NOT the same frozen-kernel
+  question. No protected hold-out content participates.
 
-Change only:
-
-```text
-fixed clip-wide median QP
-    ->
-real indexed per-MB effective QP
-```
-
-Primary comparison:
-
-```text
-Step 2 vs Step 3
-    =
-value of the real spatial QP map inside the production architecture
-```
+Real-QP information comes from originals, not QP-62 constant re-encodes. Report NONE-touching
+edges and QP saturation populations separately. Do not interpret either comparison as a
+pristine independent population estimate from the final all-eight K0.
 
 ### Step 4 - luma kernel / threshold / strength development
 
-Using indexed geometry and real QP:
+S2-I5 continues only **after** S2-I4 has reported both QP comparisons. It may refine
+edge/activity rejection, correction magnitude, bounded strength sweep and no-harm treatment
+using the full eight-source development population and real indexed QP. New versions and
+new fitting rounds must be identified separately; never retroactively redefine S2-I3 K0
+or S2-I4 results. Preserve OFF bit-exact and no-cross-seam support invariants.
 
-- refine edge/activity rejection;
-- refine correction magnitude;
-- refine flat/detail behaviour;
-- define a small strength sweep;
-- require OFF to be bit-exact;
-- preserve the no-cross-seam support rule.
-
-Development remains on LP.
-
-Do not expose locked hold-outs during parameter tuning.
+No S2-I5 change may touch EP/2A/4A hold-out content before S2-I8.
 
 ### Step 5 - `NONE` policy
 
@@ -1052,21 +1159,12 @@ Do not use luma FRAME/FIELD/NONE state to place chroma seams.
 
 ### Step 7 - locked generalisation / no-harm
 
-After luma/chroma parameters are fixed on development material:
-
-Run unchanged on:
-
-```text
-LG_576i_4_EP
-TEST_4A_A003 original
-TEST_2A_A001 original
-```
-
-Use MLS as the separate progressive/control case.
-
-Then report the software-transcode pairs as secondary paired-reference evidence.
-
-No retuning on hold-outs is allowed without explicitly reopening development.
+Only after the full final luma/chroma candidate is frozen, perform S2-I8 first-contact
+filter assessment on EP, 2A, 4A originals **and their `_blocky` re-encodes**, with
+no prior tuning on any member of those content groups. MLS and MLS_blocky are
+separate frame/format/no-harm controls. Report the owner-requested complete
+16-recording census with roles clearly labelled. Record all failures; no hidden
+revisions after seeing a hold-out, and no call to those clips in S2-I3/S2-I4/S2-I5.
 
 ---
 
@@ -1122,7 +1220,7 @@ The exact production scale remains open.
 
 No single metric decides the project.
 
-### 13.1 Real-LG seam diagnostics
+### 13.1 Source-separated seam diagnostics
 
 At known eligible seams, report before/after quantities such as:
 
@@ -1164,32 +1262,23 @@ A filter that improves seam statistics by broadly blurring non-seam content shou
 
 ### 13.3 Paired-reference metrics
 
-For the software-transcode pairs only:
+For each of the four development original/re-encode pairs (XP, SP, LP, 3A), once
+cross-file frame correspondence is proven under section 15:
 
-- luma MAE;
-- luma MSE;
-- luma PSNR;
+- luma MAE, MSE, PSNR;
 - seam-local reference error;
-- non-seam reference error.
+- non-seam reference error;
+- separate FRAME/FIELD/NONE and I/P/B breakdown where the statistic is meaningful.
 
-Interpretation:
+Interpretation is **movement toward/away from the decoded higher-quality original**,
+not restoration truth or proof of perceived quality. Record failures of pairing proof
+and disable paired metrics for that source without fabricating alignment. Both paired
+encodes stay in the same grouped cross-validation fold to prevent content leakage.
 
-> movement toward or away from the decoded higher-quality source.
-
-Not:
-
-> absolute restoration truth.
-
-The `_blocky` transcodes have effective QP 62 in every macroblock. Therefore, on those clips:
-
-```text
-fixed median QP = 62
-real per-MB QP map = 62 everywhere
-```
-
-Step 2 and Step 3 are identical with respect to QP. Their paired-reference results **cannot**
-measure whether a spatial QP map is valuable. The QP-map question rests on real-LG diagnostics,
-the held-out real recorder material, and the project owner's visual assessment.
+Software `_blocky` encodes have QP 62 in every MB: the fixed and real QP inputs are
+therefore identical there, so they cannot establish spatial QP-map benefit. Only
+originals (XP/SP/LP/3A) provide a meaningful QP-variation experiment. EP/2A/4A pairs
+remain locked until S2-I8. MLS pair is a separate control.
 
 ### 13.4 I/P/B reporting
 
@@ -1281,7 +1370,7 @@ for all or effectively all non-ambiguous frames.
 
 Very static ties may be reported rather than treated as failures.
 
-This check applies only to the software-transcode pairs.
+This check applies only to software-transcode pairs, including all four development original/blocky pairs.
 
 ---
 
@@ -1326,31 +1415,21 @@ Stage 2 ends with an explicit gate report.
 
 ### 18.1 Primary evidence
 
-Primary product evidence is:
-
-```text
-real LG visual quality
-+
-real LG seam-local behaviour
-+
-real LG no-harm / collateral-change behaviour
-+
-consistency across locked hold-outs
-```
+Primary product evidence includes real-original visual quality and detail protection,
+real-source seam-local behaviour, source-balanced no-harm/collateral-change
+measurements, the four development content groups' cross-validated transfer,
+and finally consistency across the independently locked EP/2A/4A content groups.
+The additional full-data fits' own measurements are engineering **in-sample**
+diagnostics, not independent generalisation estimates.
 
 ### 18.2 Secondary evidence
 
-Secondary evidence is:
-
-```text
-paired-reference movement on the software-transcode pairs
-+
-supporting I/P/B and QP-band diagnostics
-```
-
-Because both `_blocky` transcodes use QP 62 everywhere, their paired-reference results do not
-contribute evidence about the value of a spatial real-QP map. That question is evaluated on real
-LG material.
+Secondary evidence includes verified original/re-encode paired-reference movement,
+frame/GOP-type and QP-band diagnostics, and the separate MLS controls.
+All `_blocky` clips are software transcodes with QP 62 everywhere; their
+fixed-QP and indexed-QP inputs are identical. Claims about value of a spatial
+real-QP map require the original XP/SP/LP/3A recordings with QP variation,
+then independent protected material when S2-I8 becomes authorised.
 
 ### 18.3 Pass / fail interpretation
 
@@ -1384,61 +1463,66 @@ That evidence feeds Stage 3 and the final index specification.
 
 ## 19. Implementation increments
 
-Version 0.3 was reviewed by Claude and ratified by the project owner on 2026-10-08. No Stage 2 code has started.
-The implementation sequence below remains the ratified technical plan, but **technical restart is not
-authorised**. S2-I1 begins only after the post-migration knowledge-base reconciliation gate is closed
-and the project owner separately authorises technical development to resume.
-
-Proposed incremental implementation:
+**Ratified v0.7 order (2026-10-17), NOT implementation authorisation.** Stage 1 remains FROZEN.
+S2-I1 and S2-I2 are COMPLETE / accepted / pushed; v0.7 supersedes Stage 2 v0.6.
+S2-I3 has design-only authority; independent authorisation
+is required for code and filtered runs and for every later increment.
 
 ```text
-S2-I1
-    read-only Stage 1 index reader / validation
-    reproduce analyzer v0.2 summary totals for each formal clip
-    if absent/untracked, generate + validate TEST_4A_A003_blocky.idx as a non-baseline candidate
-    progressive_frame and picture-type handling
-    leading-B quality exclusion accounting
+S2-I1 [COMPLETE]
+    read-only Stage 1 index reader and validation, leading-B accounting
 
-S2-I2
-    seam-map diagnostics
-    mandatory two-dimensional spatial index-to-pixel registration check
-    shifted-label controls (-1/0/+1 MB in x and y)
-    8-pixel column grid-phase check
+S2-I2 [COMPLETE]
+    spatial registration diagnostics, LP and LP_blocky, gate report installed
 
-S2-I3
-    initial luma candidate kernel on even-numbered usable LP GOPs
-    GOPs are display-order I-to-before-next-I runs, numbered from 0 at the first I
-    fixed median QP
-    choose and freeze K0
+S2-I3 [DESIGN ONLY NOW]
+    Windows BestSource structural + exact P-skip admission (section 6.3)
+      on all eight; failed/inconclusive sources BLOCK quality runs
+    characterise all eight using all quality-eligible frames
+    compare procedures by leave-one-CONTENT-group-out CV over XP/SP/LP/3A pairs
+    originals-only vs blocky-only vs balanced joint fitting, same search budget
+    choose procedure using predeclared rubric; fit final joint K0 on ALL EIGHT;
+      freeze one exact kernel/parameters, preserve comparator identities
+    native even/odd GOPs for descriptive IN-SAMPLE stability only
+    FIXED QP ONLY: no real-QP fitting, comparison runs or conclusions
+    no viewing EP/2A/4A content or their blocky versions
 
-S2-I4
-    K0 fixed-QP versus real-QP comparison on odd-numbered usable LP GOPs
-    no retuning between variants
-    report boundaries touching NONE separately
+S2-I4 [NOT AUTHORISED]
+    two expressly different fixed-vs-real QP evaluations on originals:
+      frozen-K0 QP-only input switch; symmetric retrained/calibrated comparison
+      with matched content-folds and budgets
+    NONE-touching boundaries separate; QP-112 saturation reported
 
-S2-I5
-    real-QP luma kernel / threshold / strength development on LP
+S2-I5 [NOT AUTHORISED]
+    further full-development-pool real-QP luma kernel/threshold/strength refinement
+    new kernel revisions tracked separately from frozen S2-I3/S2-I4 results
 
-S2-I6
+S2-I6 [NOT AUTHORISED]
     NONE N0 policy and only evidence-driven alternatives
 
-S2-I7
-    bounded native 4:2:0 chroma experiment
-    progressive/interlaced access investigation
+S2-I7 [NOT AUTHORISED]
+    bounded native 4:2:0 chroma experiment; progressive/interlaced access
 
-S2-I8
-    locked hold-out generalisation / no-harm
-    EP + 4A original + 2A original
-    MLS progressive/control
+S2-I8 [NOT AUTHORISED]
+    LOCKED external-content generalisation/no-harm, frozen final candidate only:
+      EP, 2A, 4A originals plus their paired `_blocky` re-encodes;
+      MLS + MLS_blocky as separate controls
+    owner's requested ALL-16-RECORDING census with source-by-source metrics,
+      with developer/hold-out/control labels and no silent refitting
 
-S2-I9
-    secondary software-transcode paired-reference reporting
+S2-I9 [NOT AUTHORISED]
+    final additional paired-reference/secondary analyses (including protected pairs
+      after S2-I8's first-contact gate), no tuning on hold-out data
 
-S2-I10
-    Stage 2 feasibility / metadata-retention gate report
+S2-I10 [NOT AUTHORISED]
+    feasibility, limits and metadata-retention gate report
 ```
 
-Review each bounded increment before advancing where a result could change the next design step.
+Keep every recorded historical negative/control measurement; a bad result is not license
+to change sample roles after viewing it. S2-I8's first-contact hold-out evaluation
+follows the final S2-I5/S2-I7 candidate freeze; it must not occur prematurely simply
+because the S2-I3 K0 was frozen. Only the project owner may ratify Stage 2 v0.7 and
+separately authorise implementation or future stages.
 
 ---
 
@@ -1466,7 +1550,11 @@ must not delay the feasibility gate.
 
 ---
 
-## 21. v0.4 review scope
+## 21. Historical v0.4 review scope (superseded by v0.7 section 3)
+
+**HISTORICAL ONLY - NOT OPERATIVE SOURCE ASSIGNMENTS.** The following
+paragraph and numbered points describe the v0.4 review snapshot. The sample
+roles in ratified v0.7 section 3 replace those historical assignments.
 
 The prior v0.3 design questions were reviewed by Claude, which gave NO OBJECTION, and the project owner ratified
 v0.3 on 2026-10-08. They are no longer open review questions.
@@ -1487,18 +1575,35 @@ knowledge has been incorporated faithfully without changing the algorithmic desi
 
 ## 22. Current post-reconciliation disposition
 
-1. ChatGPT v0.5 and Claude v0.7 continuity handovers were committed/pushed in `1a3cb1c`.
-2. The mandatory independent ChatGPT + Claude knowledge-base reconciliation inventories and
-   cross-classification are complete.
-3. This v0.6 revision is part of the project-owner-ratified coordinated reconciliation correction set.
-4. The coordinated correction set is applied to the current tree; the remaining reconciliation work is
-   to update the two role handovers to the final reconciled state and verify the current knowledge base.
-5. **Do not start S2-I1** unless the project owner separately authorises technical restart after the handover
-   touch-up / knowledge-base verification gate is closed.
+The history recorded in v0.6 remains binding history; its earlier time-specific
+technical-restart statement is no longer the current operating status. At the
+`6e7b5c53...` baseline Stage 1 is frozen, S2-I1 is complete, and S2-I2 is fully
+closed, with nine code files and the S2-I2 gate report/evidence installed. Ratified v0.7 responds to the owner's explicit **S2-I3 design-only** instruction
+and Claude's subsequent independent review. It supersedes v0.6 at installation;
+ratification of this design does NOT grant S2-I3 implementation or filtering authority.
 
 ---
 
 ## 23. Change log
+
+### v0.7 - 2026-10-17 (RATIFIED)
+
+- Replaces LP-only even/odd kernel selection with full eight-source development,
+  four whole-content-group leave-one-out comparisons and exact source balancing.
+- Assigns XP/SP/LP/3A pairs to development, while reserving EP/2A/4A and their
+  blocky encodes for locked S2-I8; MLS pair is a separate control.
+- Replaces dimension-equality assumption with authoritative per-index geometry;
+  admits development sources through hard structural and standard-exact P-skip
+  identity (Windows BestSource), retaining unmodified S2-I2 metrics as diagnostics;
+  adds symmetric S2-I4 QP tuning alongside frozen-K0 QP-only switch.
+- Updates 3, 6.3, 8.4, 9.1, 10, 13.3, 19 and status. Carries the
+  owner-requested all-16-source S2-I8 census, explicitly still unexecuted.
+- Preserves immutable Stage 1 indexes and all existing technical/media rules;
+  records owner approval to track seven separately-labelled non-baseline
+  development indexes; requires Windows verification and separate installation.
+- Clarifies the historical-only section 21, full-vs-three-fold comparisons,
+  CV selection optimism, S2-I3 fixed-QP-only scope and MLS/hold-out metadata.
+  This ratified design revision grants no S2-I3 code authorisation.
 
 ### v0.6 - 2026-10-13 (RATIFIED)
 
