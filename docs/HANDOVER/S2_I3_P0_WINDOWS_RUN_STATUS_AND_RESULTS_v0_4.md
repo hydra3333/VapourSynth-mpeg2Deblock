@@ -4,18 +4,20 @@ Date: 2026-10-18; **P0 EXECUTION COMPLETE; owner acceptance decision outstanding
 Project: VapourSynth-mpeg2Deblock
 Prepared by: **Claude, at owner request, standing in for the ChatGPT role.** This document belongs to the
 ChatGPT document family. The owner asked Claude to draft v0.4 directly rather than wait for the ChatGPT
-chat. **Consequence to record honestly: v0.4 has NOT had independent cross-role review, because its
-author is the project's reviewer and cannot independently review its own draft.** Everything it asserts
-about the evidence is independently verified against the evidence tree; everything it asserts about
-project process carries only one role's judgement. The ChatGPT role should review it when available.
+chat. **Cross-role editorial review:** ChatGPT examined this draft against Claude's comprehensive P0
+review v0.4, the owner-supplied HANDOVER/REPOSITORY archive, and the supplied Windows console record on
+2026-10-18. ChatGPT corrected obsolete internal checkpoints and handover references in this candidate;
+this editorial review is **not** a separate recomputation of the raw 137-file results tree. Claude's
+independent evidence review is the basis for the gate recommendation. Owner ratification and installation
+remain separate actions.
 Status: OBSERVATIONAL HANDOVER - NOT THE S2-I3 EVIDENCE/GATE REPORT; NOT P1 AUTHORISATION
 Supersedes in the current tree on approved installation: `docs/HANDOVER/S2_I3_P0_WINDOWS_RUN_STATUS_AND_RESULTS_v0_3.md` AND the still-present `..._v0_2.md`, under D-23 v1.2. Expected staged shape **1 A / 0 M / 2 D** (see section 8).
 Current observational checkpoint: P0A PASS; P0B COMPLETE; P0C 8/8 REGISTERED; P0D diagnostics 8/8 COMPLETE; **P0D pairs 4/4 PASS; global summary RUN, `READY_FOR_P1=true` numerical only; Claude independent evidence review COMPLETE, verdict ACCEPTED/gate PASS recommended.**
-Independent review boundary: Claude has now reviewed the COMPLETE `results/` tree (137 files) and recomputed both headline results from raw per-item data. See `docs/Claude_P0_EVIDENCE_REVIEW_AND_GATE_RECOMMENDATION_v0_3.md`. **What remains is the owner's acceptance decision, not further verification.**
+Independent review boundary: Claude has now reviewed the COMPLETE `results/` tree (137 files) and recomputed both headline results from raw per-item data. See `docs/Claude_P0_EVIDENCE_REVIEW_AND_GATE_RECOMMENDATION_v0_4.md`. **What remains is the owner's acceptance decision, not further verification.**
 
 **TO A SUCCESSOR CHAT IN EITHER ROLE:** **P0 execution is finished. Do NOT re-run any P0 step** - not P0A, not P0B, not the eight P0C admissions, not the eight P0D diagnostics, not the four pair tests, not the summary. The scripts refuse to overwrite existing output and the evidence must stay intact. The complete `results/` tree has been independently reviewed and the review recommends the gate be recorded as PASSED. **The next action is the owner's acceptance decision**, after which the seven-index tracking commit becomes available and P1 authorisation becomes a separate request. Protected hold-outs remain locked regardless of filename. Repository hygiene remains outstanding and is now the largest open item: four identity-bearing current-tree files, three superseded handover predecessors, and a ~52-path review-artefact cleanup. The owner deferred that until tests finished; tests have now finished.
 
-## 1. Executive status - checkpoint after eight diagnostics
+## 1. Executive status - after completed execution and independent evidence review
 
 | Work unit | Status at latest owner-supplied console output | Evidence boundary |
 |---|---|---|
@@ -45,12 +47,12 @@ Reviewed implementation/design reference: `35cd543b459a5856688f7c3795f73226e7231
 |---|---|
 | `6b7acc38168d0dea9278d1ba930bc09a174a50fe` | Snapshot with 58 additional tracked files including authorised 6A/7A recordings, successor role handovers and many review-only artefacts; 181 -> 239 files / 158.8 MB in Claude's audit |
 | `3f8f45a77a8bbdd9d6bbc42718e6e74a2abd5e21` | Deleted one identity-bearing handover-review ZIP from current tree; historical blob remains |
-| `f4a40e13251ace8201317ef6546353c4fbe6c679` | **Current HEAD.** Installed ChatGPT handover v0.9 and status v0.3, both byte-verified by Claude as the corrected files it returned. 2 A / 0 M / 0 D; no predecessors deleted |
 | `4636c33ebd7fd053149bebac8bc2dbe2d754d090` | Owner's second snapshot, **25 added files** (Claude verified the staged shape as exactly 25 A / 0 M / 0 D against `3f8f45a`; tracked files 239 -> 264). Includes the full 15-file installed P0 overlay with corrected P0A (Claude counted exactly 15 matching paths under `experiments/stage2/`), the owner-reviewed consolidated interim knowledge document, the v0.2 Windows status handback, and 8 further review/rehearsal artefacts |
+| `f4a40e13251ace8201317ef6546353c4fbe6c679` | **Current HEAD as at Claude's 2026-10-18 fresh clone.** Installed ChatGPT handover v0.9 and status v0.3, both byte-verified by Claude as the corrected files it returned. 2 A / 0 M / 0 D; no predecessors deleted |
 
-**Positive continuity result:** Current ChatGPT handover v0.8 and Claude handover v0.10 are committed; Claude independently verified their bytes against cleared candidates. The single-pass Claude-consolidated `docs/REPOSITORY/interim_S2_I3_Stage2_Knowledge_Preservation_and_Transfer_v0_1.md` is also committed by `4636c33`. Claude re-verified on 2026-10-18 that the committed copy is byte-identical (LF-normalised) to the document it delivered, 681 lines, and likewise for the committed `docs/HANDOVER/S2_I3_P0_WINDOWS_RUN_STATUS_AND_RESULTS_v0_2.md` and the two Claude review artefacts now under `experiments/S2-I3/a/`. So the knowledge the owner wanted protected against abrupt chat loss is demonstrably preserved in the repository. The interim remains a TEMPORARY preservation bridge; the permanent Evidence and Gate Report / K-item transfers are pending.
+**Positive continuity result:** Current ChatGPT handover v0.9 and Claude handover v0.10 are committed; Claude independently verified their bytes against cleared candidates. The single-pass Claude-consolidated `docs/REPOSITORY/interim_S2_I3_Stage2_Knowledge_Preservation_and_Transfer_v0_1.md` is also committed by `4636c33`. Claude re-verified on 2026-10-18 that the committed copy is byte-identical (LF-normalised) to the document it delivered, 681 lines, and likewise for the committed `docs/HANDOVER/S2_I3_P0_WINDOWS_RUN_STATUS_AND_RESULTS_v0_2.md` and the two Claude review artefacts now under `experiments/S2-I3/a/`. So the knowledge the owner wanted protected against abrupt chat loss is demonstrably preserved in the repository. The interim remains a TEMPORARY preservation bridge; the permanent Evidence and Gate Report / K-item transfers are pending.
 
-**Outstanding current-tree hygiene:** four more identity-bearing review paths documented in section 8; two superseded handover predecessors (ChatGPT v0.7, Claude v0.9); review-only material and large nested source ZIPs. The second snapshot added further review artefacts, so the historical '44 remaining' count is **not** asserted as the exact current cleanup count. The earlier 6b7acc3 identity blobs, including the already-deleted fifth carrier, remain in Git history. The owner chose to finish P0 testing before cleanup. **Testing is now finished, so this is the largest
+**Outstanding current-tree hygiene:** four identity-bearing review paths documented in section 8; three superseded handover predecessors (ChatGPT v0.7 and v0.8, Claude v0.9); review-only material and large nested source ZIPs. The review-only candidate pool is **52** paths after Commit A, pending an exact-path owner-approved inventory, rather than the obsolete 44-path count. The earlier 6b7acc3 identity blobs, including the already-deleted fifth carrier, remain in Git history. The owner chose to finish P0 testing before cleanup. **Testing is now finished, so this is the largest
 open item.** The exposure exists independently of test validity. All deletions require exact pathlists and staged-shape checks, never a wildcard sweep of `experiments/stage2/`.
 
 Git `core.autocrlf=true` produced expected LF-to-CRLF warnings for the eight `.py`/`.vpy` additions in the second snapshot. This warning alone does not show source corruption; distinguish normalized Git blob hashes from working-tree hashes. Do not assume the owner's current `git status` without checking when Git work resumes.
@@ -129,7 +131,12 @@ The following values are from the owner's actual Windows CMD output and admissio
 
 Every index verification JSON reported `P_skip_count_matches_reference=true`, `status=PASS` and the expected source-specific full SHA from section 4. The LP admission explicitly used the FROZEN repository LP index; LP_blocky used the verified P0 scratch copy, not a fresh generation. P-picture counts are a valuable independent display-order/anchor check beyond the prepublished index allow-list.
 
-**Limit of verification:** The owner showed the index-verifier JSON output, PASS lines and admission logs. The complete `pskip_identity.json`, `source_manifest.json` and `index_validation.json` for all sources have NOT been delivered for an end-to-end independent review. Do not label the full P0 gate accepted merely because all eight source invocations registered.
+**Evidence boundary:** At this earlier execution checkpoint the owner showed index-verifier JSON output,
+PASS lines and admission logs. **Subsequently, Claude received and independently examined the complete
+137-file results tree**, including all eight `pskip_identity.json`, `source_manifest.json` and
+`index_validation.json` files. Claude independently reconstructed every exact P-skip identity from
+`per_P_picture`, checked the negative controls, and recommended the gate be recorded as PASSED. This is
+an **independent-review verdict**, not yet the owner's formal gate acceptance.
 
 ## 5A. P0D descriptive numerical diagnostics: all eight COMPLETE
 
@@ -146,9 +153,14 @@ All eight `S2_I3_P0D_diagnostics_v0_1.bat` calls were run individually, AFTER th
 | 3A | 300/300 | reports written, no admission verdict | 0 |
 | 3A_blocky | 300/300 | reports written, no admission verdict | 0 |
 
-The last completed command was `call "experiments\stage2\S2_I3_P0D_diagnostics_v0_1.bat" 3A_blocky`, with the owner showing 300/300, the output format 704x576 YUV420P8, and `P0D_3A_BLOCKY_ERRORLEVEL=0`. There is **no need to rerun it**. The legacy S2-I2 numerical reports are descriptive in S2-I3; prior S2-I2 threshold BLOCKED for SP/SP_blocky/3A arises from those tests' preconditions, not index misregistration, and does not reverse exact P-skip registration.
+The **final individual diagnostic** was `call "experiments\stage2\S2_I3_P0D_diagnostics_v0_1.bat" 3A_blocky`, with the owner showing 300/300, the output format 704x576 YUV420P8, and `P0D_3A_BLOCKY_ERRORLEVEL=0`. Subsequently, the four paired tests and the global summary were also executed successfully. There is **no need to rerun any of them**. The legacy S2-I2 numerical reports are descriptive in S2-I3; prior S2-I2 threshold BLOCKED for SP/SP_blocky/3A arises from those tests' preconditions, not index misregistration, and does not reverse exact P-skip registration.
 
-**Not yet evaluated independently:** raw diagnostic CSV contents, exact S2-I2 CSV equivalence for the Windows P0 results, and complete diagnostic report integrity. They are expected to be checked by Claude with the full `results/` tree once four pairs and summary have been run. A report-written console line is not a numerical quality verdict.
+**Later independent review:** Claude received and inspected the complete P0 results tree, including
+all eight descriptive diagnostic file sets and the global summary. The diagnostics remained
+`REPORTED_NOT_GATE`, and all occurrences of FAIL/INCONCLUSIVE/BLOCKED/NaN in the adversarial sweep were
+in descriptive S2-I2 outputs rather than gate-bearing fields. The supplied Claude review does **not**
+claim a fresh byte-for-byte comparison of these Windows P0 diagnostic CSVs with the earlier accepted
+S2-I2 historical CSVs; do not silently infer one. A report-written line is not itself a quality gate.
 
 ## 6. P0D pair correspondence: all four PASS, and the actual next action
 
@@ -156,7 +168,7 @@ All four pair tests were run individually and all four PASSED with `ERRORLEVEL=0
 counts match Claude's independent Linux rehearsal expectations exactly, which were published before the
 Windows runs existed.
 
-| Group | Status | Decisive | Expected | Violations | Mean MAE k=0 | Best competing mean | Decisive fraction |
+| Group | Status | Decisive / comparable interior frames | Expected decisive | Violations | Mean MAE k=0 | Best competing mean | Decisive fraction of full clip |
 |---|---|---:|---:|---:|---:|---:|---:|
 | XP | PASS | 140/224 | 140 | 0 | 3.5250 | 9.8761 | 61.4% |
 | SP | PASS | 175/188 | 175 | 0 | 3.2322 | 13.9828 | 91.1% |
@@ -168,7 +180,8 @@ clip-mean minimum at k=0 (`strict_zero_argmin: true`), zero decisive-frame viola
 sample-size floors - at least 20 decisive frames and at least 10% decisive - with margin, the tightest
 being LP at 81 frames and 39.7%. The common-interior frame counts 224/188/200/296 are each four fewer
 than the clip length, the correct consequence of a k = -2..+2 window needing two frames of margin at
-each end. **The 20-frame and 10% floors were chosen after seeing preflight data; that disclosure must
+each end. The decisive fractions in the table use **all clip frames** as denominator (228/192/204/300),
+whereas the displayed decisive counts use the **common interior** (224/188/200/296). **The 20-frame and 10% floors were chosen after seeing preflight data; that disclosure must
 travel with the rule wherever it is published.** The evidence files carry it themselves in `floor_note`.
 
 The global summary was then run. `P0_summary.json` reports `READY_FOR_P1: true` with
@@ -180,7 +193,7 @@ eight sources `REGISTERED`, all four pairs `PASS`, and all eight diagnostics `RE
 The complete `results/` tree - 137 files, 8 sources x 16 plus 4 pair directories x 2 plus the summary -
 was supplied to Claude and reviewed. **Verdict: P0 EVIDENCE ACCEPTED, gate PASS recommended, no MUST
 against the evidence.** Four SHOULDs, all additive records for the eventual Evidence and Gate Report.
-The full document is `docs/Claude_P0_EVIDENCE_REVIEW_AND_GATE_RECOMMENDATION_v0_3.md`.
+The full document is `docs/Claude_P0_EVIDENCE_REVIEW_AND_GATE_RECOMMENDATION_v0_4.md`.
 
 The review did not rely on reported verdicts. It **recomputed** both headline results from the raw
 per-item data the evidence carries: admission identity re-summed from `per_P_picture` for all eight
@@ -193,15 +206,24 @@ hold-out or non-allow-list media name appears anywhere in the 137 files.
 
 Two results worth carrying into the Gate Report:
 
-- **The threshold-free method is vindicated by the owner's own run.** A one-pixel horizontal shift of
-  3A still reproduces **93.08%** of its skipped-macroblock blocks exactly; previous-display reaches
-  96.72% on 3A and 94.85% on LP. Any tolerance-based registration test below roughly 93% would have
-  passed a misregistered 3A. On 3A the true position has 0 non-matching blocks of 8812 against 289 for
-  the best competing hypothesis. This supersedes the 90.2% rehearsal figure as the method
-  justification because it is owner-run evidence.
+- **The threshold-free method is supported by TWO complementary 3A controls, not competing revisions.**
+  The committed `interim_` reports **90.2%** for a **whole-clip vertical one-line shift** injected in
+  Claude's Linux rehearsal. The owner's Windows P0 built-in **per-block, one-pixel horizontal** spatial
+  control (offset `-1,0`) still matches **93.08%** of skipped-macroblock blocks. They use different
+  faults and qualifying populations; **neither supersedes the other**. Today's per-block vertical
+  controls at `0,-1` and `0,1` were 77.22% and 28.86%, respectively, and do not contradict the
+  whole-clip injection. Together the results show that tolerance below at least 93% could accept
+  wrong alignment, supporting exact identity; previous-display reaches 96.72% on 3A and 94.85% on LP.
+  The true 3A position has 0 non-matching blocks out of 8812, versus 289 for the strongest competing
+  hypothesis.
 - **`Q_fixed` re-derives exactly from the diagnostic CSVs** for all eight sources - XP 14, SP 16, LP 18,
   3A 14, and every blocky single-valued at 62 - and the transform mix confirms within 0.1 to 0.8
   percentage points, including 3A's opposite FRAME-dominant regime at 68.3%.
+- **Four SHOULDs, no evidence MUST:** S1 carry both differently scoped control figures; S2 define the
+  historical `known_bad_offsets.csv` `caught` column (including its aligned `(0,0)` reference);
+  S3 preserve the original/`_blocky` pair as an appearance/mechanism instrument, not a real-world
+  prevalence sample, and record the two withdrawn Claude claims; S4 before S2-I4 investigate whether
+  `q_scale_type` can be recovered from the current index. None blocks P0 or authorises P1.
 
 ### 6.2 The next action is the owner's acceptance decision
 
@@ -246,7 +268,10 @@ P0, which uses no QP values, nor P1, which is fixed-QP.
 
 ## 8. URGENT parallel repository remediation (pending; owner deferred until tests complete)
 
-Claude scanned every GitHub-tracked text file AND the members of tracked ZIPs, and identified FOUR **still-current** paths bearing owner-identifying geographic text. Claude re-confirmed on 2026-10-18 that all four are still present at verified HEAD `4636c33`, and that the two D-23 predecessors in Commit B are also still present. Do NOT copy the identifying text into another committed report. All four are review artefacts, not accepted implementation or ratified design. The one earlier ZIP deletion does not cover them.
+Claude scanned GitHub-tracked text and tracked ZIP members and identified FOUR **still-current** review
+artefacts bearing owner-identifying geographic text. All four are reported still present as at Claude's
+2026-10-18 checkout of HEAD `f4a40e` (section 2). Three superseded role handover predecessors also
+remain in that tree. Do NOT copy the identifying text into another committed report. All four are review artefacts, not accepted implementation or ratified design. The one earlier ZIP deletion does not cover them.
 
 ### Commit A: remove four remaining identity carriers FIRST when cleanup resumes
 
@@ -312,7 +337,11 @@ The owner explicitly requested ONE temporary consolidated `interim_` knowledge d
 
 It remains a TEMPORARY preservation bridge, not a competing ratified design authority. The agreed Route A permanent transfer has NOT happened: quantitative data, limitations and methodological provenance go into the eventual S2-I3 Evidence and Gate Report; durable evidence upgrades go into `06_DEBLOCK_CONCEPT.md` K-03, K-07 and K-08, under independent review and owner ratification. The interim's section 9 is the explicit transfer/retirement checklist. Do not revise it simply because more P0 console runs have succeeded; those belong in this status handback and later gate report.
 
-The installed role handovers, ChatGPT v0.8 and Claude v0.10, are known to have earlier as-at states. Successors MUST read this newer v0.3 checkpoint and verify the live repository rather than repeating v0.8's obsolete "S4 awaits review" next action. The separate ChatGPT handover update to v0.9, if prepared, must replace v0.8 through D-23, not sit alongside both as competing current versions.
+The installed current role handovers are **ChatGPT v0.9 and Claude v0.10**. Older ChatGPT v0.7/v0.8
+and Claude v0.9 are still incorrectly retained in the tree pending exact-path Commit B. A successor
+MUST read the current handovers plus **this v0.4 P0 checkpoint** and verify live repository state;
+never resume the old v0.8 "S4 awaits review" next action. The newer ChatGPT v0.9 has already been
+installed, not merely proposed; the obsolete versions require deletion under D-23.
 
 ## 10. Successor / next developer instructions
 
@@ -320,7 +349,7 @@ The installed role handovers, ChatGPT v0.8 and Claude v0.10, are known to have e
 2. **Run nothing in P0.** Execution is complete: P0A, P0B, eight P0C admissions, eight P0D diagnostics, four pair tests and the global summary have all run and been independently reviewed. Re-running would at best be refused by the scripts and at worst damage the evidence.
 3. Establish whether the owner has accepted the P0 evidence. If not, that decision is the only open blocker. If accepted, the seven-index tracking commit is next, then hygiene, then a separate P1 authorisation request.
 4. Preserve scratch folder `%TEMP%\VapourSynth-mpeg2Deblock_S2_I3_P0_v0_1`, the seven verified non-baseline index bytes and the frozen original LP index.
-5. Owner has deferred the urgent repository hygiene operations until tests finish. Once resumed, prioritize the exact four paths in Commit A, the two superseded handover files in Commit B, then get an up-to-date reviewed exact pathlist for Commit C. **Tree deletion cannot remove identity text from prior snapshot history.** Never run broad `git add -A` or wildcard `git rm` as routine cleanup.
+5. Owner has deferred the urgent repository hygiene operations until tests finish. Once resumed, prioritize the exact four paths in Commit A, the **three** superseded handover files in Commit B, then get an up-to-date reviewed exact pathlist for Commit C. **Tree deletion cannot remove identity text from prior snapshot history.** Never run broad `git add -A` or wildcard `git rm` as routine cleanup.
 6. Protect the installed `interim_` bridge until its detailed knowledge transfer checklist is satisfied; do not treat raw exploratory pixel measurements as P0 gate results or permanent filter evidence.
 
-**Reporting vocabulary:** `PASS`/`REGISTERED` for the specific observed Windows steps; descriptive diagnostics `COMPLETE` without admission verdict; future pair PASS only after actually executed; summary `READY` numerical; independent P0 gate acceptance is a separate later owner/Claude decision.
+**Reporting vocabulary:** `PASS`/`REGISTERED` for the specific observed Windows steps; descriptive diagnostics `COMPLETE` without admission verdict; **all four pairs actually executed and PASS**; summary `READY` numerical; Claude's independent evidence review **ACCEPTED and recommends PASS**; **owner ratification of the P0 gate is still pending**.
