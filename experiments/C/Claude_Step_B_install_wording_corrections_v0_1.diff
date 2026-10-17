@@ -1,0 +1,199 @@
+--- ChatGPT/S2_I2_Evidence_and_Gate_Report_v0_1.md
++++ Claude/S2_I2_Evidence_and_Gate_Report_v0_1.md
+@@ -4,7 +4,7 @@
+ **Version:** 0.1
+ **Date:** 2026-10-16
+ **Gate status:** COMPLETE / WINDOWS ACCEPTANCE PASS / OWNER-RATIFIED 2026-10-16; Claude's independent verification concurs.
+-**Document disposition:** Exact proposed repository-installation copy for Step B; contents submitted for Claude final review and owner approval before the document commit. The gate result and code commit are complete; this document and the evidence have not yet been staged or installed.
++**Document disposition:** Installed by the bounded Step-B documentation/evidence commit, together with the 25 numerical evidence files (section 7.1), the evidence-only `.gitattributes` rule and Project Status v0.6. Claude final-reviewed this exact text; the project owner approved its installation. The commit identity is recorded by Git history and the next Project Status revision.
+ **Accepted code commit:** `190bd06ded88130ffddac7bb9adde4175d82f9f8` (parent `2286341`), pushed and independently verified by Claude from the GitHub source ZIP: nine additions match reviewed hashes, six frozen indexes unchanged. This is the S2-I2 code provenance, not an assertion about the live HEAD at the time Step B eventually runs.
+ **Authoritative design:** Ratified `ChatGPT_S2_I2_Design_Plan_v0_4_FOR_CLAUDE_REVIEW.md`, supplemented by the owner-ratified implementation reporting details; parent Stage 2 authority is `docs/REPOSITORY/Stage2_Experiment_Design_v0_6.md`.
+ 
+@@ -68,27 +68,27 @@
+ ## 6. Follow-through and ownership
+ 
+ 1. **Step A is COMPLETE.** Commit `190bd06ded88130ffddac7bb9adde4175d82f9f8` (parent `2286341`) contains the nine accepted S2-I2 v0.1 code files. Claude verified the pushed source-ZIP hashes and the six unchanged frozen `.idx` files. Do not repeat Step A or convert the verified code bytes.
+-2. **Step B is PENDING, not staged:** following Claude's final review and the owner's exact-file installation approval, install this report at `docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md`; extract and hash-check 25 numerical evidence files from the verified owner ZIP *at Step B* (section 7.1); include the twelve reviewed historical `docs/` records and the now-authorised original Copilot research record; add status v0.6 replacing v0.5. Use named staging only. No other file is implicitly staged or deleted.
+-3. **Two owner decisions RATIFIED 2026-10-16 for Step B:** (a) **YES** to the exact evidence-only `experiments/stage2/results/** -text` line in root `.gitattributes`, to be appended and checked via `git check-attr` **before staging evidence**; (b) **YES** to a narrow D-23 US-ASCII exception for two unchanged historical, verbatim records: `docs/ChatGPT_Review_of_Copilot_Grok_MPEG2_Block_Detection_v0_1_FOR_CLAUDE.md` (75 non-ASCII lines) and `docs/COPILOT-MPEG2_Deblocking_VHS_DVD_Research.md` (11 non-ASCII lines). Preserve both records verbatim; this grants no broader non-ASCII exception. These decisions are approved, but no extraction, attribute change, staging or Step-B commit has occurred.
+-4. **Evidence extraction and integrity:** validate the source ZIP SHA-256 `0bce902275a2e7533fb0685788bcbf3ef2c0a173b344866ed4a0f757d02c34d6`, extract exactly the 25 named files to the planned subtree, exclude the non-baseline scratch `.idx`, and check the **25 file sizes and SHA-256 values before any evidence `git add`**. Append the owner-approved `-text` pin and confirm its attribute with `git check-attr` **before evidence staging**. After push, Claude checks all 25 hashes in the GitHub source ZIP. Do not assert that the evidence is already unpacked or installed.
++2. **Step B (this report's installing commit):** installs this report at `docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md`; the 25 numerical evidence files extracted and hash-checked from the verified owner ZIP (section 7.1); the twelve reviewed historical `docs/` records and the original Copilot research record; and status v0.6 replacing v0.5. Named staging only; no other file is staged or deleted.
++3. **Two owner decisions RATIFIED 2026-10-16 for Step B:** (a) **YES** to the exact evidence-only `experiments/stage2/results/** -text` line in root `.gitattributes`, to be appended and checked via `git check-attr` **before staging evidence**; (b) **YES** to a narrow D-23 US-ASCII exception for two unchanged historical, verbatim records: `docs/ChatGPT_Review_of_Copilot_Grok_MPEG2_Block_Detection_v0_1_FOR_CLAUDE.md` (75 non-ASCII lines) and `docs/COPILOT-MPEG2_Deblocking_VHS_DVD_Research.md` (11 non-ASCII lines). Preserve both records verbatim; this grants no broader non-ASCII exception. Both decisions are applied in the Step-B commit.
++4. **Evidence extraction and integrity:** validate the source ZIP SHA-256 `0bce902275a2e7533fb0685788bcbf3ef2c0a173b344866ed4a0f757d02c34d6`, extract exactly the 25 named files to the planned subtree, exclude the non-baseline scratch `.idx`, and check the **25 file sizes and SHA-256 values before any evidence `git add`**. Append the owner-approved `-text` pin and confirm its attribute with `git check-attr` **before evidence staging**. After push, Claude checks all 25 hashes in the GitHub source ZIP.
+ 5. **Whitespace-check handling:** `git diff --cached --check -- .gitattributes` is the **only whitespace STOP check**. A blanket `git diff --cached --check` on the evidence or historical Markdown is **informational only**, because byte-preserved CRLF logs and Markdown hard line breaks generate expected trailing-whitespace warnings (Claude observed roughly 7,800 evidence lines). Never edit reviewed data to silence those warnings; hashes and exact staged-path review are the integrity controls.
+-6. **Project Status:** the v0.6 review draft is derived only from the owner's attached ratified repository v0.5 (Windows CRLF SHA-256 `a5f19fa8c9dfd83b8d701b4e327f48555be613f75558938f328e6c53f61881da`; Git LF SHA-256 `ee0d41eafeac06abfffeae457b410e301ad65ce9743b7378fb784be897eb9131`). After Claude review and owner ratification of its text, add v0.6 and remove v0.5 by explicit paths in the same Step-B commit per D-23. Record the verified code commit, S2-I2 PASS and 2026-10-16 ratification, the S2-I2-only `LP_blocky` role, row-phase addition, both **approved** owner decisions, and S2-I3 NOT AUTHORISED. Stage 2 experiment design v0.6 remains unchanged.
++6. **Project Status:** v0.6 is derived only from the owner's attached ratified repository v0.5 (Windows CRLF SHA-256 `a5f19fa8c9dfd83b8d701b4e327f48555be613f75558938f328e6c53f61881da`; Git LF SHA-256 `ee0d41eafeac06abfffeae457b410e301ad65ce9743b7378fb784be897eb9131`). The Step-B commit adds v0.6 and removes v0.5 by explicit paths per D-23. Record the verified code commit, S2-I2 PASS and 2026-10-16 ratification, the S2-I2-only `LP_blocky` role, row-phase addition, both **approved** owner decisions, and S2-I3 NOT AUTHORISED. Stage 2 experiment design v0.6 remains unchanged.
+ 7. **Next-version issues only:** preserve Claude implementation review SHOULD S1-S4 and OPTIONAL O1-O4/O6; O5 withdrawn. These do not change the accepted v0.1 code. The future M4a option belongs to S2-I3 design, which is **NOT AUTHORISED** for implementation or testing.
+ 
+ **Excluded process items and source ZIP:** the review requests, old candidate packaging documentation/manifests, closure ZIPs, and `experiments/stage2/Z/` remain untracked outside Step B unless the owner later directs otherwise. The `Z/` ZIP is the sole currently reported evidence location; retain it at least until the pushed GitHub evidence is independently hash-checked. The old `experiments/stage2/research/` folder no longer exists; the Copilot source is in `docs/` untracked. No untracked deletion is authorised by this report. See the companion v0.3 placement inventory.
+ 
+ ## 7. Evidence pointers
+ 
+-- Owner's Windows console transcript and the original `%TEMP%/VapourSynth-mpeg2Deblock_S2_I2` ZIP (numerical logs, CSVs and run manifests; the original ZIP also included a non-baseline scratch `.idx`, excluded from the proposed durable repository evidence).
+-- `docs/Claude_REVIEW_OF_ChatGPT_S2_I2_Implementation_v0_1_v0_1.md` (proposed for Step-B tracking).
++- Owner's Windows console transcript and the original `%TEMP%/VapourSynth-mpeg2Deblock_S2_I2` ZIP (numerical logs, CSVs and run manifests; the original ZIP also included a non-baseline scratch `.idx`, excluded from the durable repository evidence).
++- `docs/Claude_REVIEW_OF_ChatGPT_S2_I2_Implementation_v0_1_v0_1.md` (tracked from Step B).
+ - `docs/Claude_VERIFICATION_OF_S2_I2_Windows_Run_v0_2.md` (supersedes uncommitted verification v0.1).
+-- `docs/ChatGPT_S2_I2_Design_Plan_v0_4_FOR_CLAUDE_REVIEW.md` (ratified text, 2026-10-15; proposed for Step-B tracking).
++- `docs/ChatGPT_S2_I2_Design_Plan_v0_4_FOR_CLAUDE_REVIEW.md` (ratified text, 2026-10-15; tracked from Step B).
+ - `docs/REPOSITORY/Stage2_Experiment_Design_v0_6.md` and `05_DECISIONS_v1_2.md`.
+ 
+ 
+-### 7.1 Durable numerical evidence to be installed at Step B (25 unchanged files)
++### 7.1 Durable numerical evidence installed at Step B (25 unchanged files)
+ 
+-**NOT YET UNPACKED OR INSTALLED AS OF THIS REVIEW.** The owner's current source is only the untracked ZIP `experiments/stage2/Z/VapourSynth-mpeg2Deblock_S2_I2.zip`, SHA-256 `0bce902275a2e7533fb0685788bcbf3ef2c0a173b344866ed4a0f757d02c34d6`. At Step B, **extract** the numeric/textual files from that ZIP into `experiments/stage2/results/S2_I2_v0_1/{LP,LP_blocky}/`; preserve bytes unchanged, omit/remove `LP_blocky/LG_576i_3_LP_blocky.idx`, and independently **verify all 25 exact sizes and SHA-256 values below BEFORE any `git add`**. The 25 proposed paths below are *future installed paths*, not an assertion that extraction or owner-side hash checking has happened. Their listed SHA-256 values refer to original Windows byte sequences, including mixed LF/CRLF log data. The entries are **non-media** numerical/textual evidence under the current `NOTICE.md` policy. The separate `LP_blocky/LG_576i_3_LP_blocky.idx` scratch candidate is **excluded** and remains non-baseline.
++**Source and installation.** The source is the owner's untracked evidence ZIP `experiments/stage2/Z/VapourSynth-mpeg2Deblock_S2_I2.zip`, SHA-256 `0bce902275a2e7533fb0685788bcbf3ef2c0a173b344866ed4a0f757d02c34d6`. At Step B the numeric/textual files are **extracted** from that ZIP into `experiments/stage2/results/S2_I2_v0_1/{LP,LP_blocky}/`; bytes are preserved unchanged, `LP_blocky/LG_576i_3_LP_blocky.idx` is omitted, and all 25 exact sizes and SHA-256 values below are **verified BEFORE any `git add`**. Their listed SHA-256 values refer to original Windows byte sequences, including mixed LF/CRLF log data. The entries are **non-media** numerical/textual evidence under the current `NOTICE.md` policy. The separate `LP_blocky/LG_576i_3_LP_blocky.idx` scratch candidate is **excluded** and remains non-baseline.
+ 
+ **Owner decision (YES, ratified 2026-10-16) for persistent hash identity:** add the exact `.gitattributes` line below to the evidence subtree at Step B (no other file or existing attribute changes):
+ 
+@@ -96,7 +96,7 @@
+ experiments/stage2/results/** -text
+ ```
+ 
+-The pin is **approved but not yet applied**. With this exact line added **before staging** and validated against the current working tree by `git check-attr`, Git must not normalise EOL in the evidence subtree. Claude's `core.autocrlf=true` rehearsal yielded **0/25 evidence hash differences between Windows, Git/GitHub**. The SHA-256 values below are those of the original Windows evidence; preservation in working files, repository blobs and the GitHub source ZIP must be verified during Step B and after push. Owner approval alone does not establish that the pin has been installed or the evidence committed.
++The pin is applied in the Step-B commit. With this exact line added **before staging** and validated against the current working tree by `git check-attr`, Git must not normalise EOL in the evidence subtree. Claude's `core.autocrlf=true` rehearsal yielded **0/25 evidence hash differences between Windows, Git/GitHub**. The SHA-256 values below are those of the original Windows evidence; preservation in working files, repository blobs and the GitHub source ZIP is verified during Step B and again from GitHub after push.
+ 
+ The full Step-B file list and the excluded process artifacts are in the companion placement inventory v0.3, reviewed by Claude. The source ZIP must be retained outside Git until post-push verification.
+ 
+@@ -128,14 +128,14 @@
+ | `LP_blocky/shifted_label_contrast.csv` | 6145 | `64d8676fb0af06d9b7f73d4a5f56605ef56c65d47130fa4068913a6cf9e928ee` |
+ | `LP_blocky/source_index_sha256.txt` | 231 | `f9232c0315c4ed7a2bb93695a8aeac631f10e01ff07cc96e6b6f6a9759ee5e79` |
+ 
+-Source of the 25 hashes: Claude's `Claude_REVIEW_OF_ChatGPT_S2_I2_Closure_Commit_and_S2_I3_Entry_v0_1_v0_1.md`, Appendix A. The original owner Windows evidence ZIP has been independently inspected and its member hashes match the table, but **the owner has not yet extracted those members into the repository**, checked the extracted-file hashes, staged them, or committed them. Step B must perform and record those operations in that order. The evidence-only `-text` pin has owner approval, but preservation through Git/GitHub requires its actual application before staging and independent post-push hash verification.
++Source of the 25 hashes: Claude's `Claude_REVIEW_OF_ChatGPT_S2_I2_Closure_Commit_and_S2_I3_Entry_v0_1_v0_1.md`, Appendix A. The original owner Windows evidence ZIP has been independently inspected and its member hashes match the table. Step B extracts those members, checks the extracted-file hashes, and only then stages them, in that order. Preservation through Git/GitHub relies on the evidence-only `-text` rule applied before staging, confirmed by independent post-push hash verification.
+ 
+ **No unapproved change to frozen Stage 1, the index-driven architecture or sample hold-out roles is authorised by this note.**
+ 
+ 
+ ## 8. Evidence report origin and change log
+ 
+-- Installed-report v0.1 (proposed Step-B installation, 2026-10-16): finalised the reviewed v0.4 content as the repository gate report; recorded both owner-approved 2026-10-16 decisions (evidence-only `-text` preservation and two verbatim UTF-8 exceptions), kept the Step-B extraction/commit pending, and retained all numeric evidence and acceptance thresholds unchanged. The report's textual provenance is the review series v0.1-v0.4 below.
++- Installed-report v0.1 (Step-B installation, 2026-10-16): finalised the reviewed v0.4 content as the repository gate report; recorded both owner-approved 2026-10-16 decisions (evidence-only `-text` preservation and two verbatim UTF-8 exceptions); Claude final-review corrections applied so the text is true as at its installing commit; all numeric evidence and acceptance thresholds unchanged. The report's textual provenance is the review series v0.1-v0.4 below.
+ - Review draft v0.4 (2026-10-16): corrected the owner working-tree evidence status (**not yet extracted**; source ZIP only), made extraction / exclusion of scratch `.idx` / 25-hash pre-staging checks mandatory; changed the all-path `git diff --cached --check` from stop to information-only, retaining only `.gitattributes` as a whitespace gate; recorded two **proposed, not yet approved** narrow ASCII exceptions; corrected review version header and section 6 numbering; described the completed Copilot identity/NOTICE review and Step-B sequencing. Ratified numerical values and acceptance findings unchanged. Not installed.
+ - Review draft v0.3 (2026-10-16): applied closure review M1/S1-S3 and O1/O2: recorded **completed and GitHub-verified** code commit `190bd06ded88130ffddac7bb9adde4175d82f9f8`; defined optional owner-ratified evidence-only `-text` pin for `core.autocrlf=true`; distinguished Windows CRLF reader hash from Git LF reader hash; made Step-B scope include twelve already-moved `docs/` records, conditionally screened Copilot source, 25 numerical outputs, gate report, status replacement and `.gitattributes`; clarified excluded process artifacts. Status v0.6 still requires the owner's current ratified repository v0.5 as input. Not installed.
+ - Review draft v0.2 (2026-10-16): applied Claude review B-S1/B-S2/B-S3 and B-O1/B-O2; softened decoder-identity claim, planned Stage 1-style gate-report placement, enumerated 25 numerical outputs, distinguished Linux-only mutations, and documented BAT EOL conventions.
+--- ChatGPT/00_PROJECT_STATUS_v0_6.md
++++ Claude/00_PROJECT_STATUS_v0_6.md
+@@ -6,9 +6,9 @@
+ **Drafted by:** ChatGPT from the exact owner-supplied, ratified Project Status v0.5
+ (Windows CRLF SHA-256 `a5f19fa8c9dfd83b8d701b4e327f48555be613f75558938f328e6c53f61881da`),
+ the owner-ratified S2-I2 Windows acceptance, Claude's independent verification, and the
+-GitHub-verified S2-I2 code commit `190bd06`.
+-**Status:** DRAFT FOR CLAUDE REVIEW - NOT YET RATIFIED OR INSTALLED. Proposed to supersede v0.5
+-in the separate Step-B documentation/evidence commit after owner approval. This file is a
++GitHub-verified S2-I2 code commit `190bd06`; Claude final-review corrections applied.
++**Status:** RATIFIED 2026-10-16 by the project owner. Supersedes v0.5, installed by the separate
++Step-B documentation/evidence commit. This file is a
+ concise shared current-state index, not a competing technical authority; owning authorities
+ prevail on conflict.
+ 
+@@ -61,7 +61,7 @@
+ hydra3333 <10749357+hydra3333@users.noreply.github.com>
+ ```
+ 
+-Last independently verified S2-I2 code commit as at this draft (Claude checked the pushed GitHub
++Last independently verified S2-I2 code commit before this status refresh (Claude checked the pushed GitHub
+ source ZIP, all nine added implementation files and the six frozen baseline indexes):
+ 
+ ```text
+@@ -100,8 +100,8 @@
+ remain in Git history (they contain code and documents only, no Restricted Media).
+ 
+ This identifies a **verified commit**, not necessarily the live/current HEAD. The separate Step-B
+-commit to install S2-I2 evidence, the gate report and Project Status v0.6 has **not** occurred as at
+-this draft. Check the live repository before making any new commit.
++commit that installs S2-I2 evidence, the gate report and this Project Status v0.6 follows it;
++check the live repository before making any new commit.
+ 
+ Claude's GitHub source-ZIP comparison of `4221f7f` against `c45dcf0` established:
+ 
+@@ -265,14 +265,13 @@
+ separate but incomplete temporal correspondence protection. A field-order swap is not detectable
+ by the registration measurements. These limits belong in the durable S2-I2 gate report.
+ 
+-**Step-B records are separate from the accepted code commit.** A bounded, not-yet-executed
+-Step-B documentation/evidence commit is proposed to install the owner-ratified S2-I2 evidence
+-report at `docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md`, the 25 numerical/textual
++**Step-B records are separate from the accepted code commit.** The bounded Step-B
++documentation/evidence commit installs the owner-ratified S2-I2 evidence report at `docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md`, the 25 numerical/textual
+ Windows evidence files under `experiments/stage2/results/S2_I2_v0_1/`, reviewed supporting
+-documents and this status v0.6 in place of v0.5. As at drafting, evidence remains in the
+-owner's untracked `experiments/stage2/Z/VapourSynth-mpeg2Deblock_S2_I2.zip`, **not yet extracted**
+-into the final repository destination. The scratch `.idx` is excluded; exact SHA-256 checks
+-and independent post-push verification are required.
++documents and this status v0.6 in place of v0.5. The evidence is extracted at Step B from the
++owner's untracked `experiments/stage2/Z/VapourSynth-mpeg2Deblock_S2_I2.zip` and its 25 SHA-256
++values checked before staging. The scratch `.idx` is excluded; independent post-push
++verification of the evidence hashes follows.
+ 
+ **S2-I3 THROUGH S2-I10 ARE NOT AUTHORISED.** Stage 2 Experimental Design v0.6 remains unchanged.
+ The owner-requested all-16-source objective census at S2-I8 is a separately recorded plan,
+@@ -296,8 +295,8 @@
+ docs/REPOSITORY/02_INDEX_FORMAT_SPEC.md                 v0.4 current ratified-constraints baseline; not frozen final packing
+ docs/REPOSITORY/Stage1_Evidence_and_Gate_Report_v0_3.md RATIFIED / Stage 1 frozen evidence
+ docs/REPOSITORY/Stage2_Experiment_Design_v0_6.md        Stage 2 design; RATIFIED 2026-10-13
+-docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md  accepted S2-I2 evidence; proposed same Step-B install
+-docs/REPOSITORY/00_PROJECT_STATUS_v0_6.md               current-state index; this draft, Step-B replacement of v0.5
++docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md  accepted S2-I2 evidence; installed by Step B
++docs/REPOSITORY/00_PROJECT_STATUS_v0_6.md               current-state index; replaces v0.5 at Step B
+ NOTICE.md                                               governing Restricted Media permission/restrictions
+ README.md                                               public project/build summary
+ ```
+@@ -380,7 +379,7 @@
+ ```text
+ S2-I1         AUTHORISED 2026-10-14; COMPLETE / ACCEPTED / COMMITTED at 4221f7f
+ S2-I2         SEPARATELY AUTHORISED; COMPLETE / PASS / RATIFIED 2026-10-16;
+-              code committed and pushed at 190bd06; Step-B records commit pending
++              code committed and pushed at 190bd06; records installed by Step B
+ S2-I3..I10    NOT AUTHORISED; require separate owner decisions
+ ```
+ 
+@@ -409,7 +408,7 @@
+    `experiments/stage2/results/** -text` to the root `.gitattributes`, limited to the S2-I2
+    numerical/textual evidence subtree. Confirm via `git check-attr` BEFORE staging evidence;
+    verify all 25 extracted Windows-file SHA-256 values before staging and again from GitHub
+-   after push. This is an approved Step-B change, **not yet applied or committed**.
++   after push. Applied in the Step-B commit.
+ 2. **Narrow D-23 US-ASCII exception - YES.** Retain exactly these two verbatim third-party
+    historical records unmodified, including their existing UTF-8 punctuation and names:
+    `docs/ChatGPT_Review_of_Copilot_Grok_MPEG2_Block_Detection_v0_1_FOR_CLAUDE.md` and
+@@ -417,8 +416,7 @@
+    other repository documents. Claude has cleared the original research source for identity,
+    NOTICE and rights-related recordkeeping; neither source is technical authority.
+ 
+-The Step-B commit is still pending Claude's final review and the owner's installation approval;
+-these two decisions do **not** authorise blanket staging or repository modification by the assistant.
++These two decisions do **not** authorise blanket staging or repository modification by the assistant.
+ Expected trailing-whitespace warnings in unchanged historical documents/evidence are not a
+ commit-failure gate: only `git diff --cached --check -- .gitattributes` is a STOP whitespace
+ check; numerical evidence integrity is verified using 25 declared hashes before staging and
+@@ -494,7 +492,7 @@
+ 
+ ## 9. Change log
+ 
+-### v0.6 - 2026-10-16 (DRAFT; NOT YET RATIFIED)
++### v0.6 - 2026-10-16 (RATIFIED)
+ 
+ - Prepared exclusively from the ratified v0.5 Windows-CRLF source with SHA-256
+   `a5f19fa8c9dfd83b8d701b4e327f48555be613f75558938f328e6c53f61881da`;
+@@ -505,14 +503,15 @@
+   commit `2286341`; no Stage 1 index baseline or production-filter changes.
+ - Records the same-field row-phase registration test and S2-I2-only LP_blocky diagnostic role;
+   leaves S2-I3 and later increments NOT AUTHORISED and Stage 2 Design v0.6 unchanged.
+-- Identifies the proposed *separate, still-pending* Step-B gate-report / numerical-evidence /
+-  document / status-replacement commit. The scratch LP_blocky index is excluded from Git.
++- Installed by the separate Step-B gate-report / numerical-evidence / document /
++  status-replacement commit. The scratch LP_blocky index is excluded from Git.
+ - Records the owner's 2026-10-16 **YES** decisions: preserve exact Windows evidence bytes
+   using an evidence-only `-text` attribute, and allow two named historical UTF-8 source
+-  records unchanged under a narrow D-23 ASCII exception. Neither change has yet been staged.
++  records unchanged under a narrow D-23 ASCII exception. Both are applied in the Step-B commit.
+   No general D-23, NOTICE or media-rule change.
+-- Proposed v0.6 would supersede v0.5 by adding v0.6 and removing v0.5 in the same bounded
+-  Step-B commit only after owner approval and Claude review.
++- Supersedes v0.5: v0.6 added and v0.5 removed in the same bounded Step-B commit, after
++  Claude final review and owner ratification. Claude final-review corrections applied so the
++  text is true as at its installing commit.
+ 
+ ### v0.5 - 2026-10-14 (RATIFIED)
+ 

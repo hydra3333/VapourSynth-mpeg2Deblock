@@ -1,0 +1,47 @@
+# STEP B v0.2 PROPOSED only. NOT for execution before Claude review + owner ratification.
+# Code commit 190bd06ded88130ffddac7bb9adde4175d82f9f8 is COMPLETE; do not stage the nine code files again.
+# Conditional: docs/COPILOT-... only after separate Claude identity/NOTICE/rights clearance.
+# Strong recommendation: owner approve .gitattributes evidence -text pin BEFORE staging evidence.
+# With pin staged scope should be exactly 40 A / 1 M / 1 D (or 39 A if Copilot held).
+A  docs/ChatGPT_S2_I2_Design_Plan_v0_4_FOR_CLAUDE_REVIEW.md
+A  docs/Claude_REVIEW_OF_ChatGPT_S2_I2_Design_Plan_v0_2_v0_1.md
+A  docs/Claude_REVIEW_OF_ChatGPT_S2_I2_Design_Plan_v0_3_v0_1.md
+A  docs/Claude_REVIEW_OF_ChatGPT_S2_I2_Design_Plan_v0_4_v0_1.md
+A  docs/Claude_REVIEW_OF_ChatGPT_S2_I2_Implementation_v0_1_v0_1.md
+A  docs/Claude_REVIEW_OF_ChatGPT_S2_I2_Closure_Commit_and_S2_I3_Entry_v0_1_v0_1.md
+A  docs/Claude_VERIFICATION_OF_S2_I2_Windows_Run_v0_2.md
+A  docs/Claude_S2_Seam_Pixel_Test_Options_Table_v0_2.md
+A  docs/ChatGPT_Review_of_Copilot_Grok_MPEG2_Block_Detection_v0_1_FOR_CLAUDE.md
+A  docs/Claude_REVIEW_OF_ChatGPT_Copilot_Grok_Block_Detection_Assessment_v0_1.md
+A  docs/S2_I2_v0_3_CHANGE_TRACEABILITY.md
+A  docs/S2_I2_v0_4_CHANGE_TRACEABILITY.md
+A  docs/COPILOT-MPEG2_Deblocking_VHS_DVD_Research.md
+A  experiments/stage2/results/S2_I2_v0_1/LP/S2_I2_LP.log
+A  experiments/stage2/results/S2_I2_v0_1/LP/S2_I2_LP_result.txt
+A  experiments/stage2/results/S2_I2_v0_1/LP/boundary_detectability.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP/column_phase.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP/frame_gop_uncertainty.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP/known_bad_offsets.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP/outer_mb_edge_diagnostics.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP/row_phase.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP/run_manifest.json
+A  experiments/stage2/results/S2_I2_v0_1/LP/seam_counts.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP/shifted_label_contrast.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP/source_index_sha256.txt
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/S2_I2_LP_blocky.log
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/S2_I2_LP_blocky_result.txt
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/boundary_detectability.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/column_phase.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/frame_gop_uncertainty.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/index_preflight.log
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/known_bad_offsets.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/outer_mb_edge_diagnostics.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/row_phase.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/run_manifest.json
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/seam_counts.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/shifted_label_contrast.csv
+A  experiments/stage2/results/S2_I2_v0_1/LP_blocky/source_index_sha256.txt
+M  .gitattributes    # ADD only: experiments/stage2/results/** -text (OWNER APPROVAL REQUIRED)
+A  docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md
+A  docs/REPOSITORY/00_PROJECT_STATUS_v0_6.md
+D  docs/REPOSITORY/00_PROJECT_STATUS_v0_5.md
