@@ -1178,11 +1178,12 @@ chat** of 2026-10-07: provenance only, kept and scrubbed.
 15. **S4 of 7.8:** whether `q_scale_type` is recoverable from the current index. Settle before S2-I4.
 17. **Stale "acceptance pending" statements in committed documents.** `S2_I3_P0_WINDOWS_RUN_STATUS_AND_RESULTS_v0_4.md`,
     `Claude_P0_EVIDENCE_REVIEW_AND_GATE_RECOMMENDATION_v0_5.md` and ChatGPT handover v0.9 were all true
-    at their installing commits but were overtaken by the ratification hours later. Claude's
-    recommendation is **not** to re-version all three: record the ratification in the S2-I3 Evidence and
-    Gate Report when it is written, which is its proper home, and let the status family retire as
-    planned. Re-versioning three documents to carry one sentence is the doc sprawl the owner has
-    objected to. This handover is the current statement of gate status until that report exists.
+    at their installing commits but were overtaken by the ratification hours later. **The owner decided
+    on 2026-10-18 NOT to re-version all three:** the ratification is to be recorded in the S2-I3
+    Evidence and Gate Report when it is written, which is its proper home, and the status family
+    retires as planned. Re-versioning three documents to carry one sentence is the doc sprawl the owner
+    has objected to. **Until that report exists, this handover is the current statement of gate
+    status** - a successor should not reopen this as an open question.
 18. Future: Development Closure plan (media removal, then history purge, uploads deletion);
     wheel/PyPI identity at Stages 7-9.
 
@@ -1248,8 +1249,9 @@ never rewritten, and `VHSC_samples/LG_576i_3_LP.idx` stays byte-unchanged.
   replaces it. Updated the header, 2, 7.8, 12.1 and 13 accordingly.
 - Reordered 13 so the now-unblocked seven-index tracking commit is step 1 and Commit A step 2.
 - Added **12.17**: three committed documents still say acceptance is pending. They were true at their
-  installing commits and were overtaken afterwards. Recommendation is to record the ratification in the
-  Evidence and Gate Report rather than re-version all three.
+  installing commits and were overtaken afterwards. **The owner decided not to re-version them**; the
+  ratification goes into the Evidence and Gate Report, and this handover is the current statement of
+  gate status until then.
 - Restated in three places that gate ratification is **not** P1 authorisation, which remains a separate
   explicit owner decision.
 
