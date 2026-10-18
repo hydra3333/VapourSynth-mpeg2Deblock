@@ -1,25 +1,23 @@
 # Claude Handover to a Future Claude Chat - MPEG-2 Index-Driven Deblocker
 
-**Filename:** `Claude_HANDOVER_TO_Future_Claude_Chat_v0_12.md`
-**Version:** 0.12 (supersedes v0.11, which was never installed) - DRAFT FOR OWNER REVIEW
+**Filename:** `Claude_HANDOVER_TO_Future_Claude_Chat_v0_14.md`
+**Version:** 0.14 (supersedes v0.12; v0.13 was never installed)
 **Date:** 2026-10-18
-**As-at repository state:** HEAD `166af3a88ac0bdf14e4bcd51162ca11cc25dec4e` (pushed; verified by this
+**As-at repository state:** HEAD `82ba3e104b1f8ff9f3dd6214df1bbb4ae7cfc927` (pushed; verified by this
 chat from a fresh GitHub clone on 2026-10-18), on top of the single root commit
 `11f47427624bf5f68b3426fe9f58aa26d40e47f7` (tree `45ad1f16a24d3cce0411863a9804472efa1c8529`).
-266 tracked files.
-**As-at work state:** Stage 1 frozen; **S2-I1 COMPLETE and committed**; **S2-I2 COMPLETE, gate PASS,
-code and evidence committed**; Stage 2 design **v0.7**, S2-I3 design **v0.3** and Project Status
-**v0.7** RATIFIED. **S2-I3 P0 EXECUTION IS COMPLETE: all eight admissions REGISTERED, all eight
-descriptive diagnostics complete, all four pair tests PASS, global summary run with
-`READY_FOR_P1=true` (numerical only). Claude's comprehensive evidence review is complete and
-recommended the P0 registration gate be recorded as PASSED and the ChatGPT role independently agreed.
-**The project owner RATIFIED the S2-I3 P0 registration gate as PASSED on 2026-10-18.** The gate is
-closed; the seven-index tracking commit is now unblocked. The 15-file P0 overlay is committed; the
-seven admitted indexes are NOT yet tracked. **P1 remains unauthorised: ratifying the gate is not
-authorising P1, which needs its own explicit owner decision.**
-**Companion:** `ChatGPT_Handover_To_Future_ChatGPT_MPEG2_Deblocking_Project_v0_9.md` (committed
-2026-10-18, current for that role) and the operational checkpoint
-`docs/HANDOVER/S2_I3_P0_WINDOWS_RUN_STATUS_AND_RESULTS_v0_4.md`.
+215 tracked files, zero `.zip` files.
+**As-at work state:** Stage 1 frozen; S2-I1 and S2-I2 COMPLETE; Stage 2 design v0.7 and S2-I3 design
+v0.3 RATIFIED. **S2-I3 P0 RATIFIED PASSED by the project owner on 2026-10-18.** The seven admitted
+development indexes are tracked (`35923a5`); cleanup Commits A, B and C are complete, with four
+leftovers (12.5); the
+**S2-I3 P0 Evidence and Gate Report v0.1** (`e7cf449`) and **`06_DEBLOCK_CONCEPT.md` v1.3** (`82ba3e1`)
+are ratified and installed. **Route A is down to its last step:** both role handovers must carry
+interim-bridge sections 15-16 (this v0.14 does; ChatGPT v0.10's content was cleared by Claude on
+2026-10-18 and its install copy follows this document's installation), then the transfer matrix records
+the commit IDs, then the owner separately decides bridge retirement. **P1 remains unauthorised.**
+**Companion:** `ChatGPT_Handover_To_Future_ChatGPT_MPEG2_Deblocking_Project_v0_9.md` is the tracked
+ChatGPT handover at this as-at point; its successor v0.10 is content-cleared and pending installation.
 **From:** the Claude technical-development chat (reviewer/researcher role)
 **To:** the follow-on Claude chat taking over the same role
 **Status:** Role handover, not project authority. Where this document and a named authority file
@@ -87,8 +85,8 @@ stands in `docs/HANDOVER/ROLE_HANDOVER_CONTINUITY_PURPOSE_TEXT_FOR_BOTH_ROLES.md
    route: `git clone --filter=blob:none --no-checkout https://github.com/hydra3333/VapourSynth-mpeg2Deblock`
    then a sparse checkout of what you need. Also ask for the latest ChatGPT role handover.
 3. Read the named authorities where exact wording matters (section 6).
-4. Determine only the **delta** since `35cd543`: `git log` (history starts at `11f4742`; see 4.2),
-   the owner's S2-I3 P0 run results, and anything the owner reports.
+4. Determine only the **delta** since this document's as-at point `82ba3e1`: `git log 82ba3e1..HEAD`
+   (history starts at `11f4742`; see 4.2), and anything the owner reports.
 5. State which authority versions you are working from and ask the owner to confirm.
 6. Pick up the pending task (section 13).
 
@@ -137,8 +135,9 @@ oracle -> Stage 7 API4 wrapper -> Stage 8 AVX2 (scalar kept as reference) -> Sta
   **4/4 pair tests PASS**, global summary run. Claude's comprehensive evidence review recommends the
   gate be recorded as **PASSED** and the ChatGPT role independently agreed. **The owner RATIFIED the
   P0 gate as PASSED on 2026-10-18** (7.8, 13), so the gate is closed and the seven-index tracking
-  commit is unblocked. The 15-file P0 overlay, the `interim_` bridge, status v0.4 and Claude review
-  v0.5 are committed; the seven admitted indexes are not yet tracked.
+  commit followed at `35923a5`. The 15-file P0 overlay, the `interim_` bridge, status v0.4, Claude
+  review v0.5, the ratified P0 Evidence and Gate Report (`e7cf449`) and `06` v1.3 (`82ba3e1`) are all
+  committed.
 - Still to come in S2-I3 after P0: P1 onwards (fixed-QP experimentation), which needs both P0
   acceptance and a separate explicit owner authorisation.
 
@@ -319,18 +318,19 @@ Worse, the headline "finding" was already accepted knowledge: **K-03**, ratified
   and a control (5.6). Only `TEST_6A_home_576i` and `TEST_7A_home_576i`, with their `_blocky` copies,
   are genuinely new.
 - **2026-10-17, media commit permission:** "the new mpg files can be treated like the others,
-  committed temporarily." So the four new recordings **may** be committed, in a separate bounded
-  commit. The owner has **not yet** decided how "temporarily" is achieved; this chat set out the three
-  options and the fact that `git rm` cannot remove historical blobs (12.6).
+  committed temporarily." The four recordings were in fact committed in snapshot `6b7acc3`, inside a
+  mixed sweep rather than the separate bounded commit planned. The owner has **not yet** decided how
+  "temporarily" is achieved; `git rm` cannot remove historical blobs, so this is a Development Closure
+  question (12.17).
 
 ---
 
 ## 4. Repository and build state
 
-### 4.1 Layout (verified at `35cd543`; 181 tracked files - see 4.2 for the growth to 266)
+### 4.1 Layout (verified at `82ba3e1`; 215 tracked files, zero `.zip`)
 
 ```text
-README.md  LICENSE (AGPL-3.0-or-later)  NOTICE.md  .gitattributes  .gitignore
+README.md  LICENSE (AGPL-3.0-or-later)  NOTICE.md  .gitattributes  .gitignore (now ignores *.zip *.patch *.diff)
 .github/workflows/mpeg2Deblock_build-windows-x64_workflow_manual_or_release.yml
 .github/workflows/expected_stage_bplus_switches.csv   (256 rows; current)
 .github/workflows/expected_a3_v0_10_switches.csv      (historical; kept deliberately)
@@ -338,21 +338,25 @@ src/Mpeg2BlockInspector/   16 .c + 4 .h, FROZEN
 src/mpeg2Deblock/          plugin.cpp, plugin_version.h, mpeg2Deblock.rc (Identity scaffold)
 tools/Stage1_Inspector_Analyzer_v0_2.py   FROZEN
 TESTING/                   7 .BAT + 7 .vpy (absolute paths to the active root)
-VHSC_samples/              20 .mpg recordings (Restricted Media), 6 reference .idx, 6 .log
-                           (the four TEST_6A/7A_home_576i .mpg are NOT yet committed)
+VHSC_samples/              20 .mpg recordings (Restricted Media, including the four 6A/7A files),
+                           13 .idx (six frozen Stage 1 baselines + seven development indexes), 6 .log
 third_party/vapoursynth/include/  VapourSynth4.h VSHelper4.h VSScript4.h VSConstants4.h (R81),
                                   VSVulkan4.h (post-R81 master snapshot), VERSION.txt
 vs/VapourSynth-mpeg2Deblock/  VapourSynth-mpeg2Deblock.slnx, two .vcxproj, two .filters
-experiments/stage2/        TRACKED since 4221f7f. S2-I1 (reader v0.2, regression, BestSource
-                           validate, two BATs), S2-I2 (registration stats/clip/tests, check-result,
-                           ffmpeg rehearsal, vspipe env preflight, validate-lp-blocky, two BATs),
-                           and results/S2_I2_v0_1/{LP,LP_blocky}/ evidence (CSV/JSON/log/txt)
+experiments/stage2/        29 files: S2-I1, S2-I2 and the 15-file S2-I3 P0 overlay; plus 25 files of
+                           results/S2_I2_v0_1/{LP,LP_blocky}/ evidence (CSV/JSON/log/txt)
+experiments/S2-I3/         3 leftover tracked copies, byte-identical to docs/REPOSITORY 00_PROJECT_STATUS_v0_7,
+                           S2_I3 design v0_3 and Stage2 design v0_7 (swept in by 6b7acc3; see 12.5)
+experiments/               S2_I2_Closure_v0_3.md, a superseded closure review draft (6b7acc3; see 12.5)
 docs/REPOSITORY/           00_PROJECT_STATUS_v0_7, 02_INDEX_FORMAT_SPEC (v0.4), 05_DECISIONS_v1_2,
-                           06_DEBLOCK_CONCEPT (v1.2), S2_I2_Evidence_and_Gate_Report_v0_1,
+                           06_DEBLOCK_CONCEPT (v1.3, unsuffixed - see 12.3), S2_I2_Evidence_and_Gate_Report_v0_1,
                            S2_I3_Full_Data_Multi_Source_Experimental_Design_v0_3,
-                           Stage1_Evidence_and_Gate_Report_v0_3, Stage2_Experiment_Design_v0_7
-docs/HANDOVER/             ChatGPT v0.7, Claude v0.9, ROLE_HANDOVER_CONTINUITY_PURPOSE_TEXT
-docs/                      single-version research, review and proposal files (provenance)
+                           S2_I3_P0_Evidence_and_Gate_Report_v0_1, Stage1_Evidence_and_Gate_Report_v0_3,
+                           Stage2_Experiment_Design_v0_7, interim_ bridge (temporary)
+docs/HANDOVER/             ChatGPT v0.9, Claude v0.12 (v0.14 on installation), P0 status v0.4,
+                           ROLE_HANDOVER_CONTINUITY_PURPOSE_TEXT
+docs/                      47 single-version research, review and proposal files (provenance),
+                           including Claude_P0_EVIDENCE_REVIEW_AND_GATE_RECOMMENDATION_v0_5
 ```
 
 `.gitattributes` gained one line during S2-I2 Step B: `experiments/stage2/results/** -text`, which
@@ -378,12 +382,20 @@ pins the committed evidence files so Git does not renormalise them.
 | `6e7b5c5` | 10-16 | **S2-I2 evidence + gate report + status v0.6** (40 A / 1 M / 1 D; the M is `.gitattributes`) |
 | `35cd543` | 10-17 | **Stage 2 v0.7 + S2-I3 v0.3 + status v0.7 installed** (3 A / 2 D); v0.6 documents removed (**v0.10's as-at point**) |
 | `6b7acc3` | 10-17 | SNAPSHOT after handovers updated: **58 files added**, 181 -> 239, 158.8 MB. Swept in review artefacts, 16 ZIPs, a 54 MB copy of the repository inside itself, and the four authorised 6A/7A recordings |
-| `3f8f45a` | 10-17 | Removed one identity-bearing handover-review ZIP; four other carriers missed (12.1) |
+| `3f8f45a` | 10-17 | Removed one identity-bearing handover-review ZIP; four other carriers missed (12.17) |
 | `4636c33` | 10-17 | Owner's second snapshot: **25 A / 0 M / 0 D**, 239 -> 264. Installed the 15-file P0 overlay with the corrected P0A, the consolidated `interim_` knowledge bridge, status v0.2, and 8 further review artefacts |
 | `f4a40e1` | 10-18 | **2 A / 0 M / 0 D**, 264 -> 266: ChatGPT handover v0.9 and status v0.3. No predecessor deletions, so three ChatGPT handover versions coexisted |
 | `03edabf` | 10-18 | **Bad staging, 7 A / 0 D.** Swept in two WITHDRAWN Claude review drafts, a duplicate status v0.4 at `docs/` root, two review ZIPs, and installed the UNCORRECTED status v0.4 at the authoritative path while the cross-reviewed one landed at `docs/` root |
 | `584f5dd` | 10-18 | **Remediation, 1 M / 7 D.** Swapped the correct status v0.4 into `docs/HANDOVER/`, deleted both withdrawn drafts, the duplicate, both ZIPs, and the overdue status v0.2 and v0.3 predecessors |
-| `166af3a` | 10-18 | **`.gitignore` extended** with `*.zip`, `*.patch`, `*.diff` (1 M). **v0.11's as-at point**; 266 tracked files |
+| `166af3a` | 10-18 | **`.gitignore` extended** with `*.zip`, `*.patch`, `*.diff` (1 M). **v0.11 and v0.12 as-at point**; 266 tracked files |
+| `0fad5ea` | 10-18 | SNAPSHOT: added Claude v0.11 and v0.12 (2 A). v0.11 had been superseded before installation and was removed again at `b83ab3e` |
+| `45664d5` | 10-18 | SNAPSHOT: the two-sentence Claude v0.12 update recording the owner's decision not to re-version three documents (1 M) |
+| `7f8e445` | 10-18 | **Commit A**: the four identity carriers removed (4 D) |
+| `b83ab3e` | 10-18 | **Commit B**: ChatGPT v0.7 and v0.8, Claude v0.9, v0.10 and v0.11 removed (5 D) |
+| `35923a5` | 10-18 | Seven development indexes tracked (7 A). Claude verified all seven byte-identical to the admitted references and the six frozen Stage 1 indexes unchanged |
+| `8ffaa7d` | 10-18 | **Commit C**: 52 review-only artefacts removed (52 D), including the nested repository ZIP; 214 files, zero ZIPs |
+| `e7cf449` | 10-18 | S2-I3 P0 Evidence and Gate Report v0.1 installed (1 A), byte-identical to the install copy Claude diff-cleared |
+| `82ba3e1` | 10-18 | `06_DEBLOCK_CONCEPT.md` v1.3 installed in place (1 M), byte-identical to its cleared install copy, after the report as required. **v0.14's as-at point** (v0.13 was drafted at the same point and never committed); 215 tracked files |
 
 **Pre-reset commits are provenance only.** They are cited in documents but are **not in the
 repository**; nobody can check them out. Wording: "removed from repository history". Direct-SHA views
@@ -571,7 +583,8 @@ hashes, no duplicate group** (owner-run, relayed). Content hash prefixes of the 
 material: `TEST_6A_home_576i` `0F8656F69591EC69`, its `_blocky` `0D53680AB8037FDA`,
 `TEST_7A_home_576i` `C68E209FDE087D7A`, its `_blocky` `17ABBC2C4EEB85AF`.
 
-These two pairs are **uncommitted, outside the P0 allow-list, and carry no experimental role.** They
+These two pairs are **tracked (since `6b7acc3`), outside the P0 allow-list, and carry no experimental
+role.** They
 are roughly 5-7x longer than anything in the pool (20.5 MB and 12.4 MB against about 3 MB), so expect
 indexes of 10-20 MB and proportionally longer runs, and note that unnormalised weighting would let
 `TEST_6A` outweigh all four existing groups combined.
@@ -582,20 +595,21 @@ content, not filename**. Any future renaming must be a rename, not a copy.
 
 ---
 
-## 6. Authority and status files at `166af3a`
+## 6. Authority and status files at `82ba3e1`
 
 | File | State |
 |---|---|
 | `docs/REPOSITORY/00_PROJECT_STATUS_v0_7.md` | RATIFIED 2026-10-17; concise current-state index, not a competing authority |
 | `docs/REPOSITORY/05_DECISIONS_v1_2.md` | RATIFIED 2026-10-13; D-01..D-26 |
-| `docs/REPOSITORY/06_DEBLOCK_CONCEPT.md` | v1.2 RATIFIED 2026-10-11; **K-01..K-11 and O-01..O-15** (unsuffixed until next revision) |
+| `docs/REPOSITORY/06_DEBLOCK_CONCEPT.md` | **v1.3 RATIFIED 2026-10-18**, installed `82ba3e1` in place under its unsuffixed name, which D-23 v1.2 did not provide for (12.3); **K-01..K-11 and O-01..O-15** unchanged in mechanism. v1.3 adds only bounded evidence annotations to K-03/K-07/K-08 in a new section 3.1, including that "inherited" means from earlier pictures of the same encoded stream |
+| `docs/REPOSITORY/S2_I3_P0_Evidence_and_Gate_Report_v0_1.md` | **RATIFIED 2026-10-18**, installed `e7cf449`. The durable record of the P0 gate, the raw-audit attribution, both 3A control figures with 610 and 289 mismatches correctly assigned, and the corrected empirical annexes transferred from the `interim_` bridge |
 | `docs/REPOSITORY/02_INDEX_FORMAT_SPEC.md` | v0.4: constraints C-1..C-5 ratified; packing frozen only at Stage 3 |
 | `docs/REPOSITORY/Stage1_Evidence_and_Gate_Report_v0_3.md` | RATIFIED; Stage 1 PASS |
 | `docs/REPOSITORY/Stage2_Experiment_Design_v0_7.md` | **RATIFIED 2026-10-17**; supersedes v0.6 |
 | `docs/REPOSITORY/S2_I3_Full_Data_Multi_Source_Experimental_Design_v0_3.md` | **RATIFIED 2026-10-17**. Its `Q_fixed` values are now independently CONFIRMED by the P0 diagnostics (7.8). Cosmetic staleness only: the Role column still reads "admission pending" for SP and 3A |
-| `docs/REPOSITORY/interim_S2_I3_Stage2_Knowledge_Preservation_and_Transfer_v0_1.md` | Committed `4636c33`; 681 lines, byte-verified. **TEMPORARY preservation bridge, not authority.** Its section 9 is the transfer/retirement checklist. Route A has NOT happened, so it is still load-bearing. **It is correct: a v0.3 Claude review claim that it conflated scopes was withdrawn (11, 7.8)** |
+| `docs/REPOSITORY/interim_S2_I3_Stage2_Knowledge_Preservation_and_Transfer_v0_1.md` | Committed `4636c33`; 681 lines, byte-verified. **TEMPORARY preservation bridge, not authority.** Its section 9 is the transfer/retirement checklist. Route A's report and concept installs are done (`e7cf449`, `82ba3e1`); it stays load-bearing until both role handovers are installed and the transfer matrix is recorded (12.1). **It is correct: a v0.3 Claude review claim that it conflated scopes was withdrawn (11, 7.8)** |
 | `docs/HANDOVER/S2_I3_P0_WINDOWS_RUN_STATUS_AND_RESULTS_v0_4.md` | Operational checkpoint, ChatGPT family, drafted by Claude at owner request and then cross-reviewed editorially by ChatGPT. Correct content installed at `584f5dd` |
-| `docs/Claude_P0_EVIDENCE_REVIEW_AND_GATE_RECOMMENDATION_v0_5.md` | Claude's comprehensive P0 evidence review; verdict ACCEPTED, gate PASS recommended. An independent evidence source, **not** the S2-I3 Evidence and Gate Report, which does not yet exist |
+| `docs/Claude_P0_EVIDENCE_REVIEW_AND_GATE_RECOMMENDATION_v0_5.md` | Claude's comprehensive P0 evidence review; verdict ACCEPTED, gate PASS recommended. An independent evidence source, **not** the S2-I3 Evidence and Gate Report, which was written separately, cites it, and is installed at `e7cf449` |
 | `docs/REPOSITORY/S2_I2_Evidence_and_Gate_Report_v0_1.md` | RATIFIED; S2-I2 registration PASS |
 | `NOTICE.md` | licence scope and Restricted Media (including the AI exception) |
 | `README.md` | public summary; release link to `v0.1.0` |
@@ -909,8 +923,12 @@ frames and 39.7%).
 result in the evidence set.** A one-pixel *horizontal* shift of 3A (`-1,0`) still reproduces **93.08%**
 of its skipped-macroblock blocks exactly; previous-display reaches 96.72% on 3A and 94.85% on LP. Any
 tolerance-based registration test below roughly 93% would have **passed a misregistered 3A**. In
-absolute terms on 3A the true position has 0 non-matching blocks of 8812 against 289 for the best
-competing hypothesis. **This does NOT supersede the `interim_` document's 90.2% figure** (its section
+absolute terms on 3A the true position has 0 non-matching blocks of 8812; the `-1,0` spatial control
+has **610** (8202 of 8812), and the strongest control of any kind, the wrong `previous_display`
+temporal hypothesis at 96.72%, has **289** (8523 of 8812). v0.12 and review v0.5 said only "289 for
+the best competing hypothesis" beside the 93.08% figure; that is strictly true of `previous_display`
+but invited the misreading that 289 belonged to `-1,0`, and the Evidence Report draft made exactly that
+error before Claude caught it. Always name the hypothesis with its mismatch count. **This does NOT supersede the `interim_` document's 90.2% figure** (its section
 11), which is a whole-clip *vertical* one-line injected fault from the Linux rehearsal - a different
 fault with a different qualifying population. Carry BOTH with their mechanisms named; today's vertical
 per-block controls were 77.22% and 28.86%, which do not contradict the injection result.
@@ -948,7 +966,7 @@ alone**, correctly described as the guaranteed zero-motion co-located portion. T
 first two columns summed, 20 to 41% of NONE, and that agrees with the P0 census. State which scope is
 meant.
 
-**Four SHOULDs for the eventual Evidence and Gate Report** (no MUST against the evidence): S1 carry
+**Four SHOULDs, all carried into the ratified Evidence and Gate Report (`e7cf449`)** (no MUST against the evidence): S1 carry
 both 3A control figures with their mechanisms named and state the floor as at least 93%; S2 define the
 `caught` column in `known_bad_offsets.csv` and note its `(0,0)` row is an aligned reference, not a
 known-bad case, since 3A reports `row=INCONCLUSIVE` with `caught=True` there; S3 record the
@@ -1003,14 +1021,16 @@ chroma registration established; determinism observed for these samples, not pro
 - No six-index runs in CI; no PDB retention beyond Actions artifact expiry.
 - No wheel/PyPI until Stages 7-9; **no motion-vector capture and no `.idx2` commitment** without
   evidence meeting D-13's bar; Stage 1 stays frozen.
-- No editing of ratified files in place; no `superseded/` folder; no `*.md eol=crlf` pin.
-- **No new standalone knowledge document** merely to hold measurements (D-05; 12.5).
+- No editing of ratified files in place: a revision is a new versioned file (D-23 v1.2). **`06` v1.3 was
+  nonetheless installed in place at `82ba3e1`** (12.3). No `superseded/` folder; no `*.md eol=crlf` pin.
+- **No new standalone knowledge document** merely to hold measurements (D-05; 12.7).
 - **No admission of `TEST_6A`/`TEST_7A` through the current eight-source allow-list.**
-- No filtering at all until P0 is accepted. P0 READY is a numerical report, **not** authorisation.
+- No filtering until the owner separately authorises P1. P0 is ratified PASSED, but neither that nor
+  `READY_FOR_P1` is authorisation.
 - No Stage 2 increment beyond the one authorised without the owner's explicit authorisation.
 - The characterisation BAT `S2_I3_P0B_characterise_new_source_v0_1.bat`, drafted by ChatGPT, is
-  **stood down** and must not be installed or run; Claude characterises the new pairs directly once
-  the media is committed.
+  **stood down** and must not be installed or run. The media are committed (`6b7acc3`); Claude
+  characterises the new pairs directly only when the owner asks.
 
 ---
 
@@ -1023,6 +1043,14 @@ Stage 2 v0.2 reviews; migration proposal review; StageC MSBuild review; S2-I1 ca
 reviews; S2-I2 design plan v0.2/v0.3/v0.4 reviews; S2-I2 implementation review; S2-I2 closure/entry
 review; `Claude_VERIFICATION_OF_S2_I2_Windows_Run_v0_2.md`; `Claude_S2_Seam_Pixel_Test_Options_Table_v0_2.md`;
 `TESTING/show_source_clip_info*.vpy`.
+
+**Route A reviews, delivered 2026-10-18, NOT committed** (the owner holds them, two of them untracked
+under `experiments/S2-I3/`; they are review correspondence and must not be staged):
+`Claude_REVIEW_OF_Route_A_Transfer_Packet_v0_1_v0_1.md` (report and concept candidates: two MUSTs,
+the 289/610 error and install-time wording); `Claude_DIFF_CLEARANCE_Route_A_Install_Copies_v0_2_v0_1.md`
+(both install copies cleared, with the date and install-order conditions both later met);
+`Claude_REVIEW_OF_ChatGPT_Handover_v0_10_v0_1.md` (ChatGPT handover v0.10, four MUSTs);
+`Claude_DIFF_CLEARANCE_ChatGPT_Handover_v0_10_Rev2_v0_1.md` (its second candidate: content cleared).
 
 **Committed 2026-10-18 in `docs/`:** `Claude_P0_EVIDENCE_REVIEW_AND_GATE_RECOMMENDATION_v0_5.md` (the
 comprehensive P0 evidence review; `1 A / 0 M / 0 D` at `03edabf`, with v0.3 and v0.4 wrongly swept in
@@ -1051,7 +1079,6 @@ plan v0.1 review (P0 plan cleared with SHOULD S1-S6).
 | `Claude_ANALYSIS_OF_Paired_Reference_Metric_and_Sample_Pool_Extension_v0_2.md` | paired-metric analysis and the sample-pool MUST. **Carries the mis-located-band error** (7.7); do not quote its boundary/interior figures. A corrected v0.3 was offered |
 | `Claude_REVIEW_OF_ChatGPT_Stage2_Interim_Findings_v0_1_v0_1.md` | four MUSTs, three of them corrections to Claude's own material |
 | `Claude_P0_REVISED_CLEARANCE_AND_PROJECT_STATE_OF_PLAY_v0_1.md` | P0 revised candidate CLEARED, plus a consolidated state-of-play and supersession ledger |
-| this handover v0.10 | |
 
 Useful ChatGPT documents: its role handover (latest), `Stage1_Inspector_Instrumentation_Design_v0_3.md`.
 `Response_to_Claude_Index_Driven_Ruling_and_Revised_Stage2_Plan_v0_1.md` came from the **wrong Claude
@@ -1074,7 +1101,7 @@ chat** of 2026-10-07: provenance only, kept and scrubbed.
 - Running ChatGPT's tools against a realistic reconstruction has found every defect that reading
   missed. Keep doing it, and now also run the real `vspipe`/BestSource stack (2.2).
 - Quotes marked verbatim must be verbatim. Paraphrases must be labelled.
-- Commit metadata is part of identity, including the time-zone offset (12.7).
+- Commit metadata is part of identity, including the time-zone offset (12.11).
 - Old tags keep old history alive; local-path clones copy every object (use `--no-local`).
 - Keep relay pastes short and self-contained; the owner carries them between chats and asks for them
   when missing.
@@ -1127,6 +1154,54 @@ chat** of 2026-10-07: provenance only, kept and scrubbed.
   contradiction and a wrong staged shape. Every one was editorial or citational; none touched the
   evidence, the recomputations or the verdict. Two documents this role both wrote and would have
   reviewed are the exception that proves the rule.
+- **Transferred from `interim_` bridge sections 15 and 16 (bridge retirement condition 3).** v0.12 was
+  described by this role as already carrying these sections. **It lacked four of their seventeen
+  items**, listed here. The other thirteen were already present elsewhere in this handover: BestSource
+  `bsindex` caches, the five CMD traps, the `git diff --cached --check` rule, the `core.autocrlf`
+  representation rule with its `139f02c6`/`f9892039` example, the BestSource DLL identity and NumPy
+  provenance, and M1 to M4 with their root cause and standing rules.
+    - **Embeddable/isolated Python does not add the launched script's directory to `sys.path`, and
+      ignores `PYTHONPATH`.** The owner's VapourSynth interpreter is exactly this case
+      (`D:\TEST\Vapoursynth_x64_R81\python.exe`, CPython 3.14.8, `python314._pth`,
+      `sys.flags.isolated=1`, `sys.flags.safe_path=True`). Under `-I` a plain invocation fails with
+      `ModuleNotFoundError` for a sibling module; setting `PYTHONPATH` does **not** fix it; explicit
+      `sys.path.insert` is the only route. The cleared P0A fix launches each NumPy-dependent suite
+      through `-c` with `runpy.run_path`, prepending the script directory and setting
+      `sys.argv=[script]`. **Rehearse every script invocation under `-I` as well as plain before
+      clearing it.**
+    - **The project's `.vpy` adapters already solve this internally** with
+      `HERE = Path(__file__).resolve().parent; sys.path.insert(0, str(HERE))`. Adding that idiom to the
+      test modules is the more idiomatic long-term fix; it was deliberately not taken mid-run so the
+      Python files stayed byte-identical to the rehearsed set.
+    - **Fail-closed proof: inject the failing test BEFORE the trailing
+      `if __name__=='__main__': unittest.main()` line.** This role's first attempt appended it after, so
+      the injected test was defined only after the suite had already run and exited, and the run
+      reported success - a false demonstration of fail-closed behaviour. Done correctly, a failing
+      assertion, a syntax error and a missing sibling module each give a non-zero exit through
+      `runpy.run_path`.
+    - **The S4 testing error (bridge section 16).** This role recommended running the new unit tests
+      under the VapourSynth interpreter - right in intent - but verified it with absolute-path
+      invocation under a **non-isolated** interpreter while recommending one that is isolated by
+      default, having already seen `python3 -I` fail with that exact `ModuleNotFoundError` earlier in
+      the same session. The owner's P0A then failed closed at rc=2 before creating scratch. **Test the
+      deployed invocation, not an equivalent-looking one.**
+- **Do not assert coverage you have not grepped.** On 2026-10-18 this role told the owner and the
+  ChatGPT role three times that v0.12 carried bridge sections 15-16, and ChatGPT's v0.10 draft relied on
+  that assertion in its retirement table. Checking each item by pattern search took one command and
+  found four absent. It is the same describe-from-memory failure recorded above for other documents,
+  applied to this role's own file - which is where it is least expected and least checked.
+- **Sweep for stale state by state-words, not by the phrases you remember writing.** v0.13's own
+  stale-claim check searched for the specific old phrases this role recalled, found none, and v0.13
+  still said Route A had not happened, that the Evidence Report did not yet exist, that the 6A/7A media
+  were uncommitted, and that the takeover delta ran from `35cd543`. The ChatGPT role found three of
+  these. A sweep over words like "not yet", "pending", "uncommitted", "does not exist", "has not" and
+  every superseded commit ID found them all in one pass, plus four more.
+- **Check a proposed install shape against D-23, not only against the content.** `06` v1.3 was proposed
+  in place, cleared twice by this role and installed as `0 A / 1 M / 0 D`, although D-23 v1.2 says an
+  unsuffixed document adopts a versioned filename at its next actual revision (12.3).
+- **Verify a cleanup by listing what survives, not only by counting what was removed.** Commit C was
+  checked as exactly 52 deletions of the agreed paths, which it was; nobody listed the files still
+  under `experiments/` afterwards, and four leftovers from the same snapshot stayed tracked (12.5).
 - **The owner can lose track when several tracks run at once.** On 2026-10-17 he said he was "starting
   to get lost with what I perceived may be forward backtracking". The remedy that worked: separate the
   tracks explicitly, say which one is on the critical path, give a supersession ledger, and state
@@ -1136,111 +1211,142 @@ chat** of 2026-10-07: provenance only, kept and scrubbed.
 
 ## 12. Outstanding items and known gaps
 
-1. ~~The owner's acceptance decision on the P0 evidence.~~ **DONE: ratified PASSED on 2026-10-18**
-   (7.8). Nothing is now blocking. The consequence is that the **seven-index tracking commit** (item 6)
-   is live, and that three committed documents still say acceptance is pending - see 12.17.
-2. **Commit A - four identity carriers, `0 A / 0 M / 4 D`.** The only time-sensitive item in the
-   project. All four re-confirmed present directly at HEAD `166af3a` on 2026-10-18 (12.1).
-3. **Commit B - three D-23 handover predecessors, `0 A / 0 M / 3 D`:** ChatGPT v0.7, ChatGPT v0.8,
-   Claude v0.9. Status v0.2 and v0.3 were already removed at `584f5dd`. Keep ChatGPT v0.9, Claude
-   v0.10 (or v0.11 once installed) and the role continuity-purpose file.
-4. **Commit C - 52 review-only paths** (44 as at `3f8f45a` plus 8 added by `4636c33`), pending an
-   exact-path owner-approved inventory. Never by wildcard: `experiments/stage2/` holds accepted code.
-5. **Route A knowledge transfer**, still not started: `06_DEBLOCK_CONCEPT.md` contains none of the
-   corrected measurement figures, and the only reference to an S2-I3 Evidence and Gate Report anywhere
-   in `docs/REPOSITORY/` is inside the `interim_` bridge itself. So the bridge is still load-bearing
-   and must not be retired. The four SHOULDs of 7.8 are additions to that report.
-6. **Seven-index tracking commit** after P0 acceptance: copy the admitted scratch index bytes into
-   `VHSC_samples/`, verify hashes are identical to those admitted (never regenerate between admission
-   and tracking), stage seven exact named paths, confirm `git ls-files --eol` shows `-text`.
-7. **P1 onwards** of S2-I3, only after P0 acceptance AND a separate explicit owner authorisation. A
-   numerical `READY_FOR_P1=true` is not that authorisation.
-8. **`Stage2_Interim_Findings_v0_1`**: still not cleared, not installed, superseded in practice by the
-   committed `interim_` bridge. Do not install it.
-9. **The four new recordings.** The owner has permitted a separate bounded commit of
-   `TEST_6A_home_576i(.mpg/_blocky.mpg)` and `TEST_7A_home_576i(...)`, expecting 4 A / 0 M / 0 D, not
-   mixed with P0 or the index commit. No `.gitattributes` change needed (4.7). **Undecided:** how
-   "temporarily" is achieved - accept persistence in Git history, plan a rewrite at Development
-   Closure (precedent: `11f4742`), or keep them out. `git rm` cannot remove historical blobs, and no
-   later rewrite reaches third-party clones, forks or caches. After the commit, Claude verifies the
-   four hashes, generates reference indexes, characterises both pairs (frame count, geometry, MB-grid
-   alignment, picture structure, `progressive_frame`, `q_scale_type`, Q_fixed, FRAME/FIELD/NONE mix,
-   P-skip counts, pair correspondence) and supplies allow-list entries for a verdict-file `v0_2`.
-   An open question of real interest: which transform regime the home captures fall into (5.5).
-10. **Owner decision (minor):** commits record the committer's local time-zone offset (`+1030`). A UTC
-   zone would remove that locality signal.
-11. Six `VHSC_samples/*.log` kept temporarily; remove when no longer needed.
-12. Archive-wide questions still open: field pictures (O-08), recorder modes in the owner's archive,
-   matrix effects (O-07), chroma geometry (nothing measured yet - all 7.7 figures are **luma only**).
-13. Claude's `ANALYSIS ... v0.2` carries the M3 error and was never reissued. Its figures must not be
-    quoted; the corrected record is in the `interim_` bridge and in 7.7. Housekeeping only.
-14. Not yet seen by Claude: the fresh `v0.1.0` release page and asset (4.3).
-15. **S4 of 7.8:** whether `q_scale_type` is recoverable from the current index. Settle before S2-I4.
-17. **Stale "acceptance pending" statements in committed documents.** `S2_I3_P0_WINDOWS_RUN_STATUS_AND_RESULTS_v0_4.md`,
-    `Claude_P0_EVIDENCE_REVIEW_AND_GATE_RECOMMENDATION_v0_5.md` and ChatGPT handover v0.9 were all true
-    at their installing commits but were overtaken by the ratification hours later. **The owner decided
-    on 2026-10-18 NOT to re-version all three:** the ratification is to be recorded in the S2-I3
-    Evidence and Gate Report when it is written, which is its proper home, and the status family
-    retires as planned. Re-versioning three documents to carry one sentence is the doc sprawl the owner
-    has objected to. **Until that report exists, this handover is the current statement of gate
-    status** - a successor should not reopen this as an open question.
-18. Future: Development Closure plan (media removal, then history purge, uploads deletion);
-    wheel/PyPI identity at Stages 7-9.
+1. **Route A, last step.** Bridge retirement needs all four conditions: (a) P0 Evidence and Gate Report
+   installed and ratified - **DONE** `e7cf449`; (b) `06` v1.3 installed and ratified - **DONE**
+   `82ba3e1`; (c) both role handovers carry bridge sections 15-16 - **this v0.14 does once installed;
+   ChatGPT v0.10's content is cleared and its install copy follows**;
+   (d) the transfer matrix updated with the actual commit IDs and reviewed. Then retirement is a
+   **separate** owner decision by exact-path D-23 removal. Until then the bridge is load-bearing.
+2. **ChatGPT handover v0.10.** Second candidate content-cleared by Claude on 2026-10-18. Its install
+   copy needs only the install-time wording and this v0.14's version and commit ID, then a diff check,
+   the owner's ratification, and `1 A / 0 M / 1 D` replacing v0.9 - **after** this v0.14 is installed.
+3. **`06` filename deviation - owner decision.** D-23 v1.2: "existing unsuffixed project documents adopt
+   versioned filenames at their next actual revision". `06` v1.3 was installed in place as
+   `06_DEBLOCK_CONCEPT.md` instead of as `06_DEBLOCK_CONCEPT_v1_3.md` with v1.2 deleted. ChatGPT
+   proposed it and Claude cleared it twice without checking D-23. Renaming now would leave dangling
+   the path the ratified Evidence Report cites. Claude recommends the owner **accept v1.3 in place as a
+   recorded one-off** and apply the versioned filename at `06`'s next revision (v1.4).
+4. **Local untracked v0.13.** It was placed in the owner's `docs/HANDOVER/` but never committed. Delete
+   the local file; do not stage it. v0.14's install deletes the tracked v0.12.
+5. **Four leftover files from snapshot `6b7acc3` - owner decision, not blocking.** Commit C removed 52
+   review-only paths but not these: `experiments/S2-I3/00_PROJECT_STATUS_v0_7.md`,
+   `experiments/S2-I3/S2_I3_Full_Data_Multi_Source_Experimental_Design_v0_3.md` and
+   `experiments/S2-I3/Stage2_Experiment_Design_v0_7.md` are byte-identical (same blob) to the ratified
+   copies in `docs/REPOSITORY/`; `experiments/S2_I2_Closure_v0_3.md` is the superseded closure review
+   draft whose header still says "not yet ratified/installed" and "S2-I3 remains NOT AUTHORISED". No
+   tracked file refers to any of the four. The duplicates invite a later edit to the wrong copy, and the
+   draft reads as live state. Recommended: one separate exact-path commit, `0 A / 0 M / 4 D`, using
+   `git rm` on the four paths only (never the folder: the owner keeps untracked review files there).
+   Nothing is lost; the ratified copies stay and history keeps all four.
+6. **P1 onwards** of S2-I3 only after a separate explicit owner authorisation. A numerical
+   `READY_FOR_P1=true` and the gate ratification are neither of them that authorisation.
+7. **`Stage2_Interim_Findings_v0_1`**: never cleared, never installed, superseded by the bridge and now
+   by the Evidence Report. Do not install it.
+8. **The four 6A/7A home recordings** are tracked (since `6b7acc3`) but have **no experimental role**.
+   Before any role: Claude verifies the four hashes, generates reference indexes and characterises both
+   pairs (frame count, geometry, MB-grid alignment, picture structure, `progressive_frame`,
+   `q_scale_type`, Q_fixed, FRAME/FIELD/NONE mix, P-skip counts, pair correspondence), and a design
+   revision assigns the role. Which transform regime the home captures fall into is a question of real
+   interest (5.5). Their persistence in Git history is an open owner decision for Development Closure.
+9. **`q_scale_type` recoverability** (7.8 S4) - settle from the index writer source, not from the record
+   layout alone, before S2-I4. The ChatGPT role correctly qualified this role's earlier framing.
+10. **All-zero-ties edge case** in the pair rule (Evidence Report section 6): a fully static frame is
+   counted decisive and a violation, hence FAIL rather than INCONCLUSIVE. Not engaged in the P0 evidence
+   (no record has `mae_at_0 == 0`); review it if the rule is reused on static material.
+11. **Owner decision (minor):** commits record the committer's local time-zone offset.
+12. Six `VHSC_samples/*.log` kept temporarily; remove when no longer needed.
+13. Archive-wide questions still open: field pictures (O-08), recorder modes in the owner's archive,
+    matrix effects (O-07), chroma geometry (nothing measured yet - all 7.7 figures are **luma only**).
+14. Claude's `ANALYSIS ... v0.2` carries the M3 error; it is uncommitted and its boundary/interior
+    figures must not be quoted. The Evidence Report section 13 item 5 now records that prohibition.
+15. **Committed as-at records that are now historical:** status v0.4, Claude review v0.5, ChatGPT
+    handover v0.9, and the `interim_` bridge's section 10 snapshot. Each was true at its installing
+    commit. The owner decided not to re-version them; the Evidence Report carries the ratified gate.
+16. Not yet seen by Claude: the fresh `v0.1.0` release page and asset (4.3).
+17. Future: Development Closure plan (media removal, history purge including the identity blobs in
+    `6b7acc3`, uploads deletion); wheel/PyPI identity at Stages 7-9.
 
 ---
 
 ## 13. State and next steps
 
-**State at `166af3a`:**
+**State at `82ba3e1`:**
 
-- history: root plus seventeen commits, all verified from GitHub; **266 tracked files**;
-- ratified authorities unchanged: `05` v1.2, `06` v1.2, `02` v0.4, Stage 1 report v0.3, Stage 2 v0.7,
-  S2-I3 v0.3, S2-I2 report v0.1, status v0.7. **None requires revision on account of the P0 result**
-  (checked directly against committed text);
-- **S2-I3 P0 execution complete; Claude's evidence review complete, verdict ACCEPTED and gate PASS
-  recommended; the ChatGPT role independently agreed; and the owner RATIFIED the gate as PASSED on
-  2026-10-18. The gate is closed. P1 is still unauthorised**;
-- the 15-file P0 overlay is committed; the `interim_` bridge is committed and still load-bearing;
-  status v0.4 and Claude review v0.5 are committed;
-- the seven admitted indexes are NOT tracked; the six frozen Stage 1 indexes are untouched;
-- sample pool: 20 recordings with 20 distinct hashes; 6A/7A committed but role-unassigned;
-- hold-outs EP/2A/4A intact and locked to S2-I8; a sweep of all 137 evidence files found no reference
-  to any of them;
-- **four identity carriers remain in the current tree** and three D-23 handover predecessors with them;
+- history: root plus twenty-five commits, all verified from GitHub; **215 tracked files, zero ZIPs**;
+- ratified authorities: `05` v1.2, **`06` v1.3**, `02` v0.4, Stage 1 report v0.3, Stage 2 v0.7, S2-I3
+  v0.3, S2-I2 report v0.1, **S2-I3 P0 Evidence and Gate Report v0.1**, status v0.7;
+- **S2-I3 P0 ratified PASSED**; the gate is closed and recorded; **P1 unauthorised**;
+- 13 tracked `.idx`: six frozen Stage 1 baselines unchanged, seven development indexes byte-identical to
+  the admitted references; all 13 binary-detected;
+- current-tree cleanup complete except four leftover files (12.5); the identity blobs remain in
+  history until Development Closure;
+- the `interim_` bridge is tracked and still load-bearing pending condition (c) and (d) of 12.1;
+- hold-outs EP/2A/4A intact and locked to S2-I8; 6A/7A tracked but role-unassigned;
 - no filtering has been attempted anywhere.
 
 **Next, in order:**
 
-1. **Seven-index tracking commit** - now unblocked by the ratification. `7 A / 0 M / 0 D`, exact
-   SHA-verified admitted bytes only, never regenerated between admission and tracking,
-   `git ls-files --eol` showing `-text` for every staged `.idx`, and the six frozen Stage 1 indexes
-   untouched. **LP original is excluded** - it is the pre-existing frozen baseline, hence seven and not
-   eight.
-2. **Commit A**, four identity paths, `0 A / 0 M / 4 D`. Still the only time-sensitive item in the
-   project, and independent of everything else.
-3. **Commit B**, now four handover predecessors once this document is installed: ChatGPT v0.7, ChatGPT
-   v0.8, Claude v0.9, Claude v0.10. Alternatively install this document as `1 A / 0 M / 1 D` removing
-   Claude v0.10 directly and leave Commit B at three - do one or the other, not both.
-4. **Commit C**, the 52-path review cleanup, after the owner agrees the exact list.
-5. **Write the S2-I3 Evidence and Gate Report**, carrying the ratified gate status, the four SHOULDs of
-   7.8, and the Route A measurement transfer; then update `06`'s K-03/K-07/K-08 and retire the
-   `interim_` bridge and the status family together.
-6. **P1 fixed-QP luma kernel** only after a separate explicit owner authorisation. The gate ratification
-   is not that authorisation.
-7. Refresh this handover after step 1, or sooner if a chat shows signs of ending.
+1. Install this v0.14: `1 A / 0 M / 1 D`, adding it and deleting the tracked Claude v0.12. Delete the
+   local untracked v0.13 file first; it must not be staged.
+2. ChatGPT prepares its v0.10 install copy (install-time wording plus v0.14's version and commit ID);
+   Claude diff-checks it; the owner ratifies; install `1 A / 0 M / 1 D` replacing ChatGPT v0.9.
+3. The owner decides the `06` filename question (12.3; recommended: accept in place, fix at v1.4) and
+   the four leftover files (12.5; recommended: one `0 A / 0 M / 4 D` exact-path commit). Neither blocks
+   steps 1-2.
+4. Update the transfer matrix with `e7cf449`, `82ba3e1` and both handover commit IDs; independent review.
+5. The owner's **separate** decision on retiring the `interim_` bridge, then an exact-path D-23 removal.
+6. **P1** only on a separate explicit owner authorisation, within Stage 2 v0.7 and S2-I3 v0.3.
+7. Refresh this handover after step 5, or sooner if a chat shows signs of ending.
 
-**Verify before any Git work.** HEAD was `166af3a` on 2026-10-18 and may have moved. Run
+**Verify before any Git work.** HEAD was `82ba3e1` on 2026-10-18 and may have moved. Run
 `git rev-parse HEAD`, and `git diff --cached --name-status --no-renames` before every commit without
-exception (11).
+exception (11). After committing, check the committed **content**, not only the shape.
 
-**Stop points.** P0 is ratified PASSED, but **no filtering until the owner separately authorises P1**.
-`TEST_6A`/`TEST_7A` get no experimental role until characterised and a design revision assigns one.
-EP, 2A and 4A stay locked until S2-I8 under any filename or alias. The six frozen Stage 1 indexes are
-never rewritten, and `VHSC_samples/LG_576i_3_LP.idx` stays byte-unchanged.
+**Stop points.** No filtering until the owner separately authorises P1. `TEST_6A`/`TEST_7A` get no
+experimental role until characterised and a design revision assigns one. EP, 2A and 4A stay locked
+until S2-I8 under any filename or alias. The six frozen Stage 1 indexes are never rewritten, and
+`VHSC_samples/LG_576i_3_LP.idx` stays byte-unchanged.
 
 ---
 
 ## 14. Change log
+
+### v0.14 - 2026-10-18
+
+- Supersedes v0.12; **v0.13 was drafted, found to carry stale state, and never committed.** The ChatGPT
+  role found three of its stale claims; a wider sweep found the rest. Corrected: the takeover delta now
+  runs from `82ba3e1`; the 4.1 layout re-verified at `82ba3e1` from Git (it was the `35cd543` layout);
+  the 6A/7A media recorded as tracked since `6b7acc3` in 3 and 5.6; section 6's bridge and review rows no
+  longer say Route A has not happened or that the Evidence Report does not exist; 7.8's SHOULDs recorded
+  as carried into the report; three section 9 lines brought current; a stale placeholder row removed
+  from 10.
+- New **12.3**: `06` v1.3 was installed in place contrary to D-23 v1.2's filename amendment; owner
+  decision, with Claude's recommendation. New 12.4 on the untracked local v0.13. New **12.5**: four
+  files swept in by `6b7acc3` that Commit C did not remove (three byte-identical copies of ratified
+  documents and a superseded closure draft); owner decision. Old 12.3-12.14 become 12.6-12.17.
+- Four cross-references into 12 corrected (all four were already wrong in v0.13); the
+  time-zone offset value removed from 12.11, since it narrows the owner's region and the item does not
+  need it.
+- Three lessons added to 11: sweep by state-words, check install shapes against D-23, and verify a
+  cleanup by what survives.
+- Everything v0.13 added is retained: all seventeen bridge section 15-16 items and the 289/610 fix.
+
+### v0.13 - 2026-10-18 (drafted, never committed)
+
+- **Lands the four bridge section 15-16 items v0.12 lacked** (11): isolated Python and `PYTHONPATH`,
+  the `.vpy` HERE idiom, fail-closed test placement before `unittest.main()`, and the S4
+  non-isolated-testing error. Records the lesson that coverage was asserted three times without being
+  checked, and that the ChatGPT v0.10 draft relied on the assertion.
+- **Fixes the 289/610 ambiguity** in 7.8 that this role promised to correct: 610 for `-1,0`, 289 for
+  `previous_display`, each named.
+- As-at point moved from `166af3a` to **`82ba3e1`**: nine commits added to 4.2, covering Commits A, B
+  and C, the seven-index tracking, and the ratified report and `06` v1.3 installs; section 6 updated.
+- Rewrote 12 and 13 for the post-installation state: Route A down to its last step, ChatGPT v0.10
+  reviewed, install order v0.13 then ChatGPT v0.10.
+- **Version line carries no DRAFT label.** v0.10 and v0.12 of this handover were committed reading
+  "DRAFT FOR OWNER REVIEW" - an instance of the install-time wording defect this role keeps raising in
+  other documents. This handover is a role record, not an authority, and its status line says so; it
+  needs no ratification label to be true on installation.
 
 ### v0.12 - 2026-10-18 (draft for owner review)
 
