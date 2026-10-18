@@ -1,10 +1,10 @@
 # 06 - MPEG-2 Deblocking Concept
 
 **Document:** `06_DEBLOCK_CONCEPT.md`
-**Version:** 1.2 (RATIFIED)
-**Date:** 2026-10-11
-**Drafted by:** ChatGPT for Claude cold review and the project owner's ratification
-**Status:** RATIFIED by the project owner on 2026-10-11 after Claude delta recheck: NO OBJECTION. Version 1.2 is the current Stage 0 concept authority.
+**Version:** 1.3 (RATIFIED 2026-10-18)
+**Date:** 2026-10-18
+**Drafted by:** ChatGPT; independently reviewed by Claude; ratified by the project owner on 2026-10-18
+**Status:** v1.3 is the RATIFIED current Stage 0 concept revision, separately installed after the S2-I3 P0 Evidence and Gate Report. It supersedes v1.2 (ratified 2026-10-11) without changing the already-ratified K mechanisms, still-open policy questions, or prior ratifications.
 Items labelled HYPOTHESIS remain hypotheses and items labelled OPEN remain unresolved; ratification
 does not change their evidence status. The Stage 0 research and review files are provenance only.
 **Controlling proposal:** `MPEG2_Macroblock_Index_VapourSynth_Deblocking_Project_Proposal_v0_5.md`
@@ -27,6 +27,9 @@ section 0.3 and was ratified on 2026-10-08. Version 1.2 makes the already-agreed
 geometry explicit and removes ambiguity between sections 4.1-4.3; it does not decide the still-open
 filtering policy for outer macroblock edges that touch NONE. Where this document and a provenance
 file differ, the difference must be raised, not silently resolved.
+Version 1.3 annotates K-03/K-07/K-08 solely with empirical Stage 2 evidence and
+limitations already recorded in the S2-I3 P0 Evidence and Gate Report. It changes no mechanism,
+filtering policy, required metadata or experimental gate.
 
 ### 0.2 Labels
 
@@ -111,12 +114,12 @@ K-11 are likewise **ACCEPTED** (ratified 2026-10-08). Numbering continues the K-
 |---|---|---|---|
 | K-01 | An MPEG-2 4:2:0 macroblock contains four 8x8 luma transform blocks and one 8x8 transform block in each chroma plane. | RESEARCHED | CM 4.1 |
 | K-02 | In suitable frame pictures (frame_pred_frame_dct = 0), luma transform organisation can vary per macroblock between frame DCT and field DCT. | RESEARCHED | CM 5.2, 5.3 |
-| K-03 | Horizontal luma transform seams in frame pictures: frame-DCT macroblock has an internal seam plus macroblock-edge seams; field-DCT macroblock has macroblock-edge seams only. | RESEARCHED (H.262) + VERIFIED (reference-decoder implementation, V1) | CM 6; CRV R1; GRSP 2; FCR 2; CDR V1 |
+| K-03 | Horizontal luma transform seams in frame pictures: frame-DCT macroblock has an internal seam plus macroblock-edge seams; field-DCT macroblock has macroblock-edge seams only. | RESEARCHED (H.262) + VERIFIED (reference-decoder implementation, V1); additional exploratory decoded-luma corroboration on development original/blocky pairs (not a P0 filter gate) | CM 6; CRV R1; GRSP 2; FCR 2; CDR V1; S2-I3 P0 Evidence and Gate Report section 9 / interim section 5 |
 | K-04 | In MPEG-2 4:2:0 frame pictures, chroma blocks are organised in frame structure for DCT coding and do not follow the per-macroblock luma dct_type reorganisation. Field pictures: see section 4.6. | RESEARCHED + VERIFIED (reference-decoder implementation, V2) | CM 8.1; CDR V2 |
 | K-05 | quantiser_scale_code must be mapped through q_scale_type to the actual quantiser scale; weighting matrices also affect quantisation. | RESEARCHED | CM 12, 13 |
 | K-06 | Coded order and display order differ when B pictures are present; index correspondence must follow the output (display) frame sequence that maps to VapourSynth frames. | RESEARCHED | CM 10 |
-| K-07 | FRAME/FIELD/NONE describes applicable coded residual transform geometry, not merely the presence or value of dct_type. NONE applies where no coded residual transform geometry exists, including skipped macroblocks and non-intra macroblocks with effective coded_block_pattern == 0; a dct_type bit may nevertheless have been read in the latter case. A stale/default decoder dct_type must not create a FRAME/FIELD state. Field pictures are identified separately by picture_structure. | RESEARCHED syntax + VERIFIED reference-decoder semantics; revised derivation/implementation rule ACCEPTED (2026-10-08) | CM 5.2; CRV R2; GRSP 4; SC v0.2 9.3; Claude repository-draft review M1 |
-| K-08 | Motion compensation can copy blocking from reference pictures into the current picture (researched). Such blocking can lie off the current picture's transform grid and so bound what a current-grid post-filter can target (inference). | HYPOTHESIS supported by RESEARCHED evidence | PA S24, S03; CRV R3; GRSP 5 |
+| K-07 | FRAME/FIELD/NONE describes applicable coded residual transform geometry, not merely the presence or value of dct_type. NONE applies where no coded residual transform geometry exists, including skipped macroblocks and non-intra macroblocks with effective coded_block_pattern == 0; a dct_type bit may nevertheless have been read in the latter case. A stale/default decoder dct_type must not create a FRAME/FIELD state. Field pictures are identified separately by picture_structure. | RESEARCHED syntax + VERIFIED reference-decoder semantics; revised derivation/implementation rule ACCEPTED (2026-10-08); owner-run P0 empirically verifies the qualifying skipped-P subset only (not all NONE cases) | CM 5.2; CRV R2; GRSP 4; SC v0.2 9.3; Claude repository-draft review M1; S2-I3 P0 Evidence and Gate Report sections 4-5 |
+| K-08 | Motion compensation can copy blocking from reference pictures into the current picture (researched). Such blocking can lie off the current picture's transform grid and so bound what a current-grid post-filter can target (inference). | HYPOTHESIS supported by RESEARCHED evidence for possible off-grid propagation; P0 VERIFIED exact co-location for the zero-motion skipped-P subset, without verifying off-grid prevalence | PA S24, S03; CRV R3; GRSP 5; S2-I3 P0 Evidence and Gate Report sections 5 and 9 |
 | K-09 | FFmpeg's MPEG-2 decoder can export per-macroblock quantiser information as frame side data associated with output frames. This is retained as a cross-check source, not a competing production architecture. | RESEARCHED | PA S18; CR section 7; GRSP 9 |
 | K-10 | In the inspected reference decoder's MPEG-2 4:2:0 path, chroma blocks use the macroblock's same `quantizer_scale`; for 4:2:0 the decoder selects the luma quantisation matrices rather than separate chroma matrices. This is VERIFIED implementation knowledge, not a normative H.262 claim. | VERIFIED (reference-decoder implementation, V3) - ACCEPTED (2026-10-08) | CDR V3 |
 | K-11 | In the inspected reference decoder, MPEG-2 4:2:0 field prediction in frame pictures reconstructs chroma with alternating field parity by line: even chroma lines top field, odd chroma lines bottom field. This verifies the parity premise; same-field access in the post-filter remains a design choice. | VERIFIED (reference-decoder implementation, V4) - ACCEPTED (2026-10-08) | RR section 1, V4 |
@@ -127,6 +130,44 @@ is recorded as O-13.
 Note on K-03: the required reference-decoder cold read has now been completed (CDR V1). The
 normative geometry remains RESEARCHED from H.262; the inspected implementation handling is
 separately VERIFIED.
+
+### 3.1 S2-I3 empirical cross-checks on K-03, K-07 and K-08 (evidence only)
+
+**K-03: corroboration, not redefinition.** Claude's exploratory BestSource luma
+original/Q62-blocky measurements compare two-row bands around frame rows 7/8 against
+within-transform-state interiors. For FRAME macroblocks, row-band relative MAE excess is
+12.8%-19.5%; for FIELD macroblocks the same position is **not a coded horizontal seam** and
+shows only a 2.3%-3.3% control excess. At the internal vertical x=8 luma seam (present for
+both coded states), the corresponding within-state excess spans 16.5%-25.5%. These are
+measurements on development pairs, using the **blocky** index's own transform states,
+not owner-run P0 outputs or a new filtering threshold. The row-7/8 comparison does not
+measure FIELD's actual horizontal seam locations. The earlier whole-frame geometry-blind
+7%-10% interpretation is **SUPERSEDED**; its band mask mixed coded regimes.
+
+**K-07: operational subset test, not an equivalence.** The owner's Windows P0 gate
+reproduced exact co-located luma for every qualifying skipped macroblock in P frame
+pictures across eight development sources (the source-wise counts and controls are in
+the S2-I3 P0 Evidence and Gate Report). This uses **coding=SKIPPED** and picture type P,
+not `transform=NONE` as a substitute. NONE still includes INTER/CBP=0 and skipped B
+macroblocks for which that zero-motion guarantee does not apply. A missing `dct_type`
+bit is not the definition of NONE. The reported result is not a test of all NONE
+semantics or of field-order identity.
+
+**K-08: bounded observation, off-grid status unchanged.** Co-located zero-motion
+P-skips demonstrate that carried-forward damage can remain **on the current grid**;
+propagation does not automatically imply off-grid displacement. The index also records
+NONE cases that may carry non-zero vectors, but its 8-byte macroblock record has **no
+motion-vector components** and cannot measure displacement. Index-derived fractions of
+NONE subdivided into P-skipped, B-skipped, and INTER/CBP=0 appear in the Evidence and
+Gate Report; these measure coding categories, **not** visible off-grid blocking. In
+this context "inherited" means propagated from earlier pictures **of the same encoded
+stream**, not from the higher-quality original recording. The possibility and practical
+prevalence of off-grid blocking remain HYPOTHESIS / OPEN O-09; outer edges touching NONE
+remain OPEN O-04. No `.idx2` or Stage 1 metadata expansion is proposed.
+
+These cross-checks do **not** alter D-09 same-field-polarity safety, chroma scope,
+Stage 2's primary/secondary evidence hierarchy, or the open filtering decisions.
+The P0 evidence report establishes admission/correspondence, **not** filter benefit.
 
 ---
 
@@ -459,6 +500,18 @@ ratified synthesis and points to them; it does not restate them.
 ---
 
 ## 14. Change log
+
+### v1.3 - 2026-10-18 (RATIFIED)
+
+- Retains K-03/K-07/K-08 mechanism wording and their prior RESEARCHED/VERIFIED/HYPOTHESIS categories;
+  adds narrowly labelled empirical support and source links only.
+- K-03 uses Claude's exploratory decoded-luma measurements with the correct FRAME row-7/8 seam
+  versus FIELD non-seam control; does not claim tested filter performance or redefine the seam.
+- K-07 records the owner's P0 exact P-skip **coding subset**, not a general NONE-co-location guarantee.
+- K-08 distinguishes proven on-grid skipped P prediction from possibly off-grid motion-compensated
+  propagation; absence of motion vectors and unresolved O-04/O-09 remain explicit.
+- No new K item, filter rule, indexed-field mandate, Stage 1 modification or P1 authorisation.
+- Independently reviewed by Claude (Route A review v0.1); ratified by the project owner on 2026-10-18 and installed by a separately bounded concept-only commit after the evidence report.
 
 ### v1.2 - 2026-10-11 (RATIFIED)
 
