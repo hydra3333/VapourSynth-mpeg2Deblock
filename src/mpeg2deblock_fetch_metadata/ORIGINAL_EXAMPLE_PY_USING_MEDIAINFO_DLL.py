@@ -38,13 +38,18 @@ dll_search_dirs = [
 ]
 
 # Add directory to Windows DLL search path (Python 3.8+)
+# make handles persistent
+dll_handles = []
 for d in dll_search_dirs:
     if d.is_dir():
         if str(d) not in sys.path:
             sys.path.insert(0, str(d))
         if hasattr(os, "add_dll_directory") and (d / "MediaInfo.dll").exists():
             try:
-                os.add_dll_directory(str(d))
+                # instead of this
+                #os.add_dll_directory(str(d))
+                # do this
+                dll_handles.append(os.add_dll_directory(str(d)))
             except Exception:
                 pass
 
